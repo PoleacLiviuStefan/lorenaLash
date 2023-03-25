@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-
+import About from "./Components/About/About";
+import AboutMain from "./Components/About/AboutMain";
+import Hero from "./Components/Hero/Hero";
+import Navbar from "./Components/Navbar/Navbar";
+import { Route, Routes } from "react-router-dom"
+import CursMain from "./Components/Courses/CursMain";
+import CursDeBaza from "./Components/Courses/CursDeBaza";
+import CursDePerfectionare from "./Components/Courses/CursDePerfectionare";
+import Reviews from "./Components/Reviews/Reviews";
+import CursVipDeBaza from "./Components/Courses/CursVipDeBaza";
+import CursEfecteSpeciale from "./Components/Courses/CursEfecteSpeciale";
+import Salon from "./Components/Salon/Salon";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <Navbar />
+      
+      <Routes>
+        <Route path="/" element={      
+        <main className="">
+        <Hero />
+        <AboutMain />
+        <CursMain />
+        <Reviews />
+        </main>
+         } />
+         <Route path="/curs-de-baza" element={
+            <CursDeBaza />
+         }/>
+          <Route path="/curs-de-perfectionare" element={
+            <CursDePerfectionare />
+         }/>
+             <Route path="/curs-vip-de-baza" element={
+            <CursVipDeBaza />
+         }/>
+         <Route path="/curs-efecte-speciale" element={
+            <CursEfecteSpeciale />
+         }/>
+           <Route path="/salon" element={
+            <Salon />
+         }/>
+      </Routes>
     </div>
   );
 }
