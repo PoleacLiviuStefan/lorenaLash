@@ -5,7 +5,7 @@ const AboutMain = () => {
     const [activateAbout,setActivateAbout]=useState(false)
     const navigate=useNavigate();
   return (
-    <div className='relative  text-white  shadow-xl'>
+    <div name="DespreNoi" className='relative  text-white  shadow-xl'>
         <div className='bg-[#0b2a24]  flex font-montSerrat flex-col items-center justify-center h-full w-full py-[5rem]'>
         <h5>BUCURESTI </h5>
         <h2 className=' font-bold text-[24px] lg:text-[42px] mt-[2rem] z-20'>CINE SUNTEM NOI ? </h2>

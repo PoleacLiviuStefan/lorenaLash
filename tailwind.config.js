@@ -18,7 +18,8 @@ module.exports = {
       },
       backgroundImage:{
         'backgr': "url('/public/Imagini/background.jpeg')",
-        'backCourse': "url('/src/Components/Courses/Imagini/bgmain.jpeg')"
+        'backCourse': "url('/src/Components/Courses/Imagini/bgmain.jpeg')",
+        'bgHero':"url('/public/Imagini/bgHero.jpeg')",
       }
     },
     keyframes: {

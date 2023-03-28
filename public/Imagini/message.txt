@@ -1,0 +1,163 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+class Produs{
+private:
+    string nume_produs;
+    double pret_produs;
+public:
+    Produs(string nume=" ",double pret=0.0){
+        nume_produs=nume;
+        pret_produs=pret;
+    };
+    string get_nume(){ return nume_produs;}
+    double get_pret(){ return pret_produs;}
+};
+
+
+class Cos{
+private:
+    int capacitate_cos;
+    int dimensiune_cos;
+    Produs *produse;
+public:
+    Cos(int capacitate){
+        capacitate_cos=capacitate;
+        dimensiune_cos=0;
+        produse= new Produs[capacitate_cos];
+    };
+
+    ~Cos(){ delete []produse;}
+
+
+    bool adauga_produs(Produs p){
+        if (dimensiune_cos == capacitate_cos) return false;
+        produse[dimensiune_cos++]=p;
+        return true;
+    }
+    double get_total(){
+        double total=0;
+        for (int i =0; i< dimensiune_cos; i++){ total+=produse[i].get_pret(); }
+        return total;   
+    }
+
+};
+
+class Utilizator{
+private:
+    string nume_utilizator;
+    Cos *cos_utilizator;
+public:
+    Utilizator(string nume,Cos *cos){
+        nume_utilizator=nume;
+        cos_utilizator=cos;
+    }
+    
+    string get_nume_utilizator(){ return nume_utilizator;}
+    Cos *get_cos_utilizator(){ return cos_utilizator;}
+};
+
+class Comanda{
+private:
+    int id_comanda;
+    Utilizator *utilizator_comanda;
+    double total_comanda;
+public:
+    Comanda(){
+        cout<<" Constructor default "<<endl;
+    }
+    Comanda(int id, Utilizator *utilizator,double total){
+        id_comanda=id;
+        utilizator_comanda=utilizator;
+        total_comanda=total;
+    }
+    int get_id(){ return id_comanda; }
+    Utilizator *get_utilizator(){ return utilizator_comanda; }
+    double get_total(){ return total_comanda;}
+};
+
+class Magazin{
+private:
+    static const int max_produse = 1000000;
+    static const int max_utilizatori=100000;
+    static const int max_comenzi=1000000;
+    Produs lista_produse[max_produse];
+    Utilizator *lista_utilizatori[max_utilizatori];
+    Comanda lista_comenzi[max_comenzi];
+    int nr_produse;
+    int nr_utilizatori;
+    int nr_comenzi;
+public: 
+    Magazin(){ nr_produse=0; nr_utilizatori=0; nr_comenzi=0;}
+    void adauga_produs(Produs p){
+        if (nr_produse<max_produse)
+            lista_produse[nr_produse++]=p;
+    }
+    void adauga_utilizator(Utilizator *u){
+        if (nr_utilizatori<max_utilizatori)
+            lista_utilizatori[nr_utilizatori++]=u;
+    }
+    void plaseaza_comanda(Utilizator *u){
+        double total = u->get_cos_utilizator()->get_total();
+        Comanda c(nr_comenzi +1,u , total);
+        if (nr_comenzi< max_comenzi)
+            lista_comenzi[nr_comenzi++]=c;
+        u->get_cos_utilizator()->~Cos();
+    }
+    void afisare_produse(){
+        for ( int i=0; i< nr_produse;i ++)
+            cout<<lista_produse[i].get_nume()<<" "<<lista_produse[i].get_pret()<<endl;
+    }
+    void afisare_utilizatori(){
+        for (int i=0; i<nr_utilizatori;i++)
+            cout<<lista_utilizatori[i]->get_nume_utilizator()<<endl;
+    }
+    void afisare_comenzi(){
+        for (int i=0;i<nr_comenzi;i ++)
+            cout<<" Comanda "<<lista_comenzi[i].get_id()<<" | "<<" Utilizator: "<<lista_comenzi[i].get_utilizator()->get_nume_utilizator()<<" | "<<" Total: "<<lista_comenzi[i].get_total()<<endl;
+    }
+
+};
+
+int main(){
+    Magazin magazin; 
+    //Creez magazinul
+
+    Produs p1("Laptop",2000);
+    Produs p2("Tableta",1750);
+    Produs p3("Telefon",4500);
+    magazin.adauga_produs(p1);
+    magazin.adauga_produs(p2);
+    magazin.adauga_produs(p3); 
+    //Creez produsele si le adaug in magazin
+
+    Cos cos1(2);
+    Utilizator u1("Tavi Troaca",&cos1);
+    magazin.adauga_utilizator(&u1);
+
+    Cos cos2(3);
+    Utilizator u2("Razvan Troaca",&cos2);
+    magazin.adauga_utilizator(&u2);
+
+    //Implementez utilizatori si creez cosurile 
+
+    cos1.adauga_produs(p1);
+    cos1.adauga_produs(p2);
+
+    cos2.adauga_produs(p2);
+    cos2.adauga_produs(p3);
+    //Adaug in cos produse
+
+    magazin.plaseaza_comanda(&u1);
+    magazin.plaseaza_comanda(&u2);
+    //Plasez comenziile pentru utilizatorii implementati
+
+    magazin.afisare_produse();
+    magazin.afisare_utilizatori();
+    magazin.afisare_comenzi();
+    //Afisez produsele, utilizatorii si comenziile
+
+    return 0;
+}
+

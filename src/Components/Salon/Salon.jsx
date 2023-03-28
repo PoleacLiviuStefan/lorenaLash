@@ -3,8 +3,8 @@ import teamGeneral from './Images/Team.jpeg'
 import Member from './Member'
 const Salon = () => {
   return (
-    <div className='relative flex  flex-col items-center w-full h-full '>
-        <div className='flex flex-col items-center w-[65rem] bg-[FEFEFE] top-[6rem] h-full'>
+    <div name="Salon" className='relative flex  flex-col items-center w-full h-full '>
+        <div className='flex flex-col items-center w-[60rem] bg-[FEFEFE] top-[6rem] h-full'>
    
             <div className='relative flex justify-center items-center h-[40rem]'>
             <img src={teamGeneral} className="w-full h-[40rem]" />

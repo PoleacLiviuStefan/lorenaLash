@@ -10,6 +10,8 @@ import Reviews from "./Components/Reviews/Reviews";
 import CursVipDeBaza from "./Components/Courses/CursVipDeBaza";
 import CursEfecteSpeciale from "./Components/Courses/CursEfecteSpeciale";
 import Salon from "./Components/Salon/Salon";
+import Contact from "./Components/Contact/Contact";
+import Buy from "./Components/Courses/Buy";
 function App() {
   return (
     <div className="App">
@@ -22,7 +24,7 @@ function App() {
         <Hero />
         <AboutMain />
         <CursMain />
-        <Reviews />
+      
         </main>
          } />
          <Route path="/curs-de-baza" element={
@@ -40,7 +42,11 @@ function App() {
            <Route path="/salon" element={
             <Salon />
          }/>
+           <Route path="/checkout" element={
+            <Buy />
+         }/>
       </Routes>
+      <Contact />
     </div>
   );
 }
