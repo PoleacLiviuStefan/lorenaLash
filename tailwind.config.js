@@ -150,6 +150,26 @@ module.exports = {
           opacity:"0"
         }
       },
+      buyBtn:{
+        '0%':{
+          background:"transparent",
+          color:"black"
+        },
+        '100%':{
+          background:"black",
+          color:"white"
+        }
+      },
+      buyBtnReverse:{
+        '0%':{
+          background:"black",
+          color:"white"
+        },
+        '100%':{
+          background:"transparent",
+          color:"black"
+        }
+      },
     },
   },
   plugins: [],

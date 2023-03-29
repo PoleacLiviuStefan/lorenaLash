@@ -4,11 +4,11 @@ import Member from './Member'
 const Salon = () => {
   return (
     <div name="Salon" className='relative flex  flex-col items-center w-full h-full '>
-        <div className='flex flex-col items-center w-[60rem] bg-[FEFEFE] top-[6rem] h-full'>
+        <div className='flex flex-col items-center w-full lg:w-[60rem] bg-[FEFEFE] top-[6rem] h-full font-montSerrat '>
    
-            <div className='relative flex justify-center items-center h-[40rem]'>
-            <img src={teamGeneral} className="w-full h-[40rem]" />
-            <div className='absolute flex justify-center items-center   w-full h-[40rem] bg-black bg-opacity-[20%]'>
+            <div className='relative flex justify-center items-center  h-[30rem] lg:h-[40rem]'>
+            <img src={teamGeneral} className="w-full h-[30rem] lg:h-[40rem]" />
+            <div className='absolute flex justify-center items-center   w-full h-full bg-black bg-opacity-[20%]'>
             <h1 className='absolute font-oldStandard text-[64px] mt-[10rem] font-bold text-white'>ECHIPA</h1>
             <h2 className='flex items-center font-montSerrat w-[20rem] mt-[20rem] text-center text-white'><span className='w-[4rem] h-[1px] bg-white'/>DESCOPERA ECHIPA NOASTRA DE OAMENI TALENTATI<span className='w-[4rem] h-[1px] bg-white'/></h2>
             </div>
@@ -19,6 +19,55 @@ const Salon = () => {
                 <Member nume="Damian Denisa" rol="Master" descriere="Buna! Eu sunt Denisa Damian si m-am alaturat Lorenei in urma cu 1 an imediat ce am terminat cursul de baza in academie, am decis sa fac parte din echipa ei!  Daca iti doresti un look natural, fresh, care sa te scoata din anonimat, atunci te astept cu drag la programare! "/>
                 <Member nume="Catalina Trica " rol="Brow Artist" descriere="Buna, sunt Catalina si iti pot spune ca eu iti pot creea sprancenele la care ai visat dintotdeauna! Fie ca vrei stilizare, vopsit sau laminare, eu te voi asculta si iti voi reda o privire armonioasa conform preferintelor tale! Haide si tu sa iti conturezi privirea!"/>
             </div>
+            <h2 className='relative whitespace-nowrap  text-[28px] lg:text-[48px] font-bold   px-[10rem] py-[.5rem] rounded-[8px] bg-[#0b2a24] text-white mt-[10rem]'>
+             LISTA PRETURI
+          </h2> 
+          <ul className='grid grid-cols-2 place-items-center w-[90%] lg:w-[60rem] mt-[3rem] mb-[10rem] text-[14px] lg:text-[15px]' >
+            <li className='font-bold text-[18px]'>Extensii Gene by Lorena</li>
+            <li className='text-[16px]'>Aplicare (Intretinere)</li>
+            <li className='w-[10rem]'>2D</li>
+            <li className='w-[10rem]'>230 lei (200 lei)</li>
+            <li className='w-[10rem]'>2D&3D</li>
+            <li className='w-[10rem]'>250 lei (220 lei)</li>
+            <li className='w-[10rem]'>3D</li>
+            <li className='w-[10rem]'>270 lei (240 lei)</li>
+            <li className='w-[10rem]'>Russian Volume</li>
+            <li className='w-[10rem]'>300 lei</li>
+            <li className='w-[10rem]'>Hollywood Volume</li>
+            <li className='w-[10rem]'>330 lei</li>
+            <li className='w-[10rem]'>Wet, Eyeliner, Raze</li>
+            <li className='w-[10rem]'>300 lei (270 lei)</li>
+            <li className='w-[10rem]'>Accesorii</li>
+            <li className='w-[10rem]'>30 lei</li>
+            <li className='w-[10rem]'>Demontare Extensii</li>
+            <li className='w-[10rem]'>30 lei</li>
+            <li className='font-bold text-[18px] mt-[1rem]'>Extensii Gene by Master</li>
+            <li></li>
+            <li className='w-[10rem]'>1D&2D</li>
+            <li className='w-[10rem]'>170 lei (140 lei)</li>
+            <li className='w-[10rem]'>2D</li>
+            <li className='w-[10rem]'>200 lei (170 lei)</li>
+            <li className='w-[10rem]'>2D&3D</li>
+            <li className='w-[10rem]'>220 lei (190 lei)</li>
+            <li className='w-[10rem]'>3D</li>
+            <li className='w-[10rem]'>240 lei (210 lei)</li>
+            <li className='w-[10rem]'>Wet,  Eyeliner, Raze</li>
+            <li className='w-[10rem]'>270 lei (240 lei)</li>
+            <li className='w-[10rem]'>Demontare</li>
+            <li className='w-[10rem]'>30 lei</li>
+            <li className='font-bold text-[18px] mt-[1rem]'>BROWS by Catalina</li>
+            <li></li>
+            <li className=' w-[10rem]'>Stilizare Sprancene</li>
+            <li className='w-[10rem]'>60 lei</li>
+            <li className='w-[10rem]'> Laminare Sprancene</li>
+            <li className='w-[10rem]'>120 lei</li>
+            <li className='w-[10rem]'>Stilizare+Vopsire</li>
+            <li className='w-[10rem]'>100 lei</li>
+            <li className='w-[10rem]'>Stilizare+Laminare</li>
+            <li className='w-[10rem]'>150 lei</li>
+            <li className='w-[10rem]'>Stilizare+Lami+Vopsire</li>
+            <li className='w-[10rem]'>200 lei</li>
+          </ul>
         </div>
     </div>
   )

@@ -23,7 +23,7 @@ const CursDeBaza = () => {
         <div className='flex lg:flex-row flex-col items-center lg:items-start'>
             <div className='relative lg:ml-[2rem] flex flex-col items-center w-[90%] lg:w-[25rem]'>           
             <img src={cursDeBaza} className=" w-[21rem] lg:w-[25rem] h-[28rem]" />
-            <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs De Baza");navigate("/checkout")}} className='mt-[2rem] border-[2px] border-black w-full text-[18px]  h-[3rem] rounded-[8px] tracking-[6px]'>CUMPARA ACUM</button>
+            <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs De Baza");navigate("/checkout")}} className='mt-[2rem] border-[2px] border-black w-full text-[18px] font-bold  h-[3rem] rounded-[8px] tracking-[6px] animate-[buyBtnReverse_.3s_ease-in-out_forwards] hover:animate-[buyBtn_.3s_ease-in-out_forwards]'>CUMPARA ACUM</button>
             <div className='relative flex flex-col items-left w-full mt-[2rem]'>
                 <h3 className='mb-[1rem]  lg:text-[18px] text-justify'>Achiti   <span className='font-bold'>AVANSUL</span> de <span className='font-bold'>500 de lei </span> aici sau la locatie pentru a-ti rezerva locul, restul sumei se achita in prima zi de curs</h3>
                 <h3 className='text-[20px] font-thin'>CURS + KIT INCLUS <span className='absolute right-2 text-[24px] font-extrabold text-[#DAA520]'> 2500 lei </span></h3>
