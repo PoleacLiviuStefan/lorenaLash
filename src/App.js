@@ -48,6 +48,8 @@ function App() {
            <Route path="/checkout" element={
             <Buy />
          }/>
+         <Route path="/success" element={<Success />} />
+         <Route path="/cancel" element={<Cancel />} />
       </Routes>
       <Contact />
     </div>

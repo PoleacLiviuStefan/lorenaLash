@@ -25,12 +25,22 @@ const Buy = () => {
           });
       };
 
+
+    const [pretCursSelectat,setPretCursSelectat]=useState(localStorage.getItem("cumparaCurs"))
    
-    
-   
+      useEffect(()=>{
+        if(curs==="Curs De Baza")
+            setPretCursSelectat("price_1Ms8gHCV1XqGrlRbYx4Lf8Ue")
+        else if(curs==="Curs De Perfectionare")
+            setPretCursSelectat("price_1MsB4fCV1XqGrlRby99B1qSR")
+        else if(curs==="Curs Vip De Baza")
+            setPretCursSelectat("price_1MsB5TCV1XqGrlRbX7G01gnH")
+        else if(curs==="Curs De Efecte Speciale")
+            setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB")
+      },[curs])
 
         const item= {
-            price: "price_1Ms8gHCV1XqGrlRbYx4Lf8Ue",
+            price: pretCursSelectat,
             quantity: 1,
 
         }
