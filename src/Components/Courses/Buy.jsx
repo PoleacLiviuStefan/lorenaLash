@@ -33,7 +33,7 @@ const Buy = () => {
             setPretCursSelectat("price_1Ms8gHCV1XqGrlRbYx4Lf8Ue")
         else if(curs==="Curs De Perfectionare")
             setPretCursSelectat("price_1MsB4fCV1XqGrlRby99B1qSR")
-        else if(curs==="Curs Vip De Baza")
+        else if(curs==="Curs VIP De Baza")
             setPretCursSelectat("price_1MsB5TCV1XqGrlRbX7G01gnH")
         else if(curs==="Curs De Efecte Speciale")
             setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB")
