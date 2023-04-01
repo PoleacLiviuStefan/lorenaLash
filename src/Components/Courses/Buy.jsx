@@ -37,6 +37,7 @@ const Buy = () => {
             setPretCursSelectat("price_1MsB5TCV1XqGrlRbX7G01gnH")
         else if(curs==="Curs De Efecte Speciale")
             setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB")
+        console.log("pretCursSelect");
       },[curs])
 
         const item= {
