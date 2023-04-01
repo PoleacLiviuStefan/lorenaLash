@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {BsFacebook,BsInstagram} from 'react-icons/bs'
 import {RiFacebookCircleLine} from 'react-icons/ri'
 import {AiOutlineMail,AiOutlinePhone,AiOutlineDown} from 'react-icons/ai'
@@ -12,7 +12,16 @@ const Navbar = () => {
   const [navBtn,setNavBtn]=useState(-1)
   const [elementList,setElementList]=useState(-1);
   const [showMobileMenu,setShowMobileMenu]=useState(false)
+  const [activMobileAnim,setActivMobileMenu]=useState(true)
   const navigate= useNavigate();
+  useEffect(()=>{
+      if(showMobileMenu)
+      setActivMobileMenu(false)
+      else
+      setTimeout(()=>{
+        setActivMobileMenu(true)
+    },300)
+    },[showMobileMenu])
   return (
     <nav className='fixed flex justify-center z-50 top-0 h-[3rem] lg:h-[6rem] w-full bg-black lg:bg-white shadow-lg '>
         <div className='relative flex justify-center items-center top-0 h-[2rem] w-full '>
@@ -91,7 +100,7 @@ const Navbar = () => {
               <span className={`relative ${showMobileMenu ? " animate-[disappear_.5s_ease-in-out_forwards]" :" animate-[appear_.5s_ease-in-out_forwards]"}  top-[.6rem] w-[1rem] h-[2px] bg-white`} />
               <span className={`relative ${showMobileMenu ? " animate-[bottomLine_.5s_ease-in-out_forwards]" :"animate-[bottomLineReverse_.5s_ease-in-out_forwards]"} top-[.9rem] w-[1.3rem] h-[2px] bg-white`} />
              </div>
-             <div className={`absolute ${!showMobileMenu && "hidden" } left-0 top-[3rem] bg-black h-screen w-[20rem] text-white`}>
+             <div className={`absolute ${showMobileMenu ?"animate-[menuAppear_.3s_ease-in-out_forwards]" : "animate-[menuAppearReverse_.3s_ease-in-out_forwards]" } ${activMobileAnim && "hidden"} whitespace-nowrap left-0 top-[3rem] bg-black h-screen  text-white`}>
                   <div className='ml-[2rem] mt-[2rem] flex flex-col'>
                   <Link
             activeClass="active"

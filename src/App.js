@@ -12,6 +12,8 @@ import CursEfecteSpeciale from "./Components/Courses/CursEfecteSpeciale";
 import Salon from "./Components/Salon/Salon";
 import Contact from "./Components/Contact/Contact";
 import Buy from "./Components/Courses/Buy";
+
+import "@stripe/stripe-js"
 function App() {
   return (
     <div className="App">

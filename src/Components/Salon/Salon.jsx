@@ -24,49 +24,49 @@ const Salon = () => {
           </h2> 
           <ul className='grid grid-cols-2 place-items-center w-[90%] lg:w-[60rem] mt-[3rem] mb-[10rem] text-[14px] lg:text-[15px]' >
             <li className='font-bold text-[18px]'>Extensii Gene by Lorena</li>
-            <li className='text-[16px]'>Aplicare (Intretinere)</li>
+            <li className='text-[16px] ml-4 lg:ml-0'>Aplicare (Intretinere)</li>
             <li className='w-[10rem]'>2D</li>
-            <li className='w-[10rem]'>230 lei (200 lei)</li>
+            <li className='w-[8rem]'>230 lei (200 lei)</li>
             <li className='w-[10rem]'>2D&3D</li>
-            <li className='w-[10rem]'>250 lei (220 lei)</li>
+            <li className='w-[8rem]'>250 lei (220 lei)</li>
             <li className='w-[10rem]'>3D</li>
-            <li className='w-[10rem]'>270 lei (240 lei)</li>
+            <li className='w-[8rem]'>270 lei (240 lei)</li>
             <li className='w-[10rem]'>Russian Volume</li>
-            <li className='w-[10rem]'>300 lei</li>
+            <li className='w-[8rem]'>300 lei</li>
             <li className='w-[10rem]'>Hollywood Volume</li>
-            <li className='w-[10rem]'>330 lei</li>
+            <li className='w-[8rem]'>330 lei</li>
             <li className='w-[10rem]'>Wet, Eyeliner, Raze</li>
-            <li className='w-[10rem]'>300 lei (270 lei)</li>
+            <li className='w-[8rem]'>300 lei (270 lei)</li>
             <li className='w-[10rem]'>Accesorii</li>
-            <li className='w-[10rem]'>30 lei</li>
+            <li className='w-[8rem]'>30 lei</li>
             <li className='w-[10rem]'>Demontare Extensii</li>
-            <li className='w-[10rem]'>30 lei</li>
+            <li className='w-[8rem]'>30 lei</li>
             <li className='font-bold text-[18px] mt-[1rem]'>Extensii Gene by Master</li>
             <li></li>
             <li className='w-[10rem]'>1D&2D</li>
-            <li className='w-[10rem]'>170 lei (140 lei)</li>
+            <li className='w-[8rem]'>170 lei (140 lei)</li>
             <li className='w-[10rem]'>2D</li>
-            <li className='w-[10rem]'>200 lei (170 lei)</li>
+            <li className='w-[8rem]'>200 lei (170 lei)</li>
             <li className='w-[10rem]'>2D&3D</li>
-            <li className='w-[10rem]'>220 lei (190 lei)</li>
+            <li className='w-[8rem]'>220 lei (190 lei)</li>
             <li className='w-[10rem]'>3D</li>
-            <li className='w-[10rem]'>240 lei (210 lei)</li>
+            <li className='w-[8rem]'>240 lei (210 lei)</li>
             <li className='w-[10rem]'>Wet,  Eyeliner, Raze</li>
-            <li className='w-[10rem]'>270 lei (240 lei)</li>
+            <li className='w-[8rem]'>270 lei (240 lei)</li>
             <li className='w-[10rem]'>Demontare</li>
-            <li className='w-[10rem]'>30 lei</li>
+            <li className='w-[8rem]'>30 lei</li>
             <li className='font-bold text-[18px] mt-[1rem]'>BROWS by Catalina</li>
             <li></li>
             <li className=' w-[10rem]'>Stilizare Sprancene</li>
-            <li className='w-[10rem]'>60 lei</li>
+            <li className='w-[8rem]'>60 lei</li>
             <li className='w-[10rem]'> Laminare Sprancene</li>
-            <li className='w-[10rem]'>120 lei</li>
+            <li className='w-[8rem]'>120 lei</li>
             <li className='w-[10rem]'>Stilizare+Vopsire</li>
-            <li className='w-[10rem]'>100 lei</li>
+            <li className='w-[8rem]'>100 lei</li>
             <li className='w-[10rem]'>Stilizare+Laminare</li>
-            <li className='w-[10rem]'>150 lei</li>
+            <li className='w-[8rem]'>150 lei</li>
             <li className='w-[10rem]'>Stilizare+Lami+Vopsire</li>
-            <li className='w-[10rem]'>200 lei</li>
+            <li className='w-[8rem]'>200 lei</li>
           </ul>
         </div>
     </div>

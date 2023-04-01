@@ -170,6 +170,26 @@ module.exports = {
           color:"black"
         }
       },
+      menuAppear:{
+        '0%':{
+         width:"0",
+         opacity:"0"
+        },
+        '100%':{
+          width:"20rem",
+          opacity:"1"
+        }
+      },
+      menuAppearReverse:{
+        '0%':{
+         width:"20rem",
+         opacity:"1"
+        },
+        '100%':{
+          width:"0",
+          opacity:"0"
+        }
+      },
     },
   },
   plugins: [],

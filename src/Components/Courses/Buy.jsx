@@ -1,36 +1,83 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
+import emailjs from '@emailjs/browser';
+import { loadStripe } from '@stripe/stripe-js';
+let stripePromise;
 
+    const getStripe = () =>{
+        if (!stripePromise) {
+            stripePromise = loadStripe("pk_live_51MroBpCV1XqGrlRbJMZ8BZ6cFMqZjpa5yCxEknMWc2ioPxrO2V9VhGZm77CMOtYF1vo6hzw85kbC64bJwvIkg2OG00SxxOnm59");
+        }
+
+        return stripePromise;
+    }
 const Buy = () => {
     const [curs,setCurs]=useState(localStorage.getItem("cumparaCurs"));
+    const form = useRef();
+    const sendEmail = (e) => {
+        e.preventDefault();
     
+        emailjs.sendForm('service_e9isnzl', 'template_z9lx9pb', form.current, 'JBlV6SrZcJJiJKOe2')
+          .then((result) => {
+             
+              console.log("da")
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
+
+   
+    
+   
+
+        const item= {
+            price: "price_1Ms8gHCV1XqGrlRbYx4Lf8Ue",
+            quantity: 1,
+
+        }
+    
+    const checkoutOptions= {
+        lineItems: [item],
+        mode: "payment",
+        successUrl: `${window.location.origin}/success`,
+        cancelUrl: `${window.location.origin}/cancel`
+    }
+    
+    const redirectToChekout= async()=>{
+        console.log("redirectToCheckout")
+
+        const stripe =await getStripe()
+        const {error} = await stripe.redirectToCheckout(checkoutOptions)
+        console.log("Stripe checkout error",error)
+    }
   return (
     <div className='relative w-full h-full flex justify-center items-center py-[10rem] bg-gray-200 z-20 font-montSerrat'>
         <div className='flex flex-col px-[2rem] py-[2rem]  bg-white rounded-[15px] w-[90%] lg:w-[40rem] h-full shadow-xl '>
-        <form className='flex lg:flex-row flex-col lg:flex-wrap lg:justify-between  w-full '>
+        <form ref={form} onSubmit={sendEmail} className='flex lg:flex-row flex-col lg:flex-wrap lg:justify-between  w-full '>
             <div className='flex flex-col  my-[.5rem]'>
                 <label>Nume</label>
-                <input type="text" className='border-[#0b2a24] border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
+                <input name="user_nume" type="text" className='border-[#0b2a24] p-2 border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
             </div>
             <div className='flex flex-col my-[.5rem]'>
                 <label>Prenume</label>
-                <input type="text" className='border-[#0b2a24] border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
+                <input name="user_prenume" type="text" className='border-[#0b2a24] p-2  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
             </div>
             <div className='flex flex-col my-[.5rem]'>
                 <label>Telefon</label>
-                <input type="text" className='border-[#0b2a24] border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
+                <input name="user_telefon" type="text" minLength={10} className='border-[#0b2a24] p-2  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
             </div>
             <div className='flex flex-col my-[.5rem]'>
                 <label>Email</label>
-                <input type="email" className='border-[#0b2a24] border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
+                <input name="user_email" type="email" className='border-[#0b2a24] p-2  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
             </div>
             
             <div className='flex flex-col my-[.5rem]'>
                 <label>Adresa</label>
-                <input type="text" className='border-[#0b2a24] border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
+                <input name="user_adresa" type="text" className='border-[#0b2a24] p-2  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]' required />
             </div>
+            
             <div className='flex flex-col my-[.5rem]'>
                 <label>Tip Curs</label>
-                <select  onChange={(e)=>setCurs(e.target.value)} className='border-[#0b2a24] border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]'   >
+                <select name="tip_curs"  onChange={(e)=>setCurs(e.target.value)} className='border-[#0b2a24]  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]'   >
                     <option  value="Curs De Baza"   selected={localStorage.getItem("cumparaCurs")==="Curs De Baza" && "selected"}>
                     CURS DE BAZA (AVANS)
                         </option>
@@ -45,13 +92,25 @@ const Buy = () => {
                         </option>
                 </select>
             </div>
+            <div className='flex flex-col my-[.5rem]'>
+                <label>Perioada Cursului</label>
+                <label>Tip Curs</label>
+                <select name="tip_curs"   className='border-[#0b2a24]  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]'   >
+                        <option>
+                            1-2 Aprilie
+                        </option>
+                        <option>
+                            7-8 Aprilie
+                        </option>
+                </select>
+            </div>
             <div className='flex flex-col w-full  my-[.5rem]'>
                 <label>Mentiuni Speciale</label>
-                <textarea type="text" className='border-[#0b2a24] border-[1px] w-full lg:w-[36rem] h-[10rem]' required />
+                <textarea name="mentiuni_speciale" type="text" className='border-[#0b2a24] border-[1px] p-2 w-full lg:w-[36rem] h-[10rem]'  />
             </div>
-        </form>
        
-        <div className='flex flex-col items-center mt-[2rem]'>
+       
+        <div className='flex flex-col items-center w-full mt-[2rem]'>
                 <h3 className=' text-[18px] lg:text-[24px] font-bold'>COMANDA TA:</h3>
                 <div className='relative flex justify-between w-full font-bold text-[20px] mt-[2rem] '>
                     <h4>Produs</h4>
@@ -60,11 +119,12 @@ const Buy = () => {
                 </div>
                 <div className='flex justify-between w-full font-bold mt-[.5rem]'>
                     <h4>Avans {curs}</h4>
-                    <h4>500 lei</h4>
+                    <h4>300 lei</h4>
                 </div>
                 <h4>*Plata online prin card bancar</h4>
-                <button className='font-bold px-[3rem] py-[1rem] mt-[1rem] bg-[#0b2a24]  text-white'>PLASEAZA COMANDA</button>
+                <button onClick={redirectToChekout} value="Send" type="submit" className='font-bold px-[3rem] py-[1rem] mt-[1rem] bg-[#0b2a24] rounded-[8px] text-white'>PLASEAZA COMANDA</button>
         </div>
+        </form>
         </div>
     </div>
   )

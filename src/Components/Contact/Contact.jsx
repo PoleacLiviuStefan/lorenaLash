@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useRef,useEffect,useState} from 'react'
 import {BsInstagram,BsFillPinMapFill} from 'react-icons/bs'
 import {FiFacebook} from 'react-icons/fi'
 import {AiOutlineMail,AiOutlinePhone,AiOutlineDown} from 'react-icons/ai'
 const Contact = () => {
+
   return (
     <div name="Contact" className='flex flex-col items-center   w-full h-full flex  py-[5rem] font-montSerrat bg-[#0b2a24] text-white'>
            <h2 className='relative  text-[28px] lg:text-[48px] font-bold  px-[10rem] py-[.5rem] rounded-[8px] text-white'>
