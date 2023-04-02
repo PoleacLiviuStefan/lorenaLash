@@ -113,7 +113,7 @@ const Navbar = () => {
              </div>
              <div className={`absolute ${showMobileMenu ?"animate-[menuAppear_.3s_ease-in-out_forwards]" : "animate-[menuAppearReverse_.3s_ease-in-out_forwards]" } ${activMobileAnim && "hidden"} whitespace-nowrap left-0 top-[3rem] bg-black h-screen  text-white text-[13px]`}>
                   <div className='ml-[2rem] mt-[2rem] flex flex-col'>
-                      <div className='relative ml-[-2rem] flex justify-center items-center w-[20rem] h-[120px] bg-white lg:hidden overflow-hidden'>
+                      <div onClick={()=>setShowMobileMenu(false)}  className='relative ml-[-2rem] flex justify-center items-center w-[20rem] h-[120px] bg-white lg:hidden overflow-hidden'>
                             <Link
                       activeClass="active"
                       to="Hero"
@@ -124,7 +124,7 @@ const Navbar = () => {
                       href="Hero"
                       className='w-full  flex justify-center overflow-hidden'
                     >
-                      <img src={logo} onClick={()=>navigate("/")} className='w-[180px] '/>
+                      <img  src={logo} onClick={()=>{navigate("/");setShowMobileMenu(false)}} className='w-[180px] ' alt="Lorena Lash Studio logo"/>
                       </Link>
                     </div>
 
@@ -184,7 +184,7 @@ const Navbar = () => {
             href="Contact"
             className='w-full flex justify-center'
           > 
-              <button  onMouseEnter={()=>{setElementList(6)}} onMouseLeave={()=>{setElementList(-1)}} className='relative tracking-[4px] px-[.5rem]  py-[1.5rem]'>CONTACT<span className={`absolute  ${elementList===6 ? "animate-[underlineAnim_.2s_ease-in-out_forwards]": "animate-[underlineAnimReverse_.2s_ease-in-out_forwards]"} bottom-5 left-0 w-full h-[1px] bg-black`} /></button>
+              <button onClick={()=>setShowMobileMenu(false)}  onMouseEnter={()=>{setElementList(6)}} onMouseLeave={()=>{setElementList(-1)}} className='relative tracking-[4px] px-[.5rem]  py-[1.5rem]'>CONTACT<span className={`absolute  ${elementList===6 ? "animate-[underlineAnim_.2s_ease-in-out_forwards]": "animate-[underlineAnimReverse_.2s_ease-in-out_forwards]"} bottom-5 left-0 w-full h-[1px] bg-black`} /></button>
               </Link>
                   </div>
 

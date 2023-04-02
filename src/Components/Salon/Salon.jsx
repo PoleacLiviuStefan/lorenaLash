@@ -6,8 +6,8 @@ const Salon = () => {
     <div name="Salon" className='relative flex  flex-col items-center w-full h-full '>
         <div className='flex flex-col items-center w-full lg:w-[60rem] bg-[FEFEFE] top-[6rem] h-full font-montSerrat '>
    
-            <div className='relative flex justify-center items-center  h-[30rem] lg:h-[40rem]'>
-            <div  className='relative  w-screen lg:w-[60rem] h-[30rem] lg:h-[40rem] bg-teamMobileBg  lg:bg-teamBg  bg-cover bg-center '  />
+            <div className='relative flex justify-center items-center  h-[35rem] lg:h-[40rem]'>
+            <div  className='relative  w-screen lg:w-[60rem] h-[35rem] lg:h-[40rem] bg-teamMobileBg  lg:bg-teamBg  bg-cover bg-center '  />
             <div className='absolute flex justify-center items-center   w-full h-full bg-black bg-opacity-[20%]'>
             <h1 className='absolute font-oldStandard text-[64px] mt-[10rem] font-bold text-white'>ECHIPA</h1>
             <h2 className='flex items-center font-montSerrat w-[20rem] mt-[20rem] text-center text-white'><span className='w-[4rem] h-[1px] bg-white'/>DESCOPERA ECHIPA NOASTRA DE OAMENI TALENTATI<span className='w-[4rem] h-[1px] bg-white'/></h2>
