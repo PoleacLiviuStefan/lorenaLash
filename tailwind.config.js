@@ -41,6 +41,22 @@ module.exports = {
           height:'0rem'
         }
       },
+      showListMobile:{
+        '0%':{
+          height: '0rem'
+        },
+        '100%':{
+          height:'12rem'
+        }
+      },
+      showListMobileReverse:{
+        '0%':{
+          height: '12rem'
+        },
+        '100%':{
+          height:'0rem'
+        }
+      },
       rotateArrow:{
         '0%':{
           rotate:"-90deg"
