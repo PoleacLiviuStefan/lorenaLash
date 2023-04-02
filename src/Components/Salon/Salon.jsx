@@ -1,5 +1,5 @@
 import React from 'react'
-import teamGeneral from './Images/Team.jpeg'
+
 import Member from './Member'
 const Salon = () => {
   return (
@@ -7,7 +7,7 @@ const Salon = () => {
         <div className='flex flex-col items-center w-full lg:w-[60rem] bg-[FEFEFE] top-[6rem] h-full font-montSerrat '>
    
             <div className='relative flex justify-center items-center  h-[30rem] lg:h-[40rem]'>
-            <img src={teamGeneral} className="w-full h-[30rem] lg:h-[40rem]" />
+            <div  className='relative  w-screen lg:w-[60rem] h-[30rem] lg:h-[40rem] bg-teamMobileBg  lg:bg-teamBg  bg-cover bg-center '  />
             <div className='absolute flex justify-center items-center   w-full h-full bg-black bg-opacity-[20%]'>
             <h1 className='absolute font-oldStandard text-[64px] mt-[10rem] font-bold text-white'>ECHIPA</h1>
             <h2 className='flex items-center font-montSerrat w-[20rem] mt-[20rem] text-center text-white'><span className='w-[4rem] h-[1px] bg-white'/>DESCOPERA ECHIPA NOASTRA DE OAMENI TALENTATI<span className='w-[4rem] h-[1px] bg-white'/></h2>
@@ -24,49 +24,49 @@ const Salon = () => {
           </h2> 
           <ul className='grid grid-cols-2 place-items-center w-[90%] lg:w-[60rem] mt-[3rem] mb-[10rem] text-[14px] lg:text-[15px]' >
             <li className='font-bold text-[18px]'>Extensii Gene by Lorena</li>
-            <li className='text-[16px] ml-4 lg:ml-0'>Aplicare (Intretinere)</li>
+            <li className='text-[16px] ml-4 lg:ml-0 w-[9rem]'>Aplicare (Intretinere)</li>
             <li className='w-[10rem]'>2D</li>
-            <li className='w-[8rem]'>230 lei (200 lei)</li>
+            <li className='w-[7rem]'>230 lei (200 lei)</li>
             <li className='w-[10rem]'>2D&3D</li>
-            <li className='w-[8rem]'>250 lei (220 lei)</li>
+            <li className='w-[7rem]'>250 lei (220 lei)</li>
             <li className='w-[10rem]'>3D</li>
-            <li className='w-[8rem]'>270 lei (240 lei)</li>
+            <li className='w-[7rem]'>270 lei (240 lei)</li>
             <li className='w-[10rem]'>Russian Volume</li>
-            <li className='w-[8rem]'>300 lei</li>
+            <li className='w-[7rem]'>300 lei</li>
             <li className='w-[10rem]'>Hollywood Volume</li>
-            <li className='w-[8rem]'>330 lei</li>
+            <li className='w-[7rem]'>330 lei</li>
             <li className='w-[10rem]'>Wet, Eyeliner, Raze</li>
-            <li className='w-[8rem]'>300 lei (270 lei)</li>
+            <li className='w-[7rem]'>300 lei (270 lei)</li>
             <li className='w-[10rem]'>Accesorii</li>
-            <li className='w-[8rem]'>30 lei</li>
+            <li className='w-[7rem]'>30 lei</li>
             <li className='w-[10rem]'>Demontare Extensii</li>
-            <li className='w-[8rem]'>30 lei</li>
+            <li className='w-[7rem]'>30 lei</li>
             <li className='font-bold text-[18px] mt-[1rem]'>Extensii Gene by Master</li>
             <li></li>
             <li className='w-[10rem]'>1D&2D</li>
-            <li className='w-[8rem]'>170 lei (140 lei)</li>
+            <li className='w-[7rem]'>170 lei (140 lei)</li>
             <li className='w-[10rem]'>2D</li>
-            <li className='w-[8rem]'>200 lei (170 lei)</li>
+            <li className='w-[7rem]'>200 lei (170 lei)</li>
             <li className='w-[10rem]'>2D&3D</li>
-            <li className='w-[8rem]'>220 lei (190 lei)</li>
+            <li className='w-[7rem]'>220 lei (190 lei)</li>
             <li className='w-[10rem]'>3D</li>
-            <li className='w-[8rem]'>240 lei (210 lei)</li>
+            <li className='w-[7rem]'>240 lei (210 lei)</li>
             <li className='w-[10rem]'>Wet,  Eyeliner, Raze</li>
-            <li className='w-[8rem]'>270 lei (240 lei)</li>
+            <li className='w-[7rem]'>270 lei (240 lei)</li>
             <li className='w-[10rem]'>Demontare</li>
-            <li className='w-[8rem]'>30 lei</li>
+            <li className='w-[7rem]'>30 lei</li>
             <li className='font-bold text-[18px] mt-[1rem]'>BROWS by Catalina</li>
             <li></li>
             <li className=' w-[10rem]'>Stilizare Sprancene</li>
-            <li className='w-[8rem]'>60 lei</li>
+            <li className='w-[7rem]'>60 lei</li>
             <li className='w-[10rem]'> Laminare Sprancene</li>
-            <li className='w-[8rem]'>120 lei</li>
+            <li className='w-[7rem]'>120 lei</li>
             <li className='w-[10rem]'>Stilizare+Vopsire</li>
-            <li className='w-[8rem]'>100 lei</li>
+            <li className='w-[7rem]'>100 lei</li>
             <li className='w-[10rem]'>Stilizare+Laminare</li>
-            <li className='w-[8rem]'>150 lei</li>
+            <li className='w-[7rem]'>150 lei</li>
             <li className='w-[10rem]'>Stilizare+Lami+Vopsire</li>
-            <li className='w-[8rem]'>200 lei</li>
+            <li className='w-[7rem]'>200 lei</li>
           </ul>
         </div>
     </div>

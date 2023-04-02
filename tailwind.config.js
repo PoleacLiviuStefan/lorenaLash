@@ -20,6 +20,8 @@ module.exports = {
         'backgr': "url('/public/Imagini/background.jpeg')",
         'backCourse': "url('/src/Components/Courses/Imagini/bgmain.jpeg')",
         'bgHero':"url('/public/Imagini/bgHero.jpeg')",
+        'teamBg':"url('/public/Imagini/Team.jpeg')",
+        'teamMobileBg':"url('/public/Imagini/Team_1.jpeg')"
       }
     },
     keyframes: {

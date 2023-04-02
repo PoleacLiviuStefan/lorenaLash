@@ -7,7 +7,7 @@ import { useState } from 'react'
 import {FaShoppingCart} from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { Link, animateScroll as scroll } from "react-scroll";
-
+import logo from './logo.png'
 const Navbar = () => {
   const [navBtn,setNavBtn]=useState(-1)
   const [elementList,setElementList]=useState(-1);
@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className='relative flex justify-center items-center top-0 h-[2rem] w-full '>
             <span className='absolute hidden lg:block bottom-0 bg-gray-300 w-full h-[1px] bg-black' />
             <div className='flex justify-between items-center h-full w-[15rem] lg:w-[20rem] text-[20px] text-gray-400 ml-[4rem] lg:ml-0 mt-[1rem] lg:mt-0'>
-                <span className='cursor-pointer  hover:text-black'><BsFacebook /></span>
+            
                 <a href="https://www.instagram.com/lorenalashstudio/"  className='cursor-pointer  hover:text-black'><BsInstagram /></a>
                 <a href="tel:+40-764-038-271" className='flex cursor-pointer hover:text-black'><span className='text-[24px] mt-1 mr-1 ' ><AiOutlinePhone /></span><a  className=''>0764038271</a></a>
                 <span className='text-[24px] cursor-pointer  hover:text-black' ><AiOutlineMail /></span>
@@ -35,7 +35,18 @@ const Navbar = () => {
                
 
             </div>
-            <div className='absolute hidden  top-[2rem] lg:flex w-[45rem] h-[4rem] justify-between items-center font-sans text-[15px] '>
+            <div className='absolute hidden  top-[2rem] lg:flex w-[60rem] h-[4rem] justify-between items-center font-sans text-[15px] '>
+            <Link
+            activeClass="active"
+            to="Hero"
+            spy={true}
+            smooth={true}
+            offset={-50}
+            duration={500}
+            href="Hero"
+          >
+             <img src={logo} onClick={()=>navigate("/")} className='w-[120px] mr-[10rem]'/>
+             </Link>
             <Link
             activeClass="active"
             to="Hero"
@@ -100,8 +111,23 @@ const Navbar = () => {
               <span className={`relative ${showMobileMenu ? " animate-[disappear_.5s_ease-in-out_forwards]" :" animate-[appear_.5s_ease-in-out_forwards]"}  top-[.6rem] w-[1rem] h-[2px] bg-white`} />
               <span className={`relative ${showMobileMenu ? " animate-[bottomLine_.5s_ease-in-out_forwards]" :"animate-[bottomLineReverse_.5s_ease-in-out_forwards]"} top-[.9rem] w-[1.3rem] h-[2px] bg-white`} />
              </div>
-             <div className={`absolute ${showMobileMenu ?"animate-[menuAppear_.3s_ease-in-out_forwards]" : "animate-[menuAppearReverse_.3s_ease-in-out_forwards]" } ${activMobileAnim && "hidden"} whitespace-nowrap left-0 top-[3rem] bg-black h-screen  text-white`}>
+             <div className={`absolute ${showMobileMenu ?"animate-[menuAppear_.3s_ease-in-out_forwards]" : "animate-[menuAppearReverse_.3s_ease-in-out_forwards]" } ${activMobileAnim && "hidden"} whitespace-nowrap left-0 top-[3rem] bg-black h-screen  text-white text-[13px]`}>
                   <div className='ml-[2rem] mt-[2rem] flex flex-col'>
+                      <div className='relative ml-[-2rem] flex justify-center items-center w-[20rem] h-[120px] bg-white lg:hidden overflow-hidden'>
+                            <Link
+                      activeClass="active"
+                      to="Hero"
+                      spy={true}
+                      smooth={true}
+                      offset={-50}
+                      duration={500}
+                      href="Hero"
+                      className='w-full  flex justify-center overflow-hidden'
+                    >
+                      <img src={logo} onClick={()=>navigate("/")} className='w-[180px] '/>
+                      </Link>
+                    </div>
+
                   <Link
             activeClass="active"
             to="Hero"

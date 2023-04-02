@@ -1,6 +1,10 @@
 import React,{useState,useEffect,useRef} from 'react'
 import emailjs from '@emailjs/browser';
 import { loadStripe } from '@stripe/stripe-js';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
+
+
 let stripePromise;
 
     const getStripe = () =>{
@@ -12,6 +16,8 @@ let stripePromise;
     }
 const Buy = () => {
     const [curs,setCurs]=useState(localStorage.getItem("cumparaCurs"));
+    const [indexSelectedCourse,setIndexSelectedCourse]=useState(0)
+    const [selectedDate,setSelectedDate]=useState(null)
     const form = useRef();
     const sendEmail = (e) => {
         e.preventDefault();
@@ -27,16 +33,26 @@ const Buy = () => {
 
 
     const [pretCursSelectat,setPretCursSelectat]=useState(localStorage.getItem("cumparaCurs"))
-   
+
+    const perioadeCurs=[["29-30 Aprilie","13-14 Mai", "20-21 Mai"],["28 Aprilie","15 Mai"],["28 Aprilie","12 Mai"]] 
       useEffect(()=>{
         if(curs==="Curs De Baza")
-            setPretCursSelectat("price_1Ms8gHCV1XqGrlRbYx4Lf8Ue")
+            {setPretCursSelectat("price_1Ms8gHCV1XqGrlRbYx4Lf8Ue")
+          
+      }
         else if(curs==="Curs De Perfectionare")
-            setPretCursSelectat("price_1MsB4fCV1XqGrlRby99B1qSR")
+            {setPretCursSelectat("price_1MsB4fCV1XqGrlRby99B1qSR")
+      
+    }
         else if(curs==="Curs VIP De Baza")
-            setPretCursSelectat("price_1MsB5TCV1XqGrlRbX7G01gnH")
-        else if(curs==="Curs De Efecte Speciale")
-            setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB")
+            {setPretCursSelectat("price_1MsB5TCV1XqGrlRbX7G01gnH")
+         
+}
+        else if(curs==="Curs Efecte Speciale")
+            {setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB")
+          
+            console.log(indexSelectedCourse)
+}
         console.log("pretCursSelect");
       },[curs])
 
@@ -88,7 +104,7 @@ const Buy = () => {
             
             <div className='flex flex-col my-[.5rem]'>
                 <label>Tip Curs</label>
-                <select name="tip_curs"  onChange={(e)=>setCurs(e.target.value)} className='border-[#0b2a24]  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]'   >
+                <select name="tip_curs"  onChange={(e)=>{setCurs(e.target.value); setIndexSelectedCourse(e.target.value==="Curs De Baza" ? 0 : e.target.value==="Curs De Perfectionare" ? 1: e.target.value==="Curs Efecte Speciale" ? 2: -1)}} className='border-[#0b2a24]  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]'   >
                     <option  value="Curs De Baza"   selected={localStorage.getItem("cumparaCurs")==="Curs De Baza" && "selected"}>
                     CURS DE BAZA (AVANS)
                         </option>
@@ -104,22 +120,29 @@ const Buy = () => {
                 </select>
             </div>
             <div className='flex flex-col my-[.5rem]'>
-                <label>Perioada Cursului</label>
-                <label>Tip Curs</label>
-                <select name="tip_curs"   className='border-[#0b2a24]  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]'   >
-                        <option>
-                            1-2 Aprilie
-                        </option>
-                        <option>
-                            7-8 Aprilie
-                        </option>
+                <label>{indexSelectedCourse===-1 ? "Alege ziua in care vrei sa participi": "Perioada Cursului"}</label>
+               
+                <select name="tip_curs"   className={`border-[#0b2a24]  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px] ${indexSelectedCourse===-1 && "hidden"}`}   >
+                    {
+                               
+                              indexSelectedCourse>=0 && perioadeCurs[indexSelectedCourse].map((val)=>{
+                                            return <><option>
+                                                    {val}
+                                                </option></>}
+                                     )
+                       
+                    }
+                   
                 </select>
+                <div onClick={()=>console.log(selectedDate)} className={` h-[35px] ${indexSelectedCourse !==-1 && "hidden"}`}>
+                <DatePicker className={`border-[#0b2a24] p-2  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px] `} selected={selectedDate} onChange={(date) => setSelectedDate(date)} formatDate="yyyy/MM/dd" minDate={new Date()} filterDate={date=>date.getDay() !=0} />
+                </div>
             </div>
             <div className='flex flex-col w-full  my-[.5rem]'>
                 <label>Mentiuni Speciale</label>
                 <textarea name="mentiuni_speciale" type="text" className='border-[#0b2a24] border-[1px] p-2 w-full lg:w-[36rem] h-[10rem]'  />
             </div>
-       
+                    
        
         <div className='flex flex-col items-center w-full mt-[2rem]'>
                 <h3 className=' text-[18px] lg:text-[24px] font-bold'>COMANDA TA:</h3>
@@ -135,6 +158,7 @@ const Buy = () => {
                 <h4>*Plata online prin card bancar</h4>
                 <button onClick={redirectToChekout} value="Send" type="submit" className='font-bold px-[3rem] py-[1rem] mt-[1rem] bg-[#0b2a24] rounded-[8px] text-white'>PLASEAZA COMANDA</button>
         </div>
+        <input name="data_vip" type="text" value={selectedDate} className='hidden' />
         </form>
         </div>
     </div>

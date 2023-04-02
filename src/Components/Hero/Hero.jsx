@@ -26,9 +26,9 @@ const Hero = () => {
       
           </div>
           <div className="absolute top-[12rem] lg:top-0 flex flex-col items-center justify-start lg:justify-center w-full h-full">
-          <h1 className="font-montSerrat z-30 lg:mt-[0rem] text-[42px] lg:text-[64px] text-white font-extrabold w-[20rem] lg:w-[40rem]  text-center">LORENA LASH STUDIO</h1>
+          <h1 className="font-montSerrat z-30 lg:mt-[0rem] text-[38px] lg:text-[64px] text-white font-extrabold w-[20rem] lg:w-[40rem]  text-center">LORENA LASH STUDIO</h1>
   
-          <div className="flex justify-between mt-[3rem] lg:mt-[5rem] ">
+          <div className="flex justify-between mt-[2rem] lg:mt-[5rem] ">
           <Link
             activeClass="active"
             to="DespreNoi"
