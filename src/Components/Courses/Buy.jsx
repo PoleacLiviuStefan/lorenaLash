@@ -72,7 +72,7 @@ const Buy = () => {
         emailjs.sendForm('service_e9isnzl', 'template_z9lx9pb', form.current, 'JBlV6SrZcJJiJKOe2')
           .then((result) => {
              
-            redirectToChekout
+            redirectToChekout();
           }, (error) => {
               console.log(error.text);
           });
