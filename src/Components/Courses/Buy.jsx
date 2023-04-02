@@ -19,17 +19,7 @@ const Buy = () => {
     const [indexSelectedCourse,setIndexSelectedCourse]=useState(0)
     const [selectedDate,setSelectedDate]=useState(null)
     const form = useRef();
-    const sendEmail = (e) => {
-        e.preventDefault();
-    
-        emailjs.sendForm('service_e9isnzl', 'template_z9lx9pb', form.current, 'JBlV6SrZcJJiJKOe2')
-          .then((result) => {
-             
-              console.log("da")
-          }, (error) => {
-              console.log(error.text);
-          });
-      };
+   
 
 
     const [pretCursSelectat,setPretCursSelectat]=useState(localStorage.getItem("cumparaCurs"))
@@ -76,6 +66,17 @@ const Buy = () => {
         const {error} = await stripe.redirectToCheckout(checkoutOptions)
         console.log("Stripe checkout error",error)
     }
+    const sendEmail = (e) => {
+        e.preventDefault();
+    
+        emailjs.sendForm('service_e9isnzl', 'template_z9lx9pb', form.current, 'JBlV6SrZcJJiJKOe2')
+          .then((result) => {
+             
+            redirectToChekout
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
   return (
     <div className='relative w-full h-full flex justify-center items-center py-[10rem] bg-gray-200 z-20 font-montSerrat'>
         <div className='flex flex-col px-[2rem] py-[2rem]  bg-white rounded-[15px] w-[90%] lg:w-[40rem] h-full shadow-xl '>
@@ -156,7 +157,7 @@ const Buy = () => {
                     <h4>300 lei</h4>
                 </div>
                 <h4>*Plata online prin card bancar</h4>
-                <button onClick={redirectToChekout} value="Send" type="submit" className='font-bold px-[3rem] py-[1rem] mt-[1rem] bg-[#0b2a24] rounded-[8px] text-white'>PLASEAZA COMANDA</button>
+                <button  value="Send" type="submit" className='font-bold px-[3rem] py-[1rem] mt-[1rem] bg-[#0b2a24] rounded-[8px] text-white'>PLASEAZA COMANDA</button>
         </div>
         <input name="data_vip" type="text" value={selectedDate} className='hidden' />
         </form>
