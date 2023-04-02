@@ -28,7 +28,7 @@ const Contact = () => {
                 <BsFillPinMapFill/>
                
             </div>
-            <h4 className='text-[16px] w-[12rem] ml-2'>Judetul Ilfov, Bucuresti , Sectorul 4 , strada Povesti , nr. 10</h4>
+            <h4 className='text-[16px] w-[12rem] ml-2'>Bucuresti , Sectorul 4 , strada Povesti , nr. 10</h4>
             </div>
             <div className='w-full lg:w-[40rem] h-[25rem] mt-[1rem]'>
             <iframe width="100%" height="100%" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=%F0%9D%90%92%F0%9D%90%AD%F0%9D%90%AB%F0%9D%90%9A%F0%9D%90%9D%F0%9D%90%9A%20%F0%9D%90%8F%F0%9D%90%A8%F0%9D%90%AF%F0%9D%90%9E%F0%9D%90%AC%F0%9D%90%AD%F0%9D%90%9E%F0%9D%90%A2%20%F0%9D%9F%8F%F0%9D%9F%8E+(Title)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>

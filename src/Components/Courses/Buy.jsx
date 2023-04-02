@@ -26,22 +26,59 @@ const Buy = () => {
 
     const perioadeCurs=[["29-30 Aprilie","13-14 Mai", "20-21 Mai"],["28 Aprilie","15 Mai"],["28 Aprilie","12 Mai"]] 
       useEffect(()=>{
-        if(curs==="Curs De Baza")
+        if(curs==="Curs De Baza (Avans)")
             {setPretCursSelectat("price_1Ms8gHCV1XqGrlRbYx4Lf8Ue")
           
       }
-        else if(curs==="Curs De Perfectionare")
-            {setPretCursSelectat("price_1MsB4fCV1XqGrlRby99B1qSR")
+        else if(curs==="Curs De Baza (Integral)")
+            {setPretCursSelectat("price_1MsWj1CV1XqGrlRbci4YtWlH")
+    
+      }
+        else if(curs==="Curs De Baza + Kit Inclus (Integral)")
+            {setPretCursSelectat("price_1MsWlfCV1XqGrlRbgWy00YU7")
+
+}
+        else if(curs==="Curs De Perfectionare 1 Zi (Avans)")
+            {setPretCursSelectat("price_1MsWzkCV1XqGrlRbd7iQpnYi")
       
     }
-        else if(curs==="Curs VIP De Baza")
+         else if(curs==="Curs De Perfectionare 1 Zi (Integral)")
+            {setPretCursSelectat("price_1MsWoUCV1XqGrlRb70dofstK")
+
+}
+        else if(curs==="Curs De Perfectionare 2 Zile (Avans)")
+             {setPretCursSelectat("price_1MsWzkCV1XqGrlRbd7iQpnYi")
+
+            }
+        else if(curs==="Curs De Perfectionare 2 Zile (Integral)")
+            {setPretCursSelectat("price_1MsWpOCV1XqGrlRb0dtRQlWZ")
+
+           }
+        else if(curs==="Curs VIP De Baza 2 Zile (Avans)")
             {setPretCursSelectat("price_1MsB5TCV1XqGrlRbX7G01gnH")
          
 }
-        else if(curs==="Curs Efecte Speciale")
+        else if(curs==="Curs VIP De Baza 2 Zile (Integral)")
+            {setPretCursSelectat("price_1MsWtECV1XqGrlRbgsXhEIve")
+
+        }
+        else if(curs==="Curs VIP De Baza 3 Zile (Avans)")
+            {setPretCursSelectat("price_1MsX18CV1XqGrlRb08i536NA")
+
+    }
+        else if(curs==="Curs VIP De Baza 3 Zile (Integral)")
+            {setPretCursSelectat("price_1MsWv7CV1XqGrlRb4eSCbORv")
+
+    }
+        else if(curs==="Curs Efecte Speciale 1 Zi (Avans)")
             {setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB")
           
             console.log(indexSelectedCourse)
+}
+        else if(curs==="Curs Efecte Speciale 1 Zi (Integral)")
+            {setPretCursSelectat("price_1MsWwhCV1XqGrlRbdhr200nv")
+
+console.log(indexSelectedCourse)
 }
         console.log("pretCursSelect");
       },[curs])
@@ -105,18 +142,45 @@ const Buy = () => {
             
             <div className='flex flex-col my-[.5rem]'>
                 <label>Tip Curs</label>
-                <select name="tip_curs"  onChange={(e)=>{setCurs(e.target.value); setIndexSelectedCourse(e.target.value==="Curs De Baza" ? 0 : e.target.value==="Curs De Perfectionare" ? 1: e.target.value==="Curs Efecte Speciale" ? 2: -1)}} className='border-[#0b2a24]  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]'   >
-                    <option  value="Curs De Baza"   selected={localStorage.getItem("cumparaCurs")==="Curs De Baza" && "selected"}>
+                <select name="tip_curs"  onChange={(e)=>{setCurs(e.target.value); setIndexSelectedCourse(e.target.value==="Curs De Baza (Avans)" ? 0 : e.target.value==="Curs De Baza (Integral)" ? 0 : e.target.value==="Curs De Baza + Kit Inclus (Integral)" ? 0 : e.target.value==="Curs De Perfectionare 1 Zi (Avans)" ? 1 : e.target.value==="Curs De Perfectionare 1 Zi (Integral)" ? 1 : e.target.value==="Curs De Perfectionare 2 Zile (Avans)" ? 1 : e.target.value==="Curs De Perfectionare 2 Zile (Integral)" ? 1 : e.target.value==="Curs VIP De Baza 2 Zile (Avans)" ? -1 : e.target.value==="Curs VIP De Baza 2 Zile (Integral)"?  -1: e.target.value==="Curs VIP De Baza 3 Zile (Avans)"? -1 : e.target.value==="Curs VIP De Baza 3 Zile (Integral)" ?-1: e.target.value==="Curs Efecte Speciale 1 Zi (Avans)" ? -1 : 2 ) }} className='border-[#0b2a24]  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px]'   >
+                    <option  value="Curs De Baza (Avans)" onClick={()=>setCurs("Curs De Baza (Avans)")}   selected={localStorage.getItem("cumparaCurs")==="Curs De Baza" && "selected"}>
                     CURS DE BAZA (AVANS)
                         </option>
-                        <option value="Curs De Perfectionare"    selected={localStorage.getItem("cumparaCurs")==="Curs De Perfectionare" && "selected"}>
-                    CURS DE PERFECTIONARE (AVANS)
+                        <option  value="Curs De Baza (Integral)" onClick={()=>setCurs("Curs De Baza (Integral)")} >
+                    CURS DE BAZA (INTEGRAL)
                         </option>
-                        <option value="Curs VIP De Baza" onClick={()=>setCurs("Curs VIP De Baza")}    selected={localStorage.getItem("cumparaCurs")==="Curs VIP De Baza" && "selected"}>
-                    CURS VIP DE BAZA (AVANS)
+                        <option  value="Curs De Baza + Kit Inclus (Integral)" onClick={()=>setCurs("Curs De Baza + Kit Inclus (Integral)")}  >
+                    CURS DE BAZA + KIT INCLUS (INTEGRAL)
                         </option>
-                        <option  value="Curs Efecte Speciale"  selected={localStorage.getItem("cumparaCurs")==="Curs Efecte Speciale" && "selected"}>
-                    CURS EFECTE SPECIALE (AVANS)
+                        <option value="Curs De Perfectionare 1 Zi (Avans)"    selected={localStorage.getItem("cumparaCurs")==="Curs De Perfectionare" && "selected"}>
+                    CURS DE PERFECTIONARE 1 ZI (AVANS)
+                        </option>
+                        <option value="Curs De Perfectionare 1 Zi (Integral)"  onClick={()=>setCurs("Curs De Perfectionare 1 Zi (Integral)")}  >
+                    CURS DE PERFECTIONARE 1 ZI (INTEGRAL)
+                        </option>
+                        <option value="Curs De Perfectionare 2 Zile (Avans)" onClick={()=>setCurs("Curs De Perfectionare 2 Zile (Avans)")}    >
+                    CURS DE PERFECTIONARE 2 ZILE (AVANS)
+                        </option>
+                        <option value="Curs De Perfectionare 2 Zile (Integral)"  onClick={()=>setCurs("Curs De Perfectionare 2 Zile (Integral)")}   >
+                    CURS DE PERFECTIONARE 2 ZILE (INTEGRAL)
+                        </option>
+                        <option value="Curs VIP De Baza 2 Zile (Avans)" onClick={()=>setCurs("Curs VIP De Baza 2 Zile (Avans)")}    selected={localStorage.getItem("cumparaCurs")==="Curs VIP De Baza" && "selected"}>
+                    CURS VIP DE BAZA 2 ZILE (AVANS)
+                        </option>
+                        <option value="Curs VIP De Baza 2 Zile (Integral)" onClick={()=>setCurs("Curs VIP De Baza 2 Zile (Integral)")}  >
+                    CURS VIP DE BAZA 2 ZILE (INTEGRAL)
+                        </option>
+                        <option value="Curs VIP De Baza 3 Zile (Avans)" onClick={()=>setCurs("Curs VIP De Baza 3 Zile (Avans)")}    >
+                    CURS VIP DE BAZA 3 ZILE (AVANS)
+                        </option>
+                        <option value="Curs VIP De Baza 3 Zile (Integral)" onClick={()=>setCurs("Curs VIP De Baza 3 Zile (Integral)")}    >
+                    CURS VIP DE BAZA 3 ZILE (INTEGRAL)
+                        </option>
+                        <option  value="Curs Efecte Speciale 1 Zi (Avans)"  selected={localStorage.getItem("cumparaCurs")==="Curs Efecte Speciale" && "selected"}>
+                    CURS EFECTE SPECIALE 1 ZI (AVANS)
+                        </option>
+                        <option  value="Curs Efecte Speciale 1 Zi (Integral)"  >
+                    CURS EFECTE SPECIALE 1 ZI (INTEGRAL)
                         </option>
                 </select>
             </div>

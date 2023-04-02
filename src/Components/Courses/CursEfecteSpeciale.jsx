@@ -30,7 +30,7 @@ const CursEfecteSpeciale = () => {
         </div>
         <div className='relative lg:ml-[4rem] mt-[2rem] lg:mt-0 flex flex-col items-center w-[90%] lg:w-[40rem]'>
             
-                <h3 className='text-[42px] font-norican font-bold text-center'>Curs Efecte Speciale </h3>
+                <h3 className='text-[42px] font-oswald font-bold text-center'>Curs Efecte Speciale </h3>
                 <h4 className='text-[28px] font-norican'>Avansati</h4>
                 <div className='w-[90%]  text-justify mt-[2rem] font-montSerrat'>
                

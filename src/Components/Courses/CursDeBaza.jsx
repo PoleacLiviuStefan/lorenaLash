@@ -27,7 +27,7 @@ const CursDeBaza = () => {
             <div className='relative flex flex-col items-left w-full mt-[2rem]'>
                 <h3 className='mb-[1rem]  lg:text-[18px] text-justify'>Achiti   <span className='font-bold'>AVANSUL</span> de <span className='font-bold'>300 de lei </span> aici sau la locatie pentru a-ti rezerva locul, restul sumei se achita in prima zi de curs</h3>
                 <h3 className='text-[18px] lg:text-[20px] font-thin'>CURS + KIT INCLUS <span className='absolute right-2 text-[24px] font-extrabold text-[#DAA520]'> 2500 lei </span></h3>
-                <h3 className='text-[18px] lg:text-[20px] font-thin mt-[1rem]'>CURS CU KIT<span className='absolute right-2 text-[24px] font-extrabold text-[#DAA520]'>2000  lei </span> </h3>
+                <h3 className='text-[18px] lg:text-[20px]  font-thin mt-[1rem]'>CURS CU KIT<span className='absolute right-2 text-[24px] font-extrabold text-[#DAA520]'>2000  lei </span> </h3>
              
                 <p className='w-[90%] lg:w-[30rem] text-[18px] mt-[1rem] text-justify'><span className='font-bold text-[18px] lg:text-[20px] text-[#DAA520]'>Kitul include :</span> <ol className='list-decimal ml-6 grid grid-cols-2 w-full text-[13px] lg:text-[16px]'><li>Adeziv</li> <li>2 Pensete</li> <li className='text-left'> Caseta Extensii Gene</li> <li> Placuta</li> <li> Piatra</li> <li> Remover</li> <li> Aplicatoare</li> <li> Microbrosh-uri</li> <li>Periute</li> <li> Cleanser</li> <li> Primer</li></ol></p>
             </div>
@@ -46,7 +46,7 @@ const CursDeBaza = () => {
             </div>
             <div className='relative  lg:ml-[4rem] mt-[2rem] lg:mt-0 flex flex-col items-center w-[90%] lg:w-[40rem]'>
                     <h4 className='text-[28px] font-norican'>Curs de baza</h4>
-                    <h3 className='text-[42px] font-norican font-bold text-center'>Curs de baza 1D-3D & Foxy Intensiv</h3>
+                    <h3 className='text-[42px] font-oswald font-bold text-center'>Curs de baza 1D-3D & Foxy Intensiv</h3>
                     <div className='w-[90%]  text-justify mt-[2rem] font-montSerrat'>
                         <p>
                     Iti doresti sa ai propria ta AFACERE si sa-ti urmezi visul in domeniul BEAUTY? Acum este momentul sa CREZI in tine si sa FACI primul pas catre o noua CARIERA! Ne vom asigura ca drumul tau in lumea extensiilor de gene va duce catre SUCCES

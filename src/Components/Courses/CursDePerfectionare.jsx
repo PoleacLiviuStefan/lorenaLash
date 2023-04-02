@@ -32,7 +32,7 @@ const CursDePerfectionare = () => {
             </div>
             <div className='relative lg:ml-[4rem] mt-[2rem] lg:mt-0 flex flex-col items-center w-[90%] lg:w-[40rem]'>
                     <h4 className='text-[28px] font-norican'>Curs de perfectionare</h4>
-                    <h3 className='text-[42px] font-norican font-bold text-center'>Curs de perfectionare 2D&3D</h3>
+                    <h3 className='text-[42px] font-oswald font-bold text-center'>Curs de perfectionare 2D&3D</h3>
                     <div className='w-[90%]  text-justify mt-[2rem] font-montSerrat'>
                         <h4 className='font-bold text-center text-[20px] py-[1rem]'>Cui i se adreseaza?</h4> 
                      <p>

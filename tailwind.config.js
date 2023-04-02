@@ -14,7 +14,8 @@ module.exports = {
         'fastHand': "Fasthand, cursive",
         'cursive':"Cookie, cursive",
         'dafoe': "Mr Dafoe, cursive",
-        'norican' : "Norican, cursive"
+        'norican' : "Norican, cursive",
+        'oswald' : "Oswald, sans-serif"
       },
       backgroundImage:{
         'backgr': "url('/public/Imagini/background.jpeg')",
