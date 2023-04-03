@@ -47,7 +47,7 @@ const Buy = () => {
 
 }
         else if(curs==="Curs De Perfectionare 2 Zile (Avans)")
-             {setPretCursSelectat("price_1MsWzkCV1XqGrlRbd7iQpnYi")
+             {setPretCursSelectat("price_1MsiOmCV1XqGrlRbcY0edoc9")
 
             }
         else if(curs==="Curs De Perfectionare 2 Zile (Integral)")
@@ -152,7 +152,7 @@ console.log(indexSelectedCourse)
                         <option  value="Curs De Baza + Kit Inclus (Integral)" onClick={()=>setCurs("Curs De Baza + Kit Inclus (Integral)")}  >
                     CURS DE BAZA + KIT INCLUS (INTEGRAL)
                         </option>
-                        <option value="Curs De Perfectionare 1 Zi (Avans)"    selected={localStorage.getItem("cumparaCurs")==="Curs De Perfectionare" && "selected"}>
+                        <option value="Curs De Perfectionare 1 Zi (Avans)" onClick={()=>setCurs("Curs De Perfectionare 1 Zi (Avans)")}   selected={localStorage.getItem("cumparaCurs")==="Curs De Perfectionare" && "selected"}>
                     CURS DE PERFECTIONARE 1 ZI (AVANS)
                         </option>
                         <option value="Curs De Perfectionare 1 Zi (Integral)"  onClick={()=>setCurs("Curs De Perfectionare 1 Zi (Integral)")}  >
@@ -176,10 +176,10 @@ console.log(indexSelectedCourse)
                         <option value="Curs VIP De Baza 3 Zile (Integral)" onClick={()=>setCurs("Curs VIP De Baza 3 Zile (Integral)")}    >
                     CURS VIP DE BAZA 3 ZILE (INTEGRAL)
                         </option>
-                        <option  value="Curs Efecte Speciale 1 Zi (Avans)"  selected={localStorage.getItem("cumparaCurs")==="Curs Efecte Speciale" && "selected"}>
+                        <option  value="Curs Efecte Speciale 1 Zi (Avans)" onClick={()=>setCurs("Curs Efecte Speciale 1 Zi (Avans)")} selected={localStorage.getItem("cumparaCurs")==="Curs Efecte Speciale" && "selected"}>
                     CURS EFECTE SPECIALE 1 ZI (AVANS)
                         </option>
-                        <option  value="Curs Efecte Speciale 1 Zi (Integral)"  >
+                        <option  value="Curs Efecte Speciale 1 Zi (Integral)" onClick={()=>setCurs("Curs Efecte Speciale 1 Zi (Integral)")}  >
                     CURS EFECTE SPECIALE 1 ZI (INTEGRAL)
                         </option>
                 </select>
