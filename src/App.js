@@ -15,6 +15,7 @@ import Buy from "./Components/Courses/Buy";
 import Success from './Components/Courses/Success'
 import Cancel from './Components/Courses/Cancel'
 import "@stripe/stripe-js"
+import Footer from "./Components/Footer/Footer";
 function App() {
   return (
     <div className="App">
@@ -52,6 +53,7 @@ function App() {
          <Route path="/cancel" element={<Cancel />} />
       </Routes>
       <Contact />
+      <Footer />
     </div>
   );
 }

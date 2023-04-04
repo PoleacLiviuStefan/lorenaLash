@@ -1,7 +1,28 @@
-import React from 'react'
+import React,{useState} from 'react'
+import lorena1 from './Images/Lorena_1.jpeg'
+import lorena2 from './Images/Lorena_2.jpeg'
+import lorena3 from './Images/Lorena_3.jpeg'
+import lorena4 from './Images/Lorena_4.jpeg'
+import lorena5 from './Images/Lorena_5.jpeg'
+import diana1 from './Images/Diana_1.jpeg'
+import diana2 from './Images/Diana_2.jpeg'
+import diana3 from './Images/Diana_3.jpeg'
+import diana4 from './Images/Diana_4.jpeg'
+import diana5 from './Images/Diana_5.jpeg'
+import denisa1 from './Images/Denisa_1.jpeg'
+import denisa2 from './Images/Denisa_2.jpeg'
+import denisa3 from './Images/Denisa_3.jpeg'
+import denisa4 from './Images/Denisa_4.jpeg'
+import catalina1 from './Images/Catalina_1.jpeg'
+import catalina2 from './Images/Catalina_2.jpeg'
+import catalina3 from './Images/Catalina_3.jpeg'
+import catalina4 from './Images/Catalina_4.jpeg'
+import catalina5 from './Images/Catalina_5.jpeg'
 
 import Member from './Member'
+import FullImg from './FullImg'
 const Salon = () => {
+  const [showFullImg,setShowFullImg]=useState(-1);
   return (
     <div name="Salon" className='relative flex  flex-col items-center w-full h-full '>
         <div className='flex flex-col items-center w-full lg:w-[60rem] bg-[FEFEFE] top-[6rem] h-full font-montSerrat '>
@@ -14,10 +35,15 @@ const Salon = () => {
             </div>
             </div>
             <div className='w-full lg:w-[60rem]  flex lg:flex-row flex-col items-center lg:items-start flex-wrap justify-between'>
-                <Member nume="Lorena DanoiU" rol="Trainer" descriere="Buna! Ma numesc Lorena Danoiu, sunt de 5 ani in domeniu si in prezent activitatea mea de desfasoara atat in academie ca trainer, cat si in salon ca tehnician. Eu te pot ajuta cu lucrari foarte rapide, voluminoase si efecte speciale, ador sa creezi look-uri noi asa ca iti voi asculta ideile urmand sa le pun in aplicare, te astept cu drag"/>
-                <Member nume="Diana Elena Cotet" rol="Master" descriere="Buna! Ma numesc Diana Elena Cotet si activez de 1 an jumatate in salon, cariera mea a inceput chiar in academia Lorena Lash Studio, sub indrumarea Lorenei, care mi-a propus apoi sa activez in salon.Iti pot accesoriza privirea cu extensii de gene Foxy, Dark Illusion si efecte speciale! Abia astept sa ne vedem! "/>
-                <Member nume="Damian Denisa" rol="Master" descriere="Buna! Eu sunt Denisa Damian si m-am alaturat Lorenei in urma cu 1 an imediat ce am terminat cursul de baza in academie, am decis sa fac parte din echipa ei!  Daca iti doresti un look natural, fresh, care sa te scoata din anonimat, atunci te astept cu drag la programare! "/>
-                <Member nume="Catalina Trica " rol="Brow Artist" descriere="Buna, sunt Catalina si iti pot spune ca eu iti pot creea sprancenele la care ai visat dintotdeauna! Fie ca vrei stilizare, vopsit sau laminare, eu te voi asculta si iti voi reda o privire armonioasa conform preferintelor tale! Haide si tu sa iti conturezi privirea!"/>
+                <div onClick={()=>setShowFullImg(0)}><Member poze={[lorena1,lorena2,lorena3,lorena4,lorena5]} nume="Lorena DanoiU" rol="Trainer" descriere="Buna! Ma numesc Lorena Danoiu, sunt de 5 ani in domeniu si in prezent activitatea mea de desfasoara atat in academie ca trainer, cat si in salon ca tehnician. Eu te pot ajuta cu lucrari foarte rapide, voluminoase si efecte speciale, ador sa creezi look-uri noi asa ca iti voi asculta ideile urmand sa le pun in aplicare, te astept cu drag"/>
+                </div>
+                <div onClick={()=>setShowFullImg(1)}><Member poze={[diana1,diana2,diana3,diana4,diana5]} nume="Diana Elena Cotet" rol="Master" descriere="Buna! Ma numesc Diana Elena Cotet si activez de 1 an jumatate in salon, cariera mea a inceput chiar in academia Lorena Lash Studio, sub indrumarea Lorenei, care mi-a propus apoi sa activez in salon.Iti pot accesoriza privirea cu extensii de gene Foxy, Dark Illusion si efecte speciale! Abia astept sa ne vedem! "/>
+                </div>
+                <div onClick={()=>setShowFullImg(2)}><Member poze={[denisa1,denisa2,denisa3,denisa4]} nume="Damian Denisa" rol="Master" descriere="Buna! Eu sunt Denisa Damian si m-am alaturat Lorenei in urma cu 1 an imediat ce am terminat cursul de baza in academie, am decis sa fac parte din echipa ei!  Daca iti doresti un look natural, fresh, care sa te scoata din anonimat, atunci te astept cu drag la programare! "/>
+                </div>
+                <div onClick={()=>setShowFullImg(3)}>
+                <Member poze={[catalina1,catalina2,catalina3,catalina4,catalina5]} nume="Catalina Trica " rol="Brow Artist" descriere="Buna, sunt Catalina si iti pot spune ca eu iti pot creea sprancenele la care ai visat dintotdeauna! Fie ca vrei stilizare, vopsit sau laminare, eu te voi asculta si iti voi reda o privire armonioasa conform preferintelor tale! Haide si tu sa iti conturezi privirea!"/>
+                </div>
             </div>
             <h2 className='relative whitespace-nowrap  text-[28px] lg:text-[48px] font-bold   px-[10rem] py-[.5rem] rounded-[8px] bg-[#0b2a24] text-white mt-[10rem]'>
              LISTA PRETURI
@@ -69,7 +95,26 @@ const Salon = () => {
             <li className='w-[7rem]'>200 lei</li>
           </ul>
         </div>
-    </div>
+          
+            
+          <div className={`z-40 fixed flex justify-center items-center left-0 top-0 w-screen h-screen ${showFullImg===-1 && "hidden"}`}>
+          <div onClick={()=>setShowFullImg(-1)} className={`fixed ${showFullImg===-1 && "hidden"} z-10 w-screen h-screen bg-black bg-opacity-[40%]`}>
+         
+         </div>
+         <div className={`z-20 ${showFullImg!==0 && "hidden" } `}  >
+          <FullImg imagini={[lorena1,lorena2,lorena3,lorena4,lorena5]} />
+          </div>
+          <div className={`z-20 ${showFullImg!==1 && "hidden" } `}  >
+          <FullImg imagini={[diana1,diana2,diana3,diana4,diana5]} />
+          </div>
+          <div className={`z-20 ${showFullImg!==2 && "hidden" } `}  >
+          <FullImg imagini={[denisa1,denisa2,denisa3,denisa4]} />
+          </div>
+          <div className={`z-20 ${showFullImg!==3 && "hidden" } `}  >
+          <FullImg imagini={[catalina1,catalina2,catalina3,catalina4,catalina5]} />
+          </div>
+          </div>
+              </div>
   )
 }
 

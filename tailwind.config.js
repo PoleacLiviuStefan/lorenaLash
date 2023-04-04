@@ -22,7 +22,9 @@ module.exports = {
         'backCourse': "url('/src/Components/Courses/Imagini/bgmain.jpeg')",
         'bgHero':"url('/public/Imagini/bgHero.jpeg')",
         'teamBg':"url('/public/Imagini/Team.jpeg')",
-        'teamMobileBg':"url('/public/Imagini/Team_1.jpeg')"
+        'teamMobileBg':"url('/public/Imagini/Team_1.jpeg')",
+        'sol':"url('/public/Imagini/SOL.svg')",
+        'sal':"url('/public/Imagini/SAL.svg')",
       }
     },
     keyframes: {
