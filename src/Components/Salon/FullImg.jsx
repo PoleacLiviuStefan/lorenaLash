@@ -9,7 +9,7 @@ const FullImg = ({imagini}) => {
         {
             imagini.map((imag,key)=>{
                 console.log(key)
-                return <><img  className={`w-[70%] lg:w-[600px] ${key!==showImg && "hidden"}`} src={imag}  /></>
+                return <><img  className={`w-[50%] lg:w-[600px] ${key!==showImg && "hidden"}`} src={imag}  /></>
             })
       
         }
