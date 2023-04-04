@@ -26,7 +26,7 @@ const Hero = () => {
       
           </div>
           <div className="absolute top-[12rem] lg:top-0 flex flex-col items-center justify-start lg:justify-center w-full h-full">
-          <h1 className="font-montSerrat z-30 lg:mt-[0rem] text-[38px] lg:text-[64px] text-white font-extrabold w-[20rem] lg:w-[40rem]  text-center">LORENA LASH STUDIO</h1>
+
   
           <div className="flex justify-between mt-[2rem] lg:mt-[5rem] ">
           <Link
@@ -42,7 +42,7 @@ const Hero = () => {
         </Link>
           </div>
           </div>
-          <img src={lorena} className="absolute left-[1rem] bottom-[-6rem] lg:bottom-[-10rem] lg:bottom-[-5rem] mt-[5rem] w-[220px] lg:w-[400px] h-[381px] lg:h-[693px] "/>
+          <img src={lorena} className="absolute right-[1rem] bottom-[-6rem] lg:bottom-[-10rem] lg:bottom-[-5rem] mt-[5rem] w-[220px] lg:w-[400px] h-[381px] lg:h-[693px] "/>
         <div className="absolute z-30 left-0 w-full h-[7rem] bg-gradient-to-b from-transparent to-[#0b2a24] bottom-0 "/>
     </div>
   )
