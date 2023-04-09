@@ -2,7 +2,7 @@ import React from 'react'
 import CursMainPreview from './CursMainPreview'
 import cursDeBaza from './Imagini/cursDeBaza.jpeg'
 import cursVip from './Imagini/cursVip.jpeg'
-import cursDePerfectionare from './Imagini/curs_preview.jpg'
+import cursDePerfectionare from './Imagini/curs_preview_perf.jpg'
 import cursEfecteSpeciale from './Imagini/cursEfecteSpeciale.jpeg'
 
 const CursMain = () => {
