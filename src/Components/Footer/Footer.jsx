@@ -70,8 +70,15 @@ const Footer = () => {
         </ul>
         </div>
         <div className='flex mt-[3rem]  flex-col-reverse   lg:flex-row justify-between  items-center lg:items-end w-full lg:w-[60rem]'> 
-        <a href="https://www.waygital.ro/" className='relative flex'>powered by <img src={waygital} className='ml-2 w-[80px] h-[25px]'/></a>
-        <h5>@2023 Cursuri gene  - Lorena Lash Studio </h5>
+        <a href="https://www.waygital.ro/" className='relative flex'>powered by <img src={waygital} className='ml-2 w-[60px] h-[25px]'/></a>
+        <div className='flex flex-col items-center'>
+          <div className='flex items-center w-[12rem] justify-between'>
+            <div className='bg-stripe bg-cover w-[70px] h-[35px]'/>
+            <div className='bg-visa bg-cover w-[45px] h-[25px]'/>
+            <div className='bg-masterCard bg-cover w-[50px] h-[30px]'/>
+          </div>
+          <h5>@2023 Cursuri gene  - Lorena Lash Studio </h5>
+        </div>
         <div className='relative flex flex-col mb-[2rem] lg:mb-0'>
         <a href="https://anpc.ro/ce-este-sal/"> <div className='bg-cover bg-sal w-[185px] h-[50px]' /></a>
                     <a href="https://ec.europa.eu/consumers/odr" ><div className='bg-cover bg-sol w-[185px] h-[50px]' /></a>

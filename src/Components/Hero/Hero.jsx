@@ -42,7 +42,7 @@ const Hero = () => {
         </Link>
           </div>
           </div>
-          <img src={lorena} className="absolute right-[1rem] bottom-[-6rem] lg:bottom-[-10rem] lg:bottom-[-5rem] mt-[5rem] w-[220px] lg:w-[400px] h-[381px] lg:h-[693px] "/>
+         
         <div className="absolute z-30 left-0 w-full h-[7rem] bg-gradient-to-b from-transparent to-[#0b2a24] bottom-0 "/>
     </div>
   )

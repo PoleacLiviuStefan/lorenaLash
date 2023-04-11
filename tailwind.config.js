@@ -25,6 +25,9 @@ module.exports = {
         'teamMobileBg':"url('/public/Imagini/Team_1.jpeg')",
         'sol':"url('/public/Imagini/SOL.svg')",
         'sal':"url('/public/Imagini/SAL.svg')",
+        'stripe':"url('/public/Imagini/Stripe.png')",
+        'visa':"url('/public/Imagini/VISA.png')",
+        'masterCard':"url('/public/Imagini/mastercard.png')"
       }
     },
     keyframes: {
