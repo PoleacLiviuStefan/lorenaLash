@@ -45,7 +45,7 @@ const Navbar = () => {
             duration={500}
             href="Hero"
           >
-             <img src={logo} onClick={()=>navigate("/")} className='w-[120px] mr-[10rem]'/>
+             <img src={logo} onClick={()=>{navigate("/");window.scrollTo({top:0,left:0})}} className='w-[120px] mr-[10rem]'/>
              </Link>
             <Link
             activeClass="active"
@@ -56,7 +56,7 @@ const Navbar = () => {
             duration={500}
             href="Hero"
           >
-              <button onClick={()=>navigate("/")}  onMouseEnter={()=>{setElementList(4)}} onMouseLeave={()=>{setElementList(-1)}} className='relative  tracking-[4px] px-[.5rem]  py-[1.5rem]'>ACASA <span className={`absolute  ${elementList===4 ? "animate-[underlineAnim_.2s_ease-in-out_forwards]": "animate-[underlineAnimReverse_.2s_ease-in-out_forwards]"} bottom-5 left-0 w-full h-[1px] bg-black`} /></button>  
+              <button onClick={()=>{navigate("/");window.scrollTo({top:0,left:0})}}  onMouseEnter={()=>{setElementList(4)}} onMouseLeave={()=>{setElementList(-1)}} className='relative  tracking-[4px] px-[.5rem]  py-[1.5rem]'>ACASA <span className={`absolute  ${elementList===4 ? "animate-[underlineAnim_.2s_ease-in-out_forwards]": "animate-[underlineAnimReverse_.2s_ease-in-out_forwards]"} bottom-5 left-0 w-full h-[1px] bg-black`} /></button>  
             </Link>
               <Link
             activeClass="active"
