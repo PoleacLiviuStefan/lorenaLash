@@ -16,6 +16,11 @@ import Success from './Components/Courses/Success'
 import Cancel from './Components/Courses/Cancel'
 import "@stripe/stripe-js"
 import Footer from "./Components/Footer/Footer";
+import PoliticaDeUtilizare from "./Components/Footer/PoliticaDeUtilizare";
+import PoliticaDeInscriere from "./Components/Footer/PoliticaDeInscriere";
+import PoliticaDePlata from "./Components/Footer/PoliticaDePlata";
+import PoliticaDeReturnare from "./Components/Footer/PoliticaDeReturnare";
+import TermeniSiConditii from "./Components/Footer/TermeniSiConditii";
 function App() {
   return (
     <div className="App">
@@ -51,6 +56,12 @@ function App() {
          }/>
          <Route path="/success" element={<Success />} />
          <Route path="/cancel" element={<Cancel />} />
+        <Route path="/politica-de-utilizare" element={<PoliticaDeUtilizare />} />
+        <Route path="/politica-de-inscriere" element={<PoliticaDeInscriere/>} />
+        <Route path="/politica-de-plata" element={<PoliticaDePlata />} />
+        <Route path="/politica-de-returnare" element={<PoliticaDeReturnare />} />
+        <Route path="/termeni-si-conditii" element={<TermeniSiConditii />} />
+
       </Routes>
       <Contact />
       <Footer />
