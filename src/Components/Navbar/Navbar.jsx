@@ -30,7 +30,7 @@ const Navbar = () => {
             
                 <a href="https://www.instagram.com/lorenalashstudio/"  className='cursor-pointer  hover:text-black'><BsInstagram /></a>
                 <a href="tel:+40-764-038-271" className='flex cursor-pointer hover:text-black'><span className='text-[24px] mt-1 mr-1 ' ><AiOutlinePhone /></span><a  className=''>0764038271</a></a>
-                <span className='text-[24px] cursor-pointer  hover:text-black' ><AiOutlineMail /></span>
+                <a href="mailto:lorenadanoiu@yahoo.ro" className='text-[24px] cursor-pointer  hover:text-black' ><AiOutlineMail /></a>
 
                
 
