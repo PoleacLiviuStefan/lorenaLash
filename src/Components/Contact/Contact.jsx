@@ -1,7 +1,7 @@
 import React,{useRef,useEffect,useState} from 'react'
 import {BsInstagram,BsFillPinMapFill} from 'react-icons/bs'
 import {FiFacebook} from 'react-icons/fi'
-import {AiOutlineMail,AiOutlinePhone,AiOutlineDown} from 'react-icons/ai'
+import {AiOutlineMail,AiOutlinePhone,AiOutlineDown,AiOutlineWhatsApp} from 'react-icons/ai'
 const Contact = () => {
 
   return (
@@ -13,7 +13,7 @@ const Contact = () => {
             <a href='https://www.instagram.com/lorenalashstudio/' className='flex justify-center items-center  w-[50px] lg:w-[60px] h-[50px] lg:h-[60px] rounded-[50%] text-[28px] bg-white text-[#0b2a24]  mx-2'>
                 <BsInstagram/>
             </a>
-            <a href="tel:+40-764-038-271" className='text-[24px] lg:text-[32px] font-bold flex mx-2 mt-[.5rem]'  ><span className='text-[28px] lg:text-[36px] mt-1 lg:mt-2 ' ><AiOutlinePhone/></span>0764038271</a>
+            <a href="http://wa.me/+0764038271" className='text-[24px] lg:text-[32px] font-bold flex mx-2 mt-[.5rem]'  ><span className='text-[28px] lg:text-[36px] mt-1 lg:mt-2 ' ><AiOutlineWhatsApp/></span>0764038271</a>
         
         
             <a href="mailto:lorenadanoiu@yahoo.ro" className='flex justify-center items-center w-[50px] lg:w-[60px] h-[50px] lg:h-[60px] rounded-[50%] text-[24px] lg:text-[32px] bg-white text-[#0b2a24]  mx-2 cursor-pointer'>
