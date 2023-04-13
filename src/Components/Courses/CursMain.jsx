@@ -9,7 +9,7 @@ const CursMain = () => {
 
   return (
   <div className='relative font-montSerrat flex flex-col items-center justify-center h-full w-full py-[10rem]   bg-cover' >
-
+      
         <h2 className='relative  text-[28px] lg:text-[48px] font-bold  px-[10rem] py-[.5rem] rounded-[8px] bg-[#0b2a24] text-white'>
           CURSURI
         </h2>
