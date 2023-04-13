@@ -28,9 +28,9 @@ const Navbar = () => {
             <span className='absolute hidden lg:block bottom-0 bg-gray-300 w-full h-[1px] bg-black' />
             <div className='flex justify-between items-center h-full w-[15rem] lg:w-[20rem] text-[20px] text-gray-400 ml-[4rem] lg:ml-0 mt-[1rem] lg:mt-0'>
             
-                <a href="https://www.instagram.com/lorenalashstudio/"  className='cursor-pointer  hover:text-black'><BsInstagram /></a>
-                <a href="http://wa.me/+40764038271" className='flex cursor-pointer hover:text-black'><span className='text-[24px] mt-1 mr-1 ' ><AiOutlineWhatsApp /></span><a  className=''>0764038271</a></a>
-                <a href="mailto:lorenadanoiu@yahoo.ro" className='text-[24px] cursor-pointer  hover:text-black' ><AiOutlineMail /></a>
+                <a href="https://www.instagram.com/lorenalashstudio/"  className='cursor-pointer  hover:lg:text-black'><BsInstagram /></a>
+                <a href="http://wa.me/+40764038271" className='flex cursor-pointer hover:lg:text-black'><span className='text-[24px] mt-1 mr-1 ' ><AiOutlineWhatsApp /></span><a  className=''>0764038271</a></a>
+                <a href="mailto:lorenadanoiu@yahoo.ro" className='text-[24px] cursor-pointer  hover:lg:text-black' ><AiOutlineMail /></a>
 
                
 
