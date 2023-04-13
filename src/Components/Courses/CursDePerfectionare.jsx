@@ -49,9 +49,9 @@ const CursDePerfectionare = () => {
                         <li className='mt-[.5rem]'><span className='font-bold'>18.00 </span>- Inmanarea Diplomelor, Poze </li>
                     </ol>
                     <h4 className='font-bold mt-[1rem] text-[20px] text-center '>2 ZILE</h4>
-                    <p className='mt-[.5rem]'>A doua zi este optionala/la alegere, daca va doriti sa executati doua modele diferite/doua efecte sau sa va perfectionati pe acel efect.</p>
+                    <p className='mt-[.5rem]'>A doua zi este optionala, iar data este la alegere. Daca va doriti sa executati doua modele diferite/doua efecte sau sa va perfectionati pe acel efect.</p>
                     <ol>    
-                        <li className='mt-[1rem]'><span className='font-bold'>10.00 </span>-  Intrebari si Raspunsuri din Parter Teoretica</li>
+                        <li className='mt-[1rem]'><span className='font-bold'>10.00 </span>-  Intrebari si Raspunsuri din Partea Teoretica</li>
                         <li className='mt-[.5rem]'><span className='font-bold'>11.00 </span>- Partea Practica pe model(Orice Efect/Curbura)</li>
                         <li className='mt-[.5rem]'><span className='font-bold'>16.00 </span>- Poze, Diploma, Q&A</li>
                     

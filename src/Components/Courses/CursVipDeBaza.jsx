@@ -47,7 +47,7 @@ const CursVipDeBaza = () => {
                     <div className='w-[90%]  text-justify mt-[2rem] font-montSerrat'>
                         <h4 className='font-bold text-center text-[20px] py-[1rem]'>*Posibilitate cu translator & alegerea datelor </h4> 
                      <p>
-                     Te-ai gandit vreodata ca iti doresti sa participi la un curs de baza unde toata atentia trainerului sa fie indreptata asupra ta? Atunci cursul VIP este alegerea perfcta pentru tine! 
+                     Te-ai gandit vreodata ca iti doresti sa participi la un curs de baza unde toata atentia trainerului sa fie indreptata asupra ta? Atunci cursul VIP este alegerea perfecta pentru tine! 
 
 Iti doresti sa ai propria ta AFACERE si sa-ti urmezi visul in domeniul BEAUTY? Acum este momentul sa CREZI in tine si sa FACI primul pas catre o noua CARIERA! Ne vom asigura ca drumul tau in lumea extensiilor de gene va duce catre SUCCES
                     </p>
@@ -71,7 +71,7 @@ Iti doresti sa ai propria ta AFACERE si sa-ti urmezi visul in domeniul BEAUTY? A
                     <p className='mt-[.5rem]'>Sunt FONDATOAREA •Lorena Lash Studio• Salon specializat pe Extensii De Gene&Sprancene</p>
                     <ol>    
                         <li className='mt-[1rem]'>Dincolo de munca pe care am depus-o pentru a ajunge aici, PASIUNEA a facut diferenta! Exact asta te voi invata pe tine sa faci, sa transformi MUNCA in PASIUNE! </li>
-                        <li className='mt-[.5rem]'>Inca de INCEPUT am stiut ca PROMOVAREA trebuie sa fie pe primul plan, iti voi arata diferenta dintre cei care se promoveaza constant si cei care asteapta sa fie descoperiti, imi doresc ca TU sa nu duci lipsa de cliente si sa fii in TOP inca de la inceput</li>
+                        <li className='mt-[.5rem]'>Inca de INCEPUT am stiut ca PROMOVAREA trebuie sa fie pe primul plan, iti voi arata diferenta dintre cei care se promoveaza constant si cei care asteapta sa fie descoperiti, imi doresc ca TU sa nu duci lipsa de cliente si sa fii in TOP inca de la inceput.</li>
                         <li className='mt-[.5rem]'>Am constientizat ca EU sunt propriul BRAND pe care trebuie sa-l promovez, desi auzeam constant ca este necesar sa stiu cum sa “VAND”, vreau ca TU sa stii CUM sa te promovezi pe TINE.</li>
                     
                     </ol>
