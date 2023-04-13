@@ -89,7 +89,7 @@ const Buy = () => {
 console.log(indexSelectedCourse)
 }
         console.log("pretCursSelect");
-        setPret(curs"Curs De Baza (Integral)" ? "1800" :"Curs De Baza + Kit Inclus (Integral)" ? "2250": "Curs De Perfectionare 1 Zi (Integral)" ? "1350":"Curs De Perfectionare 2 Zile (Integral)" ? "2250": "Curs VIP De Baza 2 Zile Fara Kit (Integral)" ? "2700":"Curs VIP De Baza 2 Zile (Integral)" ? "3150":"Curs VIP De Baza 3 Zile Fara Kit (Integral)" ? "3150" :"Curs VIP De Baza 3 Zile + Kit Inclus (Integral)" ? "3600": "Curs Efecte Speciale 1 Zi (Integral)" && "1530");
+        setPret(curs==="Curs De Baza (Integral)" ? "1800" :"Curs De Baza + Kit Inclus (Integral)" ? "2250": "Curs De Perfectionare 1 Zi (Integral)" ? "1350":"Curs De Perfectionare 2 Zile (Integral)" ? "2250": "Curs VIP De Baza 2 Zile Fara Kit (Integral)" ? "2700":"Curs VIP De Baza 2 Zile (Integral)" ? "3150":"Curs VIP De Baza 3 Zile Fara Kit (Integral)" ? "3150" :"Curs VIP De Baza 3 Zile + Kit Inclus (Integral)" ? "3600": "Curs Efecte Speciale 1 Zi (Integral)" && "1530");
       },[curs])
 
         const item= {
