@@ -89,7 +89,38 @@ const Buy = () => {
 console.log(indexSelectedCourse)
 }
         console.log("pretCursSelect");
-        setPret(curs==="Curs De Baza (Integral)" ? "1800" :"Curs De Baza + Kit Inclus (Integral)" ? "2250": "Curs De Perfectionare 1 Zi (Integral)" ? "1350":"Curs De Perfectionare 2 Zile (Integral)" ? "2250": "Curs VIP De Baza 2 Zile Fara Kit (Integral)" ? "2700":"Curs VIP De Baza 2 Zile (Integral)" ? "3150":"Curs VIP De Baza 3 Zile Fara Kit (Integral)" ? "3150" :"Curs VIP De Baza 3 Zile + Kit Inclus (Integral)" ? "3600": "Curs Efecte Speciale 1 Zi (Integral)" && "1530");
+       switch (curs)
+        {
+            case "Curs De Baza (Integral)":
+            setPret(1800);
+            break;
+            case "Curs De Baza + Kit Inclus (Integral)":
+                setPret(2250);
+                break;
+            case "Curs De Perfectionare 1 Zi (Integral)":
+                setPret(1350);
+                break;      
+            case "Curs De Perfectionare 2 Zile (Integral)":
+                setPret(2250);
+                break;       
+            case "Curs VIP De Baza 2 Zile Fara Kit (Integral)":
+                setPret(2700);
+                break;  
+            case "Curs VIP De Baza 2 Zile (Integral)":
+                setPret(3150);
+                break;  
+            case "Curs VIP De Baza 3 Zile Fara Kit (Integral)":
+                setPret(3150);
+                break
+            case "Curs VIP De Baza 3 Zile + Kit Inclus (Integral)":
+                setPret(3600);
+                break;     
+            case "Curs Efecte Speciale 1 Zi (Integral)":
+                setPret(1530);
+                break;     
+        }
+       
+    
       },[curs])
 
         const item= {
@@ -237,7 +268,7 @@ console.log(indexSelectedCourse)
                 </div>
                 <div className={`flex ${curs.includes("Avans") && "hidden"  }  justify-between w-full font-bold mt-[.5rem]`}>
                     <h4>{curs} </h4>
-                    <h4>{curs==="Curs De Baza (Integral)" ? "1800" :"Curs De Baza + Kit Inclus (Integral)" ? "2250": "Curs De Perfectionare 1 Zi (Integral)" ? "1350":"Curs De Perfectionare 2 Zile (Integral)" ? "2250": "Curs VIP De Baza 2 Zile Fara Kit (Integral)" ? "2700":"Curs VIP De Baza 2 Zile (Integral)" ? "3150":"Curs VIP De Baza 3 Zile Fara Kit (Integral)" ? "3150" :"Curs VIP De Baza 3 Zile + Kit Inclus (Integral)" ? "3600": "Curs Efecte Speciale 1 Zi (Integral)" && "1530"} lei</h4>
+                    <h4>{pret} lei</h4>
                 </div>
                 <h4>*Plata online prin card bancar</h4>
                 <button  value="Send" type="submit" className='font-bold px-[3rem] py-[1rem] mt-[1rem] bg-[#0b2a24] rounded-[8px] text-white'>PLASEAZA COMANDA</button>
