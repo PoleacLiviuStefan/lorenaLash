@@ -230,9 +230,13 @@ console.log(indexSelectedCourse)
                     <h4 className='mb-[.5rem]'>Total</h4>
                     <span className='absolute bottom-0 bg-black opacity-[15%] w-full h-[1px]'/>
                 </div>
-                <div className='flex justify-between w-full font-bold mt-[.5rem]'>
+                <div className={`flex ${!curs.includes("Avans") && "hidden"  } justify-between w-full font-bold mt-[.5rem]`}>
                     <h4>Avans {curs}</h4>
                     <h4>300 lei</h4>
+                </div>
+                <div className={`flex ${curs.includes("Avans") && "hidden"  }  justify-between w-full font-bold mt-[.5rem]`}>
+                    <h4>{curs} </h4>
+                    <h4>{curs==="Curs De Baza (Integral)" ? "1800" :"Curs De Baza + Kit Inclus (Integral)" ? "2250": "Curs De Perfectionare 1 Zi (Integral)" ? "1350":"Curs De Perfectionare 2 Zile (Integral)" ? "2250": "Curs VIP De Baza 2 Zile Fara Kit (Integral)" ? "2700":"Curs VIP De Baza 2 Zile (Integral)" ? "3150":"Curs VIP De Baza 3 Zile Fara Kit (Integral)" ? "3150" :"Curs VIP De Baza 3 Zile + Kit Inclus (Integral)" ? "3600": "Curs Efecte Speciale 1 Zi (Integral)" && "1530"} lei</h4>
                 </div>
                 <h4>*Plata online prin card bancar</h4>
                 <button  value="Send" type="submit" className='font-bold px-[3rem] py-[1rem] mt-[1rem] bg-[#0b2a24] rounded-[8px] text-white'>PLASEAZA COMANDA</button>

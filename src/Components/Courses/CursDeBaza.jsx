@@ -107,7 +107,7 @@ const CursDeBaza = () => {
                     <ul>
                     <li>Practica pe manechin(2D&3D)(Sponge)</li>
                     <li>Pauza de masa</li>
-                    <li>Practica 2D&3Dpe model uman(Foxy- NEW) </li>
+                    <li>Practica 2D&3D pe model uman(Foxy- NEW) </li>
                     <li>Inmanarea diplomelor & Editare Foto & Promovare</li>
                     </ul>
                     </p>
