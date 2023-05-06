@@ -24,8 +24,8 @@ const CursDePerfectionare = () => {
             <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs De Perfectionare");navigate("/checkout")}} className='mt-[2rem] border-[2px] border-black w-full text-[18px]  h-[3rem] rounded-[8px] tracking-[6px] font-bold animate-[buyBtnReverse_.3s_ease-in-out_forwards] hover:animate-[buyBtn_.3s_ease-in-out_forwards]'>CUMPARA ACUM</button>
             <div className='relative flex flex-col items-left w-full mt-[2rem]'>
                 <h3 className='mb-[1rem] lg:text-[18px] text-justify'>Achiti   <span className='font-bold'>AVANSUL</span> de <span className='font-bold'>300 de lei </span> aici sau la locatie pentru a-ti rezerva locul, restul sumei se achita in prima zi de curs</h3>
-                <h3 className='flex    justify-between w-full text-[18px] lg:text-[24px] font-thin mt-[1rem]'>2 ZILE <div  className='flex flex-col items-center '><h3 className='relative  text-[24px] font-extrabold text-[#DAA520]'> 2250 lei </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(10% Reducere)</span> De la 2500 lei  </h3> </div> </h3>
-                <h3 className='flex    justify-between w-full text-[18px] lg:text-[24px] font-thin mt-[1rem]'>1 ZI<div  className='flex flex-col items-center '><h3 className='relative  text-[24px] font-extrabold text-[#DAA520]'> 1350 lei </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(10% Reducere)</span> De la 1500 lei  </h3> </div> </h3>
+                <h3 className='text-[24px] font-thin'>2 ZILE <span className='absolute right-2 font-extrabold text-[#DAA520]'> 2500 lei </span></h3>
+                <h3 className='text-[24px] font-thin mt-[1rem]'>1 ZI<span className='absolute right-2 font-extrabold text-[#DAA520]'>1500  lei </span> </h3>
              
             </div>
       
@@ -49,9 +49,9 @@ const CursDePerfectionare = () => {
                         <li className='mt-[.5rem]'><span className='font-bold'>18.00 </span>- Inmanarea Diplomelor, Poze </li>
                     </ol>
                     <h4 className='font-bold mt-[1rem] text-[20px] text-center '>2 ZILE</h4>
-                    <p className='mt-[.5rem]'>A doua zi este optionala, iar data este la alegere. Daca va doriti sa executati doua modele diferite/doua efecte sau sa va perfectionati pe acel efect.</p>
+                    <p className='mt-[.5rem]'>A doua zi este optionala/la alegere, daca va doriti sa executati doua modele diferite/doua efecte sau sa va perfectionati pe acel efect.</p>
                     <ol>    
-                        <li className='mt-[1rem]'><span className='font-bold'>10.00 </span>-  Intrebari si Raspunsuri din Partea Teoretica</li>
+                        <li className='mt-[1rem]'><span className='font-bold'>10.00 </span>-  Intrebari si Raspunsuri din Parter Teoretica</li>
                         <li className='mt-[.5rem]'><span className='font-bold'>11.00 </span>- Partea Practica pe model(Orice Efect/Curbura)</li>
                         <li className='mt-[.5rem]'><span className='font-bold'>16.00 </span>- Poze, Diploma, Q&A</li>
                     

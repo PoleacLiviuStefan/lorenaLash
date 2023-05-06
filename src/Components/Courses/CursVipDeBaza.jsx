@@ -23,10 +23,11 @@ const CursVipDeBaza = () => {
             <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs VIP De Baza");navigate("/checkout")}} className='mt-[2rem] border-[2px] border-black w-full text-[18px]  h-[3rem] rounded-[8px] tracking-[6px] font-bold animate-[buyBtnReverse_.3s_ease-in-out_forwards] hover:animate-[buyBtn_.3s_ease-in-out_forwards]'>CUMPARA ACUM</button>
             <div className='relative flex flex-col items-left w-full mt-[2rem]'>
                 <h3 className='mb-[1rem] lg:text-[18px] text-justify'>Achiti   <span className='font-bold'>AVANSUL</span> de <span className='font-bold'>300 de lei </span> aici sau la locatie pentru a-ti rezerva locul, restul sumei se achita in prima zi de curs</h3>
-                <h3 className='flex    justify-between w-full text-[18px] lg:text-[24px] font-thin mt-[1rem]'>2 ZILE <div  className='flex flex-col items-center '><h3 className='relative  text-[18px] lg:text-[24px] font-extrabold text-[#DAA520]'> 2700 lei (Fara Kit) </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(10% Reducere)</span> De la 3000 lei  </h3><h3 className='relative  text-[18px] lg:text-[24px] font-extrabold text-[#DAA520]'> 3150 lei (Kit Inclus) </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(10% Reducere)</span> De la 3500 lei  </h3>  </div> </h3>
-             
+                <h3 className='text-[24px] font-thin'><span className='relative top-4'>2 ZILE :</span>   <span className='absolute right-2 font-extrabold text-[#DAA520]'> 3000 lei(Fara Kit) </span></h3>
+                <h3 className='text-[24px] font-thin mt-[.5rem]'><span className='absolute right-2  font-extrabold text-[#DAA520] '>3500 lei(Kit Inclus)</span> </h3>
 
-                <h3 className='flex    justify-between w-full text-[18px] lg:text-[24px] font-thin mt-[1rem]'>3 ZILE <div  className='flex flex-col items-center '><h3 className='relative  text-[18px] lg:text-[24px] font-extrabold text-[#DAA520]'> 3150 lei (Fara Kit) </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(10% Reducere)</span> De la 3500 lei  </h3><h3 className='relative  text-[18px] lg:text-[24px] font-extrabold text-[#DAA520]'> 3600 lei (Kit Inclus) </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(10% Reducere)</span> De la 4000 lei  </h3>  </div> </h3>
+                <h3 className='text-[24px] font-thin mt-[5rem]'><span className='relative top-4'>3 ZILE : </span> <span className='absolute right-2  font-extrabold text-[#DAA520]'> 3500 lei(Fara Kit) </span></h3>
+                <h3 className='text-[24px] font-thin mt-[.5rem]'><span className='absolute right-2  font-extrabold text-[#DAA520]'>4000 lei(Kit Inclus)</span> </h3>
                 <div className='h-[40rem] mt-[5rem]'>
                             <video
                                 style={{ maxWidth: "100%", width: "100%",height:"100%", margin: "100 auto",objectFit:"cover"}}
@@ -47,7 +48,7 @@ const CursVipDeBaza = () => {
                     <div className='w-[90%]  text-justify mt-[2rem] font-montSerrat'>
                         <h4 className='font-bold text-center text-[20px] py-[1rem]'>*Posibilitate cu translator & alegerea datelor </h4> 
                      <p>
-                     Te-ai gandit vreodata ca iti doresti sa participi la un curs de baza unde toata atentia trainerului sa fie indreptata asupra ta? Atunci cursul VIP este alegerea perfecta pentru tine! 
+                     Te-ai gandit vreodata ca iti doresti sa participi la un curs de baza unde toata atentia trainerului sa fie indreptata asupra ta? Atunci cursul VIP este alegerea perfcta pentru tine! 
 
 Iti doresti sa ai propria ta AFACERE si sa-ti urmezi visul in domeniul BEAUTY? Acum este momentul sa CREZI in tine si sa FACI primul pas catre o noua CARIERA! Ne vom asigura ca drumul tau in lumea extensiilor de gene va duce catre SUCCES
                     </p>
@@ -71,7 +72,7 @@ Iti doresti sa ai propria ta AFACERE si sa-ti urmezi visul in domeniul BEAUTY? A
                     <p className='mt-[.5rem]'>Sunt FONDATOAREA •Lorena Lash Studio• Salon specializat pe Extensii De Gene&Sprancene</p>
                     <ol>    
                         <li className='mt-[1rem]'>Dincolo de munca pe care am depus-o pentru a ajunge aici, PASIUNEA a facut diferenta! Exact asta te voi invata pe tine sa faci, sa transformi MUNCA in PASIUNE! </li>
-                        <li className='mt-[.5rem]'>Inca de INCEPUT am stiut ca PROMOVAREA trebuie sa fie pe primul plan, iti voi arata diferenta dintre cei care se promoveaza constant si cei care asteapta sa fie descoperiti, imi doresc ca TU sa nu duci lipsa de cliente si sa fii in TOP inca de la inceput.</li>
+                        <li className='mt-[.5rem]'>Inca de INCEPUT am stiut ca PROMOVAREA trebuie sa fie pe primul plan, iti voi arata diferenta dintre cei care se promoveaza constant si cei care asteapta sa fie descoperiti, imi doresc ca TU sa nu duci lipsa de cliente si sa fii in TOP inca de la inceput</li>
                         <li className='mt-[.5rem]'>Am constientizat ca EU sunt propriul BRAND pe care trebuie sa-l promovez, desi auzeam constant ca este necesar sa stiu cum sa “VAND”, vreau ca TU sa stii CUM sa te promovezi pe TINE.</li>
                     
                     </ol>

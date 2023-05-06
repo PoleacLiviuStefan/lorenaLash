@@ -19,72 +19,64 @@ const Buy = () => {
     const [indexSelectedCourse,setIndexSelectedCourse]=useState(0)
     const [selectedDate,setSelectedDate]=useState(null)
     const form = useRef();
-    const [pret,setPret]=useState(     curs==="Curs De Baza (Integral)" ? "1800" :"Curs De Baza + Kit Inclus (Integral)" ? "2250": "Curs De Perfectionare 1 Zi (Integral)" ? "1350":"Curs De Perfectionare 2 Zile (Integral)" ? "2250": "Curs VIP De Baza 2 Zile Fara Kit (Integral)" ? "2700":"Curs VIP De Baza 2 Zile (Integral)" ? "3150":"Curs VIP De Baza 3 Zile Fara Kit (Integral)" ? "3150" :"Curs VIP De Baza 3 Zile + Kit Inclus (Integral)" ? "3600": "Curs Efecte Speciale 1 Zi (Integral)" && "1530")
+    const [pret,setPret]=useState(     curs==="Curs De Baza (Integral)" ? "2000" :"Curs De Baza + Kit Inclus (Integral)" ? "2500": "Curs De Perfectionare 1 Zi (Integral)" ? "1500":"Curs De Perfectionare 2 Zile (Integral)" ? "2500": "Curs VIP De Baza 2 Zile Fara Kit (Integral)" ? "3000":"Curs VIP De Baza 2 Zile (Integral)" ? "3500":"Curs VIP De Baza 3 Zile Fara Kit (Integral)" ? "3500" :"Curs VIP De Baza 3 Zile + Kit Inclus (Integral)" ? "4000": "Curs Efecte Speciale 1 Zi (Integral)" && "1700")
 
 
     const [pretCursSelectat,setPretCursSelectat]=useState(localStorage.getItem("cumparaCurs"))
 
-    const perioadeCurs=[["29-30 Aprilie","13-14 Mai", "20-21 Mai"],["28 Aprilie","15 Mai"],["28 Aprilie","12 Mai"]] 
+    const perioadeCurs=[["13-14 Mai", "20-21 Mai"],["15 Mai"],["12 Mai"]] 
       useEffect(()=>{
         if(curs==="Curs De Baza (Avans)")
-            {setPretCursSelectat("price_1Ms8gHCV1XqGrlRbYx4Lf8Ue")
-          
-      }
-        else if(curs==="Curs De Baza (Integral)")
-            {setPretCursSelectat("price_1MwOksCV1XqGrlRbwxyMDtHW")
-    
-      }
-        else if(curs==="Curs De Baza + Kit Inclus (Integral)")
-            {setPretCursSelectat("price_1MwOn0CV1XqGrlRbcPHjmqso")
-
-}
-        else if(curs==="Curs De Perfectionare 1 Zi (Avans)")
-            {setPretCursSelectat("price_1MsWzkCV1XqGrlRbd7iQpnYi")
+        {setPretCursSelectat("price_1Ms8gHCV1XqGrlRbYx4Lf8Ue")
       
-    }
-         else if(curs==="Curs De Perfectionare 1 Zi (Integral)")
-            {setPretCursSelectat("price_1MwP5uCV1XqGrlRbl22TnZoL")
+  }
+    else if(curs==="Curs De Baza (Integral)")
+        {setPretCursSelectat("price_1MsWj1CV1XqGrlRbci4YtWlH")
+
+  }
+    else if(curs==="Curs De Baza + Kit Inclus (Integral)")
+        {setPretCursSelectat("price_1MsWlfCV1XqGrlRbgWy00YU7")
 
 }
-        else if(curs==="Curs De Perfectionare 2 Zile (Avans)")
-             {setPretCursSelectat("price_1MsiOmCV1XqGrlRbcY0edoc9")
-
-            }
-        else if(curs==="Curs De Perfectionare 2 Zile (Integral)")
-            {setPretCursSelectat("price_1MwP3PCV1XqGrlRbtnVRaDGu")
-
-           }
-        else if(curs==="Curs VIP De Baza 2 Zile (Avans)")
-            {setPretCursSelectat("price_1MsB5TCV1XqGrlRbX7G01gnH")
-         
+    else if(curs==="Curs De Perfectionare 1 Zi (Avans)")
+        {setPretCursSelectat("price_1MsWzkCV1XqGrlRbd7iQpnYi")
+  
 }
-        else if(curs==="Curs VIP De Baza 2 Zile Fara Kit (Integral)")
-            {setPretCursSelectat("price_1MwP5PCV1XqGrlRbhKjgfqwm")
+     else if(curs==="Curs De Perfectionare 1 Zi (Integral)")
+        {setPretCursSelectat("price_1MsWoUCV1XqGrlRb70dofstK")
+
+}
+    else if(curs==="Curs De Perfectionare 2 Zile (Avans)")
+         {setPretCursSelectat("price_1MsiOmCV1XqGrlRbcY0edoc9")
 
         }
-        else if(curs==="Curs VIP De Baza 2 Zile + Kit Inclus (Integral)")
-        {setPretCursSelectat("price_1MwP4tCV1XqGrlRbftlTV5az")
+    else if(curs==="Curs De Perfectionare 2 Zile (Integral)")
+        {setPretCursSelectat("price_1MsWpOCV1XqGrlRb0dtRQlWZ")
 
-    }
-        else if(curs==="Curs VIP De Baza 3 Zile (Avans)")
-            {setPretCursSelectat("price_1MwP4ICV1XqGrlRbnTNR5xGz")
-
-    }
-        else if(curs==="Curs VIP De Baza 3 Zile  Fara Kit (Integral)")
-            {setPretCursSelectat("price_1MsWv7CV1XqGrlRb4eSCbORv")
-
-    }
-        else if(curs==="Curs VIP De Baza 3 Zile + Kit Inclus (Integral)")
-            {setPretCursSelectat("price_1MwOojCV1XqGrlRbjaBYc5Hb")
-
-        }
-        else if(curs==="Curs Efecte Speciale 1 Zi (Avans)")
-            {setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB")
-          
-            console.log(indexSelectedCourse)
+       }
+    else if(curs==="Curs VIP De Baza 2 Zile (Avans)")
+        {setPretCursSelectat("price_1MsB5TCV1XqGrlRbX7G01gnH")
+     
 }
-        else if(curs==="Curs Efecte Speciale 1 Zi (Integral)")
-            {setPretCursSelectat("price_1MwOdqCV1XqGrlRbgafSnhtH")
+    else if(curs==="Curs VIP De Baza 2 Zile (Integral)")
+        {setPretCursSelectat("price_1MsWtECV1XqGrlRbgsXhEIve")
+
+    }
+    else if(curs==="Curs VIP De Baza 3 Zile (Avans)")
+        {setPretCursSelectat("price_1MsX18CV1XqGrlRb08i536NA")
+
+}
+    else if(curs==="Curs VIP De Baza 3 Zile (Integral)")
+        {setPretCursSelectat("price_1MsWv7CV1XqGrlRb4eSCbORv")
+
+}
+    else if(curs==="Curs Efecte Speciale 1 Zi (Avans)")
+        {setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB")
+      
+        console.log(indexSelectedCourse)
+}
+    else if(curs==="Curs Efecte Speciale 1 Zi (Integral)")
+        {setPretCursSelectat("price_1MsWwhCV1XqGrlRbdhr200nv")
 
 console.log(indexSelectedCourse)
 }
@@ -92,31 +84,31 @@ console.log(indexSelectedCourse)
        switch (curs)
         {
             case "Curs De Baza (Integral)":
-            setPret(1800);
+            setPret(2000);
             break;
             case "Curs De Baza + Kit Inclus (Integral)":
-                setPret(2250);
+                setPret(2500);
                 break;
             case "Curs De Perfectionare 1 Zi (Integral)":
-                setPret(1350);
+                setPret(1500);
                 break;      
             case "Curs De Perfectionare 2 Zile (Integral)":
-                setPret(2250);
+                setPret(2500);
                 break;       
             case "Curs VIP De Baza 2 Zile Fara Kit (Integral)":
-                setPret(2700);
+                setPret(3000);
                 break;  
             case "Curs VIP De Baza 2 Zile (Integral)":
-                setPret(3150);
+                setPret(3500);
                 break;  
             case "Curs VIP De Baza 3 Zile Fara Kit (Integral)":
-                setPret(3150);
+                setPret(3500);
                 break
             case "Curs VIP De Baza 3 Zile + Kit Inclus (Integral)":
-                setPret(3600);
+                setPret(4000);
                 break;     
             case "Curs Efecte Speciale 1 Zi (Integral)":
-                setPret(1530);
+                setPret(1700);
                 break;     
         }
        
@@ -246,7 +238,7 @@ console.log(indexSelectedCourse)
                    
                 </select>
                 <div onClick={()=>console.log(selectedDate)} className={` h-[35px] ${indexSelectedCourse !==-1 && "hidden"}`}>
-                <DatePicker className={`border-[#0b2a24] p-2  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px] `} selected={selectedDate} onChange={(date) => setSelectedDate(date)} formatDate="yyyy/MM/dd" minDate={new Date()} filterDate={date=>date.getDay() !=0} />
+                <DatePicker className={`border-[#0b2a24] p-2  border-[1px] w-full lg:w-[15rem] h-[2rem] text-[14px] `} selected={selectedDate} onChange={(date) => setSelectedDate(date)} formatDate="yyyy/MM/dd" minDate={new Date()} filterDate={date=>date.getDay() !==0} />
                 </div>
             </div>
             <div className='flex flex-col w-full  my-[.5rem]'>

@@ -15,7 +15,7 @@ const Member = ({nume,rol,descriere,poze}) => {
         <h4 className='flex mt-2 text-[12px] lg:text-[14px]'>Apasa pentru a vedea pozele <span className='lg:hidden text-[18px]'><MdOutlineTouchApp /></span> <span className='hidden lg:inline text-[18px]'><HiOutlineCursorClick /></span></h4>
         <div className='flex items-center'>
    
-        <div  className='flex justify-between items-center overflow-hidden  whitespace-nowrap mt-2 w-full lg:overflow-x-hidden overflow-x-scroll'>
+        <div  className='flex justify-between items-center overflow-hidden  whitespace-nowrap mt-2 w-full lg:overflow-x-hidden overflow-x-scroll cursor-pointer'>
         
           { 
             poze.map((poza,key)=>{
