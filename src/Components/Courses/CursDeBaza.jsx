@@ -3,7 +3,6 @@ import Buy from './Buy';
 import cursDeBaza from './Imagini/cursDeBaza.jpeg'
 import cursDeBazaVideo from './Imagini/cursDeBazaZiua1video.mp4'
 import { useNavigate } from 'react-router-dom';
-import {AiOutlineClose} from 'react-icons/ai'
 const CursDeBaza = () => {
     const videoEl = useRef(null);
     const attemptPlay = () => {
@@ -27,8 +26,9 @@ const CursDeBaza = () => {
             <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs De Baza (Avans)");navigate("/checkout")}} className='mt-[2rem] border-[2px] border-black w-full text-[18px] font-bold  h-[3rem] rounded-[8px] tracking-[6px] animate-[buyBtnReverse_.3s_ease-in-out_forwards] hover:animate-[buyBtn_.3s_ease-in-out_forwards]'>CUMPARA ACUM</button>
             <div className='relative flex flex-col items-left w-full mt-[2rem]'>
                 <h3 className='mb-[1rem]  lg:text-[18px] text-justify'>Achiti   <span className='font-bold'>AVANSUL</span> de <span className='font-bold'>300 de lei </span> aici sau la locatie pentru a-ti rezerva locul, restul sumei se achita in prima zi de curs</h3>
-                <h3 className='flex    justify-between w-full text-[18px] lg:text-[20px] font-thin'>CURS + KIT INCLUS <div  className='flex flex-col items-center '><h3 className='relative  text-[24px] font-extrabold text-[#DAA520]'> 2250 lei </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(10% Reducere)</span> De la 2500 lei  </h3> </div> </h3>
-                <h3 className='flex    justify-between w-full text-[18px] lg:text-[20px] font-thin mt-[1rem]'>CURS FARA KIT <div  className='flex flex-col items-center '><h3 className='relative  text-[24px] font-extrabold text-[#DAA520]'> 1800 lei </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(10% Reducere)</span> De la 2000 lei  </h3> </div> </h3>
+                <h3 className='flex    justify-between w-full text-[18px] lg:text-[20px] font-thin'>CURS + KIT INCLUS <div  className='flex flex-col items-center '><h3 className='relative  text-[24px] font-extrabold text-[#DAA520]'> 2000 lei </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(500 Lei Reducere)</span> De la 2500 lei  </h3> </div> </h3>
+                <h3 className='flex    justify-between w-full text-[18px] lg:text-[20px] font-thin mt-[1rem]'>CURS FARA KIT <div  className='flex flex-col items-center '><h3 className='relative  text-[24px] font-extrabold text-[#DAA520]'> 1500 lei </h3> <h3 className='relative flex flex-col justify-center items-center text-[18px] font-extrabold text-gray-300'> <span>(500 Lei Reducere)</span> De la 2000 lei  </h3> </div> </h3>
+
              
                 <p className='w-[90%] lg:w-[30rem] text-[18px] mt-[1rem] text-justify'><span className='font-bold text-[18px] lg:text-[20px] text-[#DAA520]'>Kitul include :</span> <ol className='list-decimal ml-6 grid grid-cols-2 w-full text-[13px] lg:text-[16px]'><li>Adeziv</li> <li>2 Pensete</li> <li className='text-left'> Caseta Extensii Gene</li> <li> Placuta</li> <li> Piatra</li> <li> Remover</li> <li> Aplicatoare</li> <li> Microbrosh-uri</li> <li>Periute</li> <li> Cleanser</li> <li> Primer</li></ol></p>
             </div>
@@ -47,7 +47,7 @@ const CursDeBaza = () => {
             </div>
             <div className='relative  lg:ml-[4rem] mt-[2rem] lg:mt-0 flex flex-col items-center w-[90%] lg:w-[40rem]'>
                     <h4 className='text-[28px] font-norican'>Curs de baza</h4>
-                    <h3 className='text-[42px] font-oswald font-bold text-center'>Curs de baza 1D-3D & Foxy Intensiv</h3>
+                    <h2 className='text-[42px] font-oswald font-bold text-center'>Curs de baza 1D-3D & Foxy Intensiv</h2>
                     <div className='w-[90%]  text-justify mt-[2rem] font-montSerrat'>
                         <p>
                     Iti doresti sa ai propria ta AFACERE si sa-ti urmezi visul in domeniul BEAUTY? Acum este momentul sa CREZI in tine si sa FACI primul pas catre o noua CARIERA! Ne vom asigura ca drumul tau in lumea extensiilor de gene va duce catre SUCCES
@@ -107,7 +107,7 @@ const CursDeBaza = () => {
                     <ul>
                     <li>Practica pe manechin(2D&3D)(Sponge)</li>
                     <li>Pauza de masa</li>
-                    <li>Practica 2D&3D pe model uman(Foxy- NEW) </li>
+                    <li>Practica 2D&3Dpe model uman(Foxy- NEW) </li>
                     <li>Inmanarea diplomelor & Editare Foto & Promovare</li>
                     </ul>
                     </p>

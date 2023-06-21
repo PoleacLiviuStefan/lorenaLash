@@ -35,7 +35,7 @@ const Salon = () => {
             </div>
             </div>
             <div className='w-full lg:w-[60rem]  flex lg:flex-row flex-col items-center lg:items-start flex-wrap justify-between'>
-                <div onClick={()=>setShowFullImg(0)}><Member poze={[lorena1,lorena2,lorena3,lorena4,lorena5]} nume="Lorena Danoiu" rol="Trainer" descriere="Buna! Ma numesc Lorena Danoiu, sunt de 5 ani in domeniu si in prezent activitatea mea se desfasoara atat in academie ca trainer, cat si in salon ca tehnician. Eu te pot ajuta cu lucrari foarte rapide, voluminoase si efecte speciale, ador sa creez look-uri noi asa ca iti voi asculta ideile urmand sa le pun in aplicare, te astept cu drag"/>
+                <div onClick={()=>setShowFullImg(0)}><Member poze={[lorena1,lorena2,lorena3,lorena4,lorena5]} nume="Lorena Danoiu" rol="Trainer" descriere="Buna! Ma numesc Lorena Danoiu, activez de 5 ani in domeniu si in prezent activitatea mea se desfasoara atat in academie ca trainer, cat si in salon ca tehnician. Eu te pot ajuta cu lucrari foarte rapide, voluminoase si efecte speciale, ador sa creez look-uri noi asa ca iti voi asculta ideile urmand sa le pun in aplicare, te astept cu drag"/>
                 </div>
                 <div onClick={()=>setShowFullImg(1)}><Member poze={[diana1,diana2,diana3,diana4,diana5]} nume="Diana Elena Cotet" rol="Master" descriere="Buna! Ma numesc Diana Elena Cotet si activez de 1 an jumatate in salon, cariera mea a inceput chiar in academia Lorena Lash Studio, sub indrumarea Lorenei, care mi-a propus apoi sa activez in salon.Iti pot accesoriza privirea cu extensii de gene Foxy, Dark Illusion si efecte speciale! Abia astept sa ne vedem! "/>
                 </div>
