@@ -1,23 +1,35 @@
 import React from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-
-const SignIn = () => {
+import {Navigate} from 'react-router-dom'
+const SignIn =  () => {
     const SERVER_IP = "http://localhost:5005";
+  const navigate=(url)=>{
+      window.location.href= url;
+  }
+  const loginOAuth2= async ()=>{
+    try {
+    const response =await fetch(SERVER_IP + "/api/google", {
+      method:"GET",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    const data=await response.json();
+    navigate(data.url);
+    console.log(data.url);
+  }
+    catch (error) {
+      console.error('An error occurred:', error);
+    }
+  
+  }
 
   return (
     <div className="flex justify-center items-center h-full py-[10rem]">
-      <GoogleOAuthProvider clientId="640153035190-i0le4tfvvfj329paq3j1on4ajvuf1shd.apps.googleusercontent.com">
-        <GoogleLogin
-          onSuccess={async (credentialResponse) => {
-            console.log(credentialResponse);
-          
-        
-          }}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
-      </GoogleOAuthProvider>
+        <button type="button" onClick={()=>loginOAuth2()}>
+            SIGN IN
+        </button>
     </div>
   );
 };
