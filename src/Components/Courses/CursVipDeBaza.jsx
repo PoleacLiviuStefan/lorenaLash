@@ -19,15 +19,12 @@ const CursVipDeBaza = () => {
     <div className='flex justify-center items-center w-full h-full py-[5rem] lg:py-[10rem]'>
         <div className='flex flex-col lg:flex-row items-center lg:items-start'>
         <div className=' lg:ml-[2rem] flex flex-col items-center w-[90%] lg:w-[25rem]'>           
-            <img src={cursVipDeBaza} className=" w-[21rem] lg:w-[25rem] " />
-            <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs VIP De Baza");navigate("/checkout")}} className='mt-[2rem] border-[2px] border-black w-full text-[18px]  h-[3rem] rounded-[8px] tracking-[6px] font-bold animate-[buyBtnReverse_.3s_ease-in-out_forwards] hover:animate-[buyBtn_.3s_ease-in-out_forwards]'>CUMPARA ACUM</button>
+            <img alt="Curs Vip de Baza" src={cursVipDeBaza} className=" w-[21rem] lg:w-[25rem] " />
+            <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs VIP De Baza 2 Zile (Avans)");navigate("/checkout");window.scrollTo({top:0,left:0})}} className='mt-[2rem] border-[2px] border-black w-full text-[18px]  h-[3rem] rounded-[8px] tracking-[6px] font-bold animate-[buyBtnReverse_.3s_ease-in-out_forwards] hover:animate-[buyBtn_.3s_ease-in-out_forwards]'>CUMPARA ACUM</button>
             <div className='relative flex flex-col items-left w-full mt-[2rem]'>
                 <h3 className='mb-[1rem] lg:text-[18px] text-justify'>Achiti   <span className='font-bold'>AVANSUL</span> de <span className='font-bold'>300 de lei </span> aici sau la locatie pentru a-ti rezerva locul, restul sumei se achita in prima zi de curs</h3>
-                <h3 className='text-[24px] font-thin'><span className='relative top-4'>2 ZILE :</span>   <span className='absolute right-2 font-extrabold text-[#DAA520]'> 3000 lei(Fara Kit) </span></h3>
-                <h3 className='text-[24px] font-thin mt-[.5rem]'><span className='absolute right-2  font-extrabold text-[#DAA520] '>3500 lei(Kit Inclus)</span> </h3>
-
-                <h3 className='text-[24px] font-thin mt-[5rem]'><span className='relative top-4'>3 ZILE : </span> <span className='absolute right-2  font-extrabold text-[#DAA520]'> 3500 lei(Fara Kit) </span></h3>
-                <h3 className='text-[24px] font-thin mt-[.5rem]'><span className='absolute right-2  font-extrabold text-[#DAA520]'>4000 lei(Kit Inclus)</span> </h3>
+                <h3 className='text-[24px] font-thin'>2 ZILE :<span className='absolute right-2 font-extrabold text-[#DAA520]'> 3000 lei(Fara Kit) </span></h3>
+                <h3 className='text-[24px] font-thin mt-[1rem]'>3 ZILE :<span className='absolute right-2  font-extrabold text-[#DAA520]'> 3500 lei(Fara Kit) </span></h3>
                 <div className='h-[40rem] mt-[5rem]'>
                             <video
                                 style={{ maxWidth: "100%", width: "100%",height:"100%", margin: "100 auto",objectFit:"cover"}}

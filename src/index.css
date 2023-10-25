@@ -26,9 +26,9 @@ body::-webkit-scrollbar-track {
 }
  
 body::-webkit-scrollbar-thumb {
-  background-color: rgb(85, 85, 85);
+  background-color: #0B2A24;
   outline: 1px solid slategrey;
-  border-radius: 5rem;
+  border-radius: .3rem;
   height: 12rem;
 }
 code {
@@ -36,7 +36,7 @@ code {
     monospace;
   overflow-x: hidden;
 }
-@media only screen and (max-width: 1279px){
+@media only screen and (max-width: 1024px){
   html{
     overflow-x: hidden;
   }

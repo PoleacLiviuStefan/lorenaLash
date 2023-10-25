@@ -18,9 +18,10 @@ import catalina2 from './Images/Catalina_2.jpeg'
 import catalina3 from './Images/Catalina_3.jpeg'
 import catalina4 from './Images/Catalina_4.jpeg'
 import catalina5 from './Images/Catalina_5.jpeg'
-
 import Member from './Member'
 import FullImg from './FullImg'
+import {Fade} from 'react-reveal'
+
 const Salon = () => {
   const [showFullImg,setShowFullImg]=useState(-1);
   return (
@@ -30,8 +31,10 @@ const Salon = () => {
             <div className='relative flex justify-center items-center  h-[35rem] lg:h-[40rem]'>
             <div  className='relative  w-screen lg:w-[60rem] h-[35rem] lg:h-[40rem] bg-teamMobileBg  lg:bg-teamBg  bg-cover bg-center '  />
             <div className='absolute flex justify-center items-center   w-full h-full bg-black bg-opacity-[20%]'>
-            <h1 className='absolute font-oldStandard text-[64px] mt-[10rem] font-bold text-white'>ECHIPA</h1>
-            <h2 className='flex items-center font-montSerrat w-[20rem] mt-[20rem] text-center text-white'><span className='w-[4rem] h-[1px] bg-white'/>DESCOPERA ECHIPA NOASTRA DE OAMENI TALENTATI<span className='w-[4rem] h-[1px] bg-white'/></h2>
+            <Fade>
+              <h1 className='absolute font-oldStandard text-[64px] mt-[10rem] font-bold text-white'>ECHIPA</h1>
+              <h2 className='flex items-center font-montSerrat w-[20rem] mt-[20rem] text-center text-white'><span className='w-[4rem] h-[1px] bg-white'/>DESCOPERA ECHIPA NOASTRA DE OAMENI TALENTATI<span className='w-[4rem] h-[1px] bg-white'/></h2>
+            </Fade>
             </div>
             </div>
             <div className='w-full lg:w-[60rem]  flex lg:flex-row flex-col items-center lg:items-start flex-wrap justify-between'>
@@ -45,9 +48,12 @@ const Salon = () => {
                 <Member poze={[catalina1,catalina2,catalina3,catalina4,catalina5]} nume="Catalina Trica " rol="Brow Artist" descriere="Buna, sunt Catalina si iti pot spune ca eu iti pot creea sprancenele la care ai visat dintotdeauna! Fie ca vrei stilizare, vopsit sau laminare, eu te voi asculta si iti voi reda o privire armonioasa conform preferintelor tale! Haide si tu sa iti conturezi privirea!"/>
                 </div>
             </div>
+            <Fade>
             <h2 className='relative whitespace-nowrap  text-[28px] lg:text-[48px] font-bold   px-[10rem] py-[.5rem] rounded-[8px] bg-[#0b2a24] text-white mt-[10rem]'>
              LISTA PRETURI
           </h2> 
+          </Fade>
+          <Fade>
           <ul className='grid grid-cols-2 place-items-center w-[90%] lg:w-[60rem] mt-[3rem] mb-[10rem] text-[14px] lg:text-[15px]' >
             <li className='font-bold text-[18px]'>Extensii Gene by Lorena</li>
             <li className='text-[16px] ml-4 lg:ml-0 w-[9rem]'>Aplicare (Intretinere)</li>
@@ -94,6 +100,7 @@ const Salon = () => {
             <li className='w-[10rem]'>Stilizare+Lami+Vopsire</li>
             <li className='w-[7rem]'>200 lei</li>
           </ul>
+          </Fade>
         </div>
           
             

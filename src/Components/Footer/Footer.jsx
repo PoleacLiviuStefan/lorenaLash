@@ -1,7 +1,6 @@
 import React from 'react'
-import logo from './logo.png'
 import waygital from './waygital.webp'
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import { useNavigate } from 'react-router-dom'
 const Footer = () => {
   const navigate=useNavigate();
@@ -16,6 +15,7 @@ const Footer = () => {
         </div>
         <ul className='w-[10rem] mt-[1rem] lg:mt-0'>
           <li className='font-bold '>Navigare</li>
+          <li onClick={()=>navigate("/")} className='mt-[1rem] cursor-pointer text-[14px]'>
           <Link
             activeClass="active"
             to="Hero"
@@ -24,8 +24,10 @@ const Footer = () => {
             offset={-50}
             duration={500}
             href="Hero"
-          ><li onClick={()=>navigate("/")} className='mt-[1rem] cursor-pointer text-[14px]'>ACASA</li>
+          >ACASA
           </Link>
+          </li>
+          <li className='cursor-pointer text-[14px]'>
           <Link
             activeClass="active"
             to="DespreNoi"
@@ -36,10 +38,12 @@ const Footer = () => {
             duration={500}
             href="DespreNoi"
           >
-          <li className='cursor-pointer text-[14px]'>DESPRE NOI</li>
+          DESPRE NOI
           </Link>
+          </li>
           <li onClick={()=>{navigate("salon");window.scrollTo({top:0,left:0})}} className='cursor-pointer text-[14px]'>ECHIPA</li>
      
+          <li className='cursor-pointer text-[14px]'>
           <Link
             activeClass="active"
             to="Contact"
@@ -49,8 +53,9 @@ const Footer = () => {
             duration={500}
             href="Contact"
           >
-          <li className='cursor-pointer text-[14px]'>CONTACT</li>
+          CONTACT
           </Link>
+          </li>
         </ul>
         <ul className='w-[10rem] mt-[1rem] lg:mt-0'>
           <li className='font-bold '>Conditii</li>
@@ -70,7 +75,9 @@ const Footer = () => {
         </ul>
         </div>
         <div className='flex mt-[3rem]  flex-col-reverse   lg:flex-row justify-between  items-center lg:items-end w-full lg:w-[60rem]'> 
-        <a href="https://www.waygital.ro/" className='relative flex'>powered by <img src={waygital} className='ml-2 w-[60px] h-[20px]'/></a>
+     
+        <a title="Firma creare site de prezentare" href="https://www.waygital.ro/" className='relative flex'>  Site creat de <img src={waygital} alt="Firma de creare site-uri web" className='ml-2 h-[25px] '/></a>
+     
         <div className='flex flex-col items-center'>
           <div className='flex items-center w-[12rem] justify-between'>
             <div className='bg-stripe bg-cover w-[70px] h-[35px]'/>
@@ -80,7 +87,7 @@ const Footer = () => {
           <h5>@2023 Cursuri gene  - Lorena Lash Studio </h5>
         </div>
         <div className='relative flex flex-col mb-[2rem] lg:mb-0'>
-        <a href="https://anpc.ro/ce-este-sal/"> <div className='bg-cover bg-sal w-[185px] h-[50px]' /></a>
+        <a  href="https://anpc.ro/ce-este-sal/"> <div className='bg-cover bg-sal w-[185px] h-[50px]' /></a>
                     <a href="https://ec.europa.eu/consumers/odr" ><div className='bg-cover bg-sol w-[185px] h-[50px]' /></a>
         </div>
       

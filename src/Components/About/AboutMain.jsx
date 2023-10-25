@@ -1,12 +1,16 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {Fade} from 'react-reveal'
+
 const AboutMain = () => {
     const [activateAbout,setActivateAbout]=useState(false)
     const navigate=useNavigate();
   return (
     <div name="DespreNoi" className='relative  text-white  shadow-xl'>
+   
         <div className='bg-[#0b2a24]  flex font-montSerrat flex-col items-center justify-center h-full w-full py-[5rem]'>
+        <Fade>
         <h5>BUCURESTI </h5>
         <h2 className=' font-bold text-[24px] lg:text-[42px] mt-[2rem] z-20'>CINE SUNTEM NOI ? </h2>
         
@@ -17,7 +21,9 @@ De asemenea,  pentru a-ti completa look-ul,<span className='font-normal'> Brow E
         <button onClick={()=>{navigate("salon");window.scrollTo({top:0,left:0})}} onMouseEnter={()=>setActivateAbout(true)} onMouseLeave={()=>setActivateAbout(false)} className={`mt-[4rem] ${activateAbout ? "animate-[aboutBtn_.5s_ease-in-out_forwards]":"animate-[aboutBtnReverse_.5s_ease-in-out_forwards]"} border-[2px]  lg:text-[15px] text-[13px] px-[4rem] lg:px-[7rem] py-[.7rem] lg:py-[1rem] border-white`}>
             DESPRE ECHIPA
         </button>
+        </Fade>
         </div>
+        
     </div>
   )
 }
