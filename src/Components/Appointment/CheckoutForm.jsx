@@ -22,7 +22,7 @@ const CheckoutForm = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret))
+      .then((data) => console.log(data.clientSecret))
       .catch(error => {
         console.error("Error fetching clientSecret:", error);
         // Handle the error, e.g., show an error message to the user
@@ -34,7 +34,7 @@ const CheckoutForm = () => {
      {clientSecret && (
         <EmbeddedCheckoutProvider
           stripe={stripePromise}
-          options={{clientSecret}}
+          options={"cs_live_a16pcnuO2sQxetrA3FwKKRjzmFYf9cMhCkCYRWQkxmqOncJH4D3yQmibHn_secret_fidwbEhqYWAnPydgaGdgYWFgYScpJ3dgYWx3YGZxSmtGamh1aWBxbGprJz8nZGlyZHx2J3gl"}
         >
           <EmbeddedCheckout />
         </EmbeddedCheckoutProvider>
