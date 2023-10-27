@@ -9,6 +9,11 @@ import Calendar from "react-calendar";
 import { useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
 import CheckoutForm from './CheckoutForm'
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  EmbeddedCheckoutProvider,
+  EmbeddedCheckout
+} from '@stripe/react-stripe-js';
 
 const Appointment = () => {
   const SERVER_IP = "http://localhost:5005";
