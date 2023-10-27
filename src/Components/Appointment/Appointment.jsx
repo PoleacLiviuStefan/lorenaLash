@@ -332,6 +332,7 @@ const scheduleEvent= async()=>{
             <span className="text-[18px] lg:text-[22px]">
               <BsCalendar3 />
             </span>
+            <CheckoutForm  />
             <span className=" text-[14px] lg:text-[18px]">Data si Ora</span>
           </button>
           <button
@@ -645,7 +646,7 @@ const scheduleEvent= async()=>{
             <button onClick={sendCode} className={`mt-[.5rem] lg:mt-[1rem] font-montSerrat  text-[14px]  w-[7rem] lg:w-[12rem] h-[2.5rem] lg:h-[4rem] rounded-[8px]   ${timer===0 ? "lg:text-[22px] text-white bg-green-500 hover:bg-green-600 font-bold" : "text-black  bg-transparent lg:text-[18px]"} transition ease-in-out duration-300`} disabled={timer===0 ? false : true}>
               Retrimite {timer!==0 && `(${timer})`}
             </button>
-             <CheckoutForm  />
+             
           <button 
                 onClick={verifyOTP}
                 className="mt-[.5rem] lg:mt-[1rem] font-montSerrat text-white bg-green-500 text-[14px] lg:text-[22px] w-[7rem] lg:w-[12rem] h-[2.5rem] lg:h-[4rem] rounded-[8px] font-bold hover:bg-green-600 transition ease-in-out duration-300"
