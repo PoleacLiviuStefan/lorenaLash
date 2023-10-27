@@ -83,7 +83,7 @@ const Appointment = () => {
     successUrl: `${window.location.origin}/programare`,
     cancelUrl: `${window.location.origin}/programare`,
   };
-  const redirectToChekout = async () => {
+  const redirectToCheckout = async () => {
     console.log("redirectToCheckout");
 
     const stripe = await getStripe();
