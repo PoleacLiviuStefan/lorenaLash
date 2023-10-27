@@ -8,12 +8,14 @@ import data from "./Services.json";
 import Calendar from "react-calendar";
 import { useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Appointment = () => {
   const SERVER_IP = "http://localhost:5005";
   const [stage, setStage] = useState(0);
   const [professional, setProfessional] = useState("");
   const [serviceDuration, setServiceDuration] = useState("");
+  const [servicePrice,setServicePrice]=useState(0);
   const [service, setService] = useState("");
   const [clientName, setClientName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("+40");
@@ -27,6 +29,8 @@ const Appointment = () => {
   const inputRefs = [useRef(), useRef(), useRef(), useRef(),useRef(),useRef()];
   const combinedTime = (dateString) => dateString.slice(11, 16);
   const [availableHours,setAvailableHours]=useState([]);
+  let stripePromise;
+
   useEffect(() => {
     console.log(data.profesionisti[0].name);
   }, []);
@@ -51,15 +55,49 @@ const Appointment = () => {
     }
     console.log(stage);
   }, [selectedHour]);
+
+
+
+
   const isDigitOrBackspace = (input) => /^[0-9\b]$/.test(input);
   const isLetter = (input) => /^[A-Za-z-]+$/.test(input);
+
+  const getStripe = () => {
+    if (!stripePromise) {
+      stripePromise = loadStripe(
+        "pk_live_51MroBpCV1XqGrlRbJMZ8BZ6cFMqZjpa5yCxEknMWc2ioPxrO2V9VhGZm77CMOtYF1vo6hzw85kbC64bJwvIkg2OG00SxxOnm59"
+      );
+    }
+  
+    return stripePromise;
+  };
+
+  const item = {
+    price: 100,
+    quantity: 1,
+  };
+
+  const checkoutOptions = {
+    lineItems: [item],
+    mode: "payment",
+    successUrl: `${window.location.origin}/programare`,
+    cancelUrl: `${window.location.origin}/programare`,
+  };
+  const redirectToChekout = async () => {
+    console.log("redirectToCheckout");
+
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout(checkoutOptions);
+    console.log("Stripe checkout error", error);
+  };
+
   const handleChange = (e, index) => {
     if(e.target.value.length<2)
     {
       otp[index]=e.target.value;
       setOtp([...otp])
     }
-    if (e.target.value !== '' && index < 5 || e.target.value.length>1) {
+    else if (e.target.value !== '' && index < 5 || e.target.value.length>1) {
       otp[index+1]=e.target.value[e.target.value.length-1]
       setOtp([...otp])
       inputRefs[index + 1].current.focus();
@@ -160,7 +198,29 @@ const Appointment = () => {
       } else alert("Oh no we have an error");
     });
   }
+const scheduleEvent= async()=>{
+  
+    try {
+      const response = await fetch(SERVER_IP + '/api/schedule_event', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({clientPhoneNumber:phoneNumber, serviceCost:servicePrice,clientName:clientName,serviceName:service,appointmentTime:selectedHour,appointmentDate:selectedData,serviceDuration:serviceDuration})
+      });
+      if (response.ok) {
+        const data = await response.json();
 
+      
+       
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  }
   async function verifyOTP() {
     let otpValue=otp.join('');
 
@@ -174,12 +234,19 @@ const Appointment = () => {
     }).then((response)=>{
       setOtp(['','','','','','']);
       if (response.ok === true){
-        setStage(5);
+       {
+        redirectToCheckout();
+         setStage(5);
+       
+      }
       }
     })
   }
+
   async function allAppointments() {
     console.log(JSON.stringify({minDate:formatDateFromDateString(selectedData)}))
+    console.log("selectedHour",selectedHour)
+    console.log("serviceDuration",serviceDuration)
     try {
       const response = await fetch(SERVER_IP + '/api/showEvents', {
         method: 'POST',
@@ -203,14 +270,19 @@ const Appointment = () => {
     }
   }
   
-  useEffect(() => {
+  const setIndex = async(keyIndex)=>{
 
+  }
+  useEffect(() => {
+   
       checkAvailableHours("10:00", "18:00");
    
   }, [appointmentsData]);
 
 
   useEffect(() => {
+    if(stage ===5)
+    scheduleEvent();
     if (stage === 4) {
       const intervalId = setInterval(() => {
         if (timer > 0) {
@@ -228,6 +300,7 @@ const Appointment = () => {
       allAppointments()
       console.log(appointmentsData)
   },[selectedData])
+  
   return (
     <div className=" flex flex-col items-center justify-center w-screen h-full py-[5rem] lg:py-[10rem]">
       <div className=" flex flex-col items-center   text-center w-[90%] h-full gap-[1rem] lg:gap-[2rem]">
@@ -307,6 +380,7 @@ const Appointment = () => {
                 setProfessional("Denisa");
                 setService("");
                 setSelectedHour("");
+                setIndex(-1);
               }}
               selected={professional === "Denisa"}
             />
@@ -316,6 +390,7 @@ const Appointment = () => {
                 setProfessional("Stefania");
                 setService("");
                 setSelectedHour("");
+                setIndex(0);
               }}
               selected={professional === "Stefania"}
             />
@@ -325,6 +400,7 @@ const Appointment = () => {
                 setProfessional("Diana");
                 setService("");
                 setSelectedHour("");
+                setIndex(1);
               }}
               selected={professional === "Diana"}
             />
@@ -334,6 +410,7 @@ const Appointment = () => {
                 setProfessional("Catalina");
                 setService("");
                 setSelectedHour("");
+                setIndex(2);
               }}
               selected={professional === "Catalina"}
             />
@@ -352,6 +429,7 @@ const Appointment = () => {
                     onClick={() => {
                       setService(serviciu.name);
                       setServiceDuration(serviciu.duration);
+                      setServicePrice(serviciu.price)
                       console.log(serviciu.duration);
                     }}
                   />
@@ -404,6 +482,7 @@ const Appointment = () => {
               <div
               onClick={() => {
                 setSelectedHour(hour);
+         
               }}
               className="cursor-pointer p-2 font-bold text-[15px] lg:text-[18px] bg-green-500 text-white hover:bg-green-600 transition ease-in-out "
             >
@@ -455,10 +534,6 @@ const Appointment = () => {
                 placeholder="Nume si prenume"
                 value={clientName}
                 onChange={(e) => {
-                  if (
-                    isLetter(e.target.value[e.target.value.length - 1]) ||
-                    e.target.value === ""
-                  )
                     setClientName(e.target.value);
                 }}
                 className="p-2 rounded-[8px] outline-none border-b-[1px] border-gray-200 w-full "
