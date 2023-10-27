@@ -8,11 +8,7 @@ import data from "./Services.json";
 import Calendar from "react-calendar";
 import { useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
-import { loadStripe } from "@stripe/stripe-js";
-import {
-  EmbeddedCheckoutProvider,
-  EmbeddedCheckout
-} from '@stripe/react-stripe-js';
+import CheckoutForm from './CheckoutForm'
 
 const Appointment = () => {
   const SERVER_IP = "http://localhost:5005";
@@ -33,7 +29,10 @@ const Appointment = () => {
   const inputRefs = [useRef(), useRef(), useRef(), useRef(),useRef(),useRef()];
   const combinedTime = (dateString) => dateString.slice(11, 16);
   const [availableHours,setAvailableHours]=useState([]);
-  let stripePromise;
+  const [status, setStatus] = useState(null);
+  const [customerEmail, setCustomerEmail] = useState('');
+
+
 
   useEffect(() => {
     console.log(data.profesionisti[0].name);
@@ -63,37 +62,23 @@ const Appointment = () => {
 
 
 
+  useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const sessionId = urlParams.get('session_id');
+
+    fetch(`/session-status?session_id=${sessionId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setStatus(data.status);
+        setCustomerEmail(data.customer_email);
+      });
+  }, []);
+
   const isDigitOrBackspace = (input) => /^[0-9\b]$/.test(input);
   const isLetter = (input) => /^[A-Za-z-]+$/.test(input);
 
-  const getStripe = () => {
-    if (!stripePromise) {
-      stripePromise = loadStripe(
-        "pk_live_51MroBpCV1XqGrlRbJMZ8BZ6cFMqZjpa5yCxEknMWc2ioPxrO2V9VhGZm77CMOtYF1vo6hzw85kbC64bJwvIkg2OG00SxxOnm59"
-      );
-    }
-  
-    return stripePromise;
-  };
 
-  const item = {
-    price: "price_1O5FGZCV1XqGrlRb6nU5G2vW",
-    quantity: 1,
-  };
-
-  const checkoutOptions = {
-    lineItems: [item],
-    mode: "payment",
-    successUrl: `${window.location.origin}/programare`,
-    cancelUrl: `${window.location.origin}/programare`,
-  };
-  const redirectToCheckout = async () => {
-    console.log("redirectToCheckout");
-
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions);
-    console.log("Stripe checkout error", error);
-  };
 
   const handleChange = (e, index) => {
     if(e.target.value.length<2)
@@ -660,6 +645,7 @@ const scheduleEvent= async()=>{
             <button onClick={sendCode} className={`mt-[.5rem] lg:mt-[1rem] font-montSerrat  text-[14px]  w-[7rem] lg:w-[12rem] h-[2.5rem] lg:h-[4rem] rounded-[8px]   ${timer===0 ? "lg:text-[22px] text-white bg-green-500 hover:bg-green-600 font-bold" : "text-black  bg-transparent lg:text-[18px]"} transition ease-in-out duration-300`} disabled={timer===0 ? false : true}>
               Retrimite {timer!==0 && `(${timer})`}
             </button>
+             <CheckoutForm  />
           <button 
                 onClick={verifyOTP}
                 className="mt-[.5rem] lg:mt-[1rem] font-montSerrat text-white bg-green-500 text-[14px] lg:text-[22px] w-[7rem] lg:w-[12rem] h-[2.5rem] lg:h-[4rem] rounded-[8px] font-bold hover:bg-green-600 transition ease-in-out duration-300"
@@ -673,11 +659,7 @@ const scheduleEvent= async()=>{
         ) : stage===5 && (
             <div className="flex flex-col items-center text-[20px] lg:text-[32px] ">
                 <div>
-                  <EmbeddedCheckoutProvider 
-                  stripe={getStripe()}
-                  options={checkoutOptions}>
-                    <EmbeddedCheckout />
-                  </EmbeddedCheckoutProvider>
+                   
                 </div>
                 <p>Iti multumim pentru programare</p>
                 <p>Te asteptam pe data de <span className="font-bold">{selectedData.getDate()}-{selectedData.getUTCMonth()}-{selectedData.getUTCFullYear()} <br/> </span> la ora  <span className="font-bold">{selectedHour}</span></p>
