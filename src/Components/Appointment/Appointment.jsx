@@ -332,7 +332,7 @@ const scheduleEvent= async()=>{
             <span className="text-[18px] lg:text-[22px]">
               <BsCalendar3 />
             </span>
-            <CheckoutForm  />
+         
             <span className=" text-[14px] lg:text-[18px]">Data si Ora</span>
           </button>
           <button
@@ -439,6 +439,7 @@ const scheduleEvent= async()=>{
               }}
               value={selectedData}
             />
+                <CheckoutForm  />
             <div className="mt-[.5rem] lg:mt-[1rem] flex flex-wrap gap-2">
               {/*availableHours.map((hour) => {
                 return (

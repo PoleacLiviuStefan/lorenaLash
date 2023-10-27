@@ -19,7 +19,7 @@ const CheckoutForm = () => {
     }, []);
   
     return (
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-[20rem] h-[20rem]">
         {clientSecret && (
           <EmbeddedCheckoutProvider
             stripe={stripePromise}
