@@ -73,7 +73,7 @@ const Appointment = () => {
   };
 
   const item = {
-    price: 100,
+    price: "100",
     quantity: 1,
   };
 
