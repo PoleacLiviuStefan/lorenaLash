@@ -9,6 +9,10 @@ import Calendar from "react-calendar";
 import { useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
 import { loadStripe } from "@stripe/stripe-js";
+import {
+  EmbeddedCheckoutProvider,
+  EmbeddedCheckout
+} from '@stripe/react-stripe-js';
 
 const Appointment = () => {
   const SERVER_IP = "http://localhost:5005";
@@ -235,7 +239,7 @@ const scheduleEvent= async()=>{
       setOtp(['','','','','','']);
       if (response.ok === true){
        {
-        redirectToCheckout();
+        //redirectToCheckout();
          setStage(5);
        
       }
@@ -668,6 +672,13 @@ const scheduleEvent= async()=>{
           </div>
         ) : stage===5 && (
             <div className="flex flex-col items-center text-[20px] lg:text-[32px] ">
+                <div>
+                  <EmbeddedCheckoutProvider 
+                  stripe={getStripe()}
+                  options={checkoutOptions}>
+                    <EmbeddedCheckout />
+                  </EmbeddedCheckoutProvider>
+                </div>
                 <p>Iti multumim pentru programare</p>
                 <p>Te asteptam pe data de <span className="font-bold">{selectedData.getDate()}-{selectedData.getUTCMonth()}-{selectedData.getUTCFullYear()} <br/> </span> la ora  <span className="font-bold">{selectedHour}</span></p>
               </div>
