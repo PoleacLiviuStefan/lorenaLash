@@ -14,6 +14,7 @@ import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout
 } from '@stripe/react-stripe-js';
+import { Elements } from "@stripe/react-stripe-js";
 
 const Appointment = () => {
   const SERVER_IP = "http://localhost:5005";
@@ -36,8 +37,8 @@ const Appointment = () => {
   const [availableHours,setAvailableHours]=useState([]);
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState('');
-
-
+  const [clientSecret,setClientSecret] = useState("");
+  const stripePromise = loadStripe("pk_live_51MroBpCV1XqGrlRbJMZ8BZ6cFMqZjpa5yCxEknMWc2ioPxrO2V9VhGZm77CMOtYF1vo6hzw85kbC64bJwvIkg2OG00SxxOnm59")
 
   useEffect(() => {
     console.log(data.profesionisti[0].name);
@@ -289,12 +290,25 @@ const scheduleEvent= async()=>{
       };
     }
   }, [stage, timer]);
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, []);
 
-  useEffect(()=>{ 
-      allAppointments()
-      console.log(appointmentsData)
-  },[selectedData])
-  
+  const appearance = {
+    theme: 'stripe',
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
+
   return (
     <div className=" flex flex-col items-center justify-center w-screen h-full py-[5rem] lg:py-[10rem]">
       <div className=" flex flex-col items-center   text-center w-[90%] h-full gap-[1rem] lg:gap-[2rem]">
@@ -444,7 +458,11 @@ const scheduleEvent= async()=>{
               }}
               value={selectedData}
             />
-                <CheckoutForm  />
+                {clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
+      )}
             <div className="mt-[.5rem] lg:mt-[1rem] flex flex-wrap gap-2">
               {/*availableHours.map((hour) => {
                 return (

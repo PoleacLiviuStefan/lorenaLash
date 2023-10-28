@@ -22,7 +22,7 @@ import TermeniSiConditii from "./Components/Footer/TermeniSiConditii";
 import { Navigate } from "react-router-dom";
 import Appointment from "./Components/Appointment/Appointment";
 import SignIn from "./Components/Appointment/SignIn";
-
+import CheckoutForm from "./Components/Appointment/CheckoutForm";
 function App() {
   
 
@@ -50,7 +50,7 @@ function App() {
         <Route path="/curs-vip-de-baza" element={<CursVipDeBaza />} />
         <Route path="/curs-efecte-speciale" element={<CursEfecteSpeciale />} />
         <Route path="/salon" element={<Salon />} />
-        <Route path="/checkout" element={<Buy />} />
+        <Route path="/checkout" element={<CheckoutForm />} />
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<Cancel />} />
         <Route path="/programare" element={<Appointment />} />
@@ -69,6 +69,7 @@ function App() {
         />
         <Route path="/termeni-si-conditii" element={<TermeniSiConditii />} />
         <Route path="/sign-in-google" element={<SignIn  />} />
+        <Route path="/checkoutForm" element={<CheckoutForm />} />
       </Routes>
       <Contact />
       <Footer />
