@@ -4,16 +4,14 @@ import { GoTasklist } from "react-icons/go";
 import { BsCalendar3, BsCalendarCheck } from "react-icons/bs";
 import Profesionist from "./Profesionist";
 import Service from "./Service";
+import Payment from './Payment'
 import data from "./Services.json";
 import Calendar from "react-calendar";
 import { useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
 import CheckoutForm from './CheckoutForm'
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  EmbeddedCheckoutProvider,
-  EmbeddedCheckout
-} from '@stripe/react-stripe-js';
+
 import { Elements } from "@stripe/react-stripe-js";
 
 const Appointment = () => {
@@ -458,11 +456,8 @@ const scheduleEvent= async()=>{
               }}
               value={selectedData}
             />
-                {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
-      )}
+            <Payment   />
+      
             <div className="mt-[.5rem] lg:mt-[1rem] flex flex-wrap gap-2">
               {/*availableHours.map((hour) => {
                 return (
