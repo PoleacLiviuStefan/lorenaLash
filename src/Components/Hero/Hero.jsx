@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {AiOutlineArrowDown} from 'react-icons/ai'
 import { Link, animateScroll as scroll } from "react-scroll";
 import {Fade} from 'react-reveal'
-
+import {useNavigate} from 'react-router-dom'
 const Hero = () => {
     let imagini=[]
     const videoEl = useRef(null);
@@ -18,6 +18,8 @@ const Hero = () => {
     useEffect(() => {
       attemptPlay();
     }, []);
+
+    const navigate=useNavigate();
   return (
     <div name="Hero" className='relative flex justify-center items-center w-full h-screen bg-bgHero  bg-cover bg-center '>
 
@@ -27,7 +29,7 @@ const Hero = () => {
           <div className="absolute top-[12rem] lg:top-0 flex flex-col items-center justify-start lg:justify-center w-full h-full">
 
           <Fade>
-          <div className="flex justify-between mt-[2rem] lg:mt-[5rem] ">
+          <div className="flex flex-col gap-8 items-center justify-between mt-[2rem] lg:mt-[5rem] ">
           <Link
             activeClass="active"
             to="DespreNoi"
@@ -37,8 +39,9 @@ const Hero = () => {
             duration={500}
             href="DespreNoi"
           >
-          <button onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)} className={`flex ${hovered ? "animate-[aboutBtn_.3s_ease-in-out_forwards]" : "animate-[aboutBtnReverse_.3s_ease-in-out_forwards]"} text-white border-[1px] border-white px-[2rem] lg:px-[4rem] py-[.7rem] text-[12px] lg:text-[15px]`}>EXPLOREAZA <span className="text-[18px] lg:text-[22px] ml-2 " ><AiOutlineArrowDown /></span></button>
+          <button onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)} className={`flex ${hovered ? "animate-[aboutBtn_.3s_ease-in-out_forwards]" : "animate-[aboutBtnReverse_.3s_ease-in-out_forwards]"} text-white border-[1px] border-white px-[2rem] lg:px-[4rem] py-[.7rem] text-[12px] lg:text-[15px] font-bold`}>EXPLOREAZA <span className="text-[18px] lg:text-[22px] ml-2 " ><AiOutlineArrowDown /></span></button>
         </Link>
+
           </div>
           </Fade>
           </div>

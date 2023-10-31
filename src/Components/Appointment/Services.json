@@ -1,6 +1,66 @@
 {
     "profesionisti": [
         {
+            "name": "Gabriela",
+            "services": [
+                {
+                    "name": "Aplicare 1D&2D",
+                    "duration": "1:30",
+                    "price": "170"
+                },
+                {
+                    "name": "Intretinere 2D",
+                    "duration": "1:30",
+                    "price": "170"
+                },
+                {
+                    "name": "Aplicare 2D&3D",
+                    "duration": "2:00",
+                    "price": "220"
+                },
+                {
+                    "name": "Intretinere 3D",
+                    "duration": "2:00",
+                    "price": "210"
+                },
+                {
+                    "name": "Efecte Speciale Eyeliner/Feline/Wet",
+                    "duration": "2:30",
+                    "price": "270"
+                },
+                {
+                    "name": "Aplicare 2D",
+                    "duration": "2:00",
+                    "price": "200"
+                },
+                {
+                    "name": "Intretinere 2D&3D",
+                    "duration": "2:00",
+                    "price": "190"
+                },
+                {
+                    "name": "Aplicare 3D",
+                    "duration": "2:30",
+                    "price": "240"
+                },
+                {
+                    "name": "Intretinere Wet/Raze",
+                    "duration": "2:30",
+                    "price": "240"
+                },
+                {
+                    "name": "Demontare",
+                    "duration": "0:30",
+                    "price": "30"
+                },
+                {
+                    "name": "Intretinere 1D&2D",
+                    "duration": "1:30",
+                    "price": "140"
+                }
+            ]
+        },
+        {
             "name": "Stefania",
             "services": [
                 {

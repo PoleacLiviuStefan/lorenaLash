@@ -2,7 +2,7 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({setPaymentStatus}) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -24,29 +24,34 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/completion`,
+        return_url: `${window.location.origin}`,
       },
+      redirect: 'if_required',
     });
 
-    if (error.type === "card_error" || error.type === "validation_error") {
+    if (error?.type === "card_error" || error?.type === "validation_error") {
       setMessage(error.message);
     } else {
       setMessage("An unexpected error occured.");
     }
+    if(!error) {
+        setPaymentStatus(true);
+    }
 
     setIsProcessing(false);
+
   };
 
   return (
-    <form  onSubmit={handleSubmit}>
+    <form className="mt-4" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
-      <button disabled={isProcessing || !stripe || !elements} id="submit">
+      <button disabled={isProcessing || !stripe || !elements} className="mt-4 lg:mt-8 border-[4px] border-green-500  font-bold px-[2rem] py-[.5rem] rounded-[4px] transition ease-in-out duration-300 text-green-700 hover:bg-green-500 hover:text-white">
         <span id="button-text">
-          {isProcessing ? "Processing ... " : "Pay now"}
+          {isProcessing ? "Procesare... " : "Plateste acum"}
         </span>
       </button>
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && <div className="mt-1 lg:mt-2  font-semibold text-red-600">{message}</div>}
     </form>
   );
 }

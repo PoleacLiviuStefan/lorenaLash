@@ -89,7 +89,6 @@ const Buy = () => {
 
   const perioadeCurs = [
     [
-      "28-29 Octombrie ",
       "11-12 Noiembrie",
       "25-26 Noiembrie",,
       "09-10 Decembrie"
