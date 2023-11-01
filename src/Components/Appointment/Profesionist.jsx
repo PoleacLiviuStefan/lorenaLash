@@ -12,7 +12,7 @@ const Profesionist = ({photo,namePro,onClick,selected,artistPhoto}) => {
           </div>
           <div className='flex flex-col'>
             <h3 className='font-bold text-gray-600 text-[14px] lg:text-[20px]'>{namePro}</h3>
-            <p className={`text-[12px] lg:text-[16px] ${namePro!=="Gabriela" && "hidden"}`}>(incepand cu 15 Noiembrie)</p>
+            <p className={`text-[12px] lg:text-[16px] ${namePro!=="Gabriela" && "hidden"}`}>(incepand cu 20 Noiembrie)</p>
           </div>
     </div>
   )
