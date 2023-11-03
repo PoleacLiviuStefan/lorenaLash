@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { AiOutlineCheck } from "react-icons/ai";
 import { SlUserFemale } from "react-icons/sl";
 import { GoTasklist } from "react-icons/go";
 import { BsCalendar3, BsCalendarCheck } from "react-icons/bs";
@@ -19,13 +20,13 @@ import Gabriela from "./Images/Gabriela.jpeg";
 import Stefania from "./Images/Stefania.jpeg";
 
 const Appointment = () => {
-  const SERVER_IP = "https://backend-production-b11c.up.railway.app";
+  const SERVER_IP = "http://localhost:5005";
   const navigate = useNavigate();
   const [stage, setStage] = useState(0);
   const [professional, setProfessional] = useState("");
   const [serviceDuration, setServiceDuration] = useState("");
   const [servicePrice, setServicePrice] = useState(0);
-  const [service, setService] = useState("");
+  const [service, setService] = useState([]);
   const [clientName, setClientName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("+40");
   const [codeSent, setCodeSent] = useState(false);
@@ -33,8 +34,9 @@ const Appointment = () => {
   const [selectedData, selectData] = useState(new Date());
   const [selectedHour, setSelectedHour] = useState("");
   const [timer, setTimer] = useState(60);
-
+  const [checkTerms, setCheckTerms] = useState(false);
   const [appointmentsData, setAppointmentsData] = useState([]);
+  const [serviceButton, setServiceButton] = useState(false);
   const inputRefs = [
     useRef(),
     useRef(),
@@ -49,31 +51,94 @@ const Appointment = () => {
   const [customerEmail, setCustomerEmail] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [paymentStatus, setPaymentStatus] = useState(false);
+  const isWeekend = (date) => {
+    const day = date.getDay();
+    return day === 0 || day === 6; // 0 is Sunday, 6 is Saturday
+  };
 
+  // Calculate the date 3 months from now
+  const threeMonthsLater = new Date();
+  threeMonthsLater.setMonth(threeMonthsLater.getMonth() + 3);
+
+  // Custom function to disable dates beyond 3 months from now
+  const isDateDisabled = (date) => {
+    return date > threeMonthsLater || isWeekend(date);
+  };
+
+  const durationsAddition = (totalDuration, toAddDuration, shouldSubtract) => {
+    // Check if totalDuration is an empty string
+    if (totalDuration === "") {
+      return toAddDuration;
+    }
+  
+    const totalParts = totalDuration.split(":");
+    const addParts = toAddDuration.split(":");
+  
+    if (totalParts.length === 2 && addParts.length === 2) {
+      const totalHours = parseInt(totalParts[0]);
+      const totalMinutes = parseInt(totalParts[1]);
+      const addHours = parseInt(addParts[0]);
+      const addMinutes = parseInt(addParts[1]);
+  
+      let hours = shouldSubtract
+        ? totalHours - addHours
+        : totalHours + addHours;
+      let minutes = shouldSubtract
+        ? totalMinutes - addMinutes
+        : totalMinutes + addMinutes;
+  
+      if (minutes < 0) {
+        hours -= 1;
+        minutes += 60;
+      }
+  
+      if (hours < 0) {
+        hours = 0;
+        minutes = 0;
+      }
+  
+      let resultString = `${hours}:${minutes.toString().padStart(2, "0")}`;
+      
+      if (hours < 10 && resultString.startsWith('0')) {
+        resultString = resultString.slice(1); // Remove leading '0' if hours are less than 10
+      }
+  
+      console.log("durations addition: " + resultString);
+  
+      return resultString;
+    } else {
+      console.error("Invalid input format for durations.");
+      return totalDuration; // or some default value
+    }
+  };
+  
+
+  const pricesAddition = (anteriorPrice, toAddPrice) => {
+    return anteriorPrice + toAddPrice;
+  };
+
+  const servicesToString = (...services) => {
+    let allServices = "";
+    for (const serviceElement of services) allServices += serviceElement + " ";
+    return allServices;
+  };
 
   useEffect(() => {
-
- 
     if (professional !== "") {
       setStage(1);
       window.scrollTo({ top: 0, left: 0 });
     }
     console.log(stage);
   }, [professional]);
-  useEffect(() => {
-    if (service !== "") {
-      setStage(2);
-      window.scrollTo({ top: 0, left: 0 });
-    }
-    console.log(stage);
-  }, [service]);
+
   useEffect(() => {
     console.log("paymentStatus:", paymentStatus);
     if (
       selectedHour !== "" &&
       (paymentStatus ||
-        service === "Demontare" ||
-        service === "Stilizare Sprancene")
+        service?.includes("Demontare") ||
+        service?.includes("Stilizare Sprancene")) &&
+      checkTerms
     ) {
       setStage(3);
 
@@ -144,13 +209,14 @@ const Appointment = () => {
       const [serviceHour, serviceMinute] = serviceDuration
         .split(":")
         .map(Number);
+
       const serviceDurationHour = parseInt(serviceDuration[0]);
       const serviceDurationMinute =
         parseInt(serviceDuration[2]) * 10 + parseInt(serviceDuration[3]);
 
       const appointmentHours = [];
       setAvailableHours([]);
-
+      console.log(serviceDurationHour)
       // Initialize a current time variable in hours and minutes
 
       let currentHour = startHour;
@@ -244,6 +310,23 @@ const Appointment = () => {
       } else console.log("Oh no we have an error");
     });
   }
+
+  async function sendConfirmationDetails(){
+    await fetch(SERVER_IP + "/api/send-details", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ service:service,serviceDate:selectedData ,serviceTime:selectedHour }),
+    }).then((response) => {
+      console.log(response);
+      if (response.ok === true) {
+          console.log("Details sent")
+      } else console.log("Oh no we have an error");
+    });
+  }
+
   const scheduleEvent = async () => {
     try {
       const response = await fetch(SERVER_IP + "/api/schedule_event", {
@@ -254,9 +337,9 @@ const Appointment = () => {
         },
         body: JSON.stringify({
           clientPhoneNumber: phoneNumber,
-          serviceCost: servicePrice,
+          serviceCost: pricesAddition(servicePrice),
           clientName: clientName,
-          serviceName: service,
+          serviceName: servicesToString(service), //transform array in a string
           appointmentTime: selectedHour,
           appointmentDate: selectedData,
           serviceDuration: serviceDuration,
@@ -286,6 +369,7 @@ const Appointment = () => {
       if (response.ok === true) {
         {
           //redirectToCheckout();
+          sendConfirmationDetails();
           setStage(5);
         }
       }
@@ -298,6 +382,7 @@ const Appointment = () => {
     );
     console.log("selectedHour", selectedHour);
     console.log("serviceDuration", serviceDuration);
+    console.log("selectedData",selectedData)
     try {
       const response = await fetch(SERVER_IP + "/api/showEvents", {
         method: "POST",
@@ -348,7 +433,7 @@ const Appointment = () => {
   };
 
   useEffect(() => {
-    checkAvailableHours("10:00", "18:00");
+    checkAvailableHours("10:00", "20:00");
   }, [appointmentsData]);
 
   useEffect(() => {
@@ -449,8 +534,9 @@ const Appointment = () => {
               namePro="Gabriela"
               onClick={() => {
                 setProfessional("Gabriela");
-                setService("");
+                setService([]);
                 setSelectedHour("");
+                setServiceDuration("")
                 setIndex(3);
               }}
               artistPhoto={Gabriela}
@@ -460,8 +546,9 @@ const Appointment = () => {
               namePro="Stefania"
               onClick={() => {
                 setProfessional("Stefania");
-                setService("");
+                setService([]);
                 setSelectedHour("");
+                setServiceDuration("")
                 setIndex(0);
               }}
               artistPhoto={Stefania}
@@ -471,8 +558,9 @@ const Appointment = () => {
               namePro="Diana"
               onClick={() => {
                 setProfessional("Diana");
-                setService("");
+                setService([]);
                 setSelectedHour("");
+                setServiceDuration("")
                 setIndex(1);
               }}
               artistPhoto={Diana}
@@ -482,8 +570,9 @@ const Appointment = () => {
               namePro="Catalina"
               onClick={() => {
                 setProfessional("Catalina");
-                setService("");
+                setService([]);
                 setSelectedHour("");
+                setServiceDuration("")
                 setIndex(2);
               }}
               artistPhoto={Catalina}
@@ -500,17 +589,44 @@ const Appointment = () => {
                     nameServ={serviciu.name}
                     price={serviciu.price}
                     duration={serviciu.duration}
-                    selected={service === serviciu.name}
+                    selected={service?.includes(serviciu.name)}
                     onClick={() => {
-                      setService(serviciu.name);
-                      setServiceDuration(serviciu.duration);
-                      setServicePrice(serviciu.price);
+                      if (service?.includes(serviciu.name))
+                        setService(
+                          service.filter(
+                            (eachService) => eachService != serviciu.name
+                          )
+                        );
+                      else setService([...service, serviciu.name]);
+                      setServiceDuration(
+                        durationsAddition(
+                          serviceDuration,
+                          serviciu.duration,
+                          service?.includes(serviciu.name)
+                        )
+                      );
+                      console.log("serviciu.duration:", serviciu.duration);
+                      setServicePrice(
+                        pricesAddition(servicePrice, serviciu.price)
+                      );
                       setSelectedHour("");
                       console.log(serviciu.duration);
                     }}
                   />
                 ))
             )}
+            <button
+              onClick={() => {
+                setServiceButton(true);
+                if (service.length > 0) {
+                  setStage(2);
+                  window.scrollTo({ top: 0, left: 0 });
+                }
+              }}
+              className="mt-2 lg:mt-4 w-full lg:w-[40rem] font-bold py-2 lg:py-4 px-8 bg-green-500 text-white rounded-[5px] transition transition-[.3s] ease-in-out  hover:bg-green-600 text-[13px] lg:text-[18px]"
+            >
+              CONTINUARE
+            </button>
           </div>
         ) : stage === 2 ? (
           <div
@@ -524,6 +640,7 @@ const Appointment = () => {
                 console.log(data.getMonth());
               }}
               value={selectedData}
+              tileDisabled={({ date }) => isDateDisabled(date)}
             />
 
             <div className="mt-[.5rem] lg:mt-[1rem] flex justify-center flex-wrap gap-2 w-full lg:w-[25rem] ">
@@ -561,7 +678,7 @@ const Appointment = () => {
                       onClick={() => {
                         setSelectedHour(hour);
                       }}
-                      className={`cursor-pointer p-2 font-bold text-[15px] lg:text-[18px] bg-green-500 text-white hover:bg-green-600 transition ease-in-out ${
+                      className={`cursor-pointer p-2 font-bold text-[14px] lg:text-[18px] bg-green-500 text-white hover:bg-green-600 transition ease-in-out ${
                         selectedHour === hour && "bg-green-600 size-[1.1]"
                       }`}
                     >
@@ -571,10 +688,38 @@ const Appointment = () => {
                 })
               }
             </div>
+            <div className="my-[1rem] flex w-[80%] lg:w-[20rem]">
+              <span
+                onClick={() => {
+                  if (!checkTerms) setCheckTerms(true);
+                  else setCheckTerms(false);
+                }}
+                className={`flex justify-center items-center text-[15px] lg:text-[22px] mr-2 cursor-pointer min-w-[20px] lg:min-w-[30px]  h-[22px] lg:h-[30px] border-[2px] border-green-600 text-white  ${
+                  checkTerms && "bg-green-500"
+                }`}
+              >
+                {checkTerms && <AiOutlineCheck />}
+              </span>
+              <p className="text-left text-[13px] lg:text-[16px]">
+                Bifand aceasta casura confirmi că ești de acord cu{" "}
+                <a
+                  className="cursor-pointer font-bold"
+                  onClick={() => {
+                    navigate("/termeni-si-conditii-avans");
+                    window.scrollTo({ top: 0, left: 0 });
+                  }}
+                >
+                  Termenii și condițiile, GDPR și Politica de confidențialitate.
+                </a>
+              </p>
+            </div>
             <div
               className={`text-[13px] lg:text-[18px]  ${
-                (service === "Demontare" ||
-                  service === "Stilizare Sprancene") &&
+                (service?.find((element) => element === "Demontare") ===
+                  "Demontare" ||
+                  service?.find(
+                    (element) => element === "Stilizare Sprancene"
+                  ) === "Stilizare Sprancene") &&
                 "hidden"
               }`}
             >
@@ -583,7 +728,7 @@ const Appointment = () => {
           </div>
         ) : stage === 3 ? (
           <div className=" flex flex-col items-start px-2 gap-1 text-[12px] lg:text-[20px] w-[90%] lg:w-[40rem]">
-            <h4>Serviciul ales: {service}</h4>
+            <h4>Serviciul ales: {servicesToString(service)}</h4>
             <h4>Profesionistul: {professional}</h4>
             <h4>
               Data: {selectedData.getDate()}-{selectedData.getUTCMonth() + 1}-
@@ -650,18 +795,11 @@ const Appointment = () => {
               >
                 Comfirmare
               </button>
-              <p className="text-left">
-                Apăsând butonul de mai sus confirmi că ești de acord cu{" "}
-                <a>Termenii și condițiile, GDPR </a> și{" "}
-                <a onClick={() => navigate("/termeni-si-conditii-avans")}>
-                  Politica de confidențialitate.
-                </a>
-              </p>
             </form>
           </div>
         ) : stage === 4 ? (
           <div className="flex flex-col items-start px-2 gap-1 text-[12px] lg:text-[20px] w-[90%] lg:w-[27rem] ">
-            <h4>Serviciul ales: {service}</h4>
+            <h4>Serviciul ales: {servicesToString(service)}</h4>
             <h4>Profesionistul: {professional}</h4>
             <h4>
               Data: {selectedData.getDate()}-{selectedData.getUTCMonth()}-

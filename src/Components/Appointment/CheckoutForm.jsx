@@ -43,8 +43,8 @@ export default function CheckoutForm({setPaymentStatus}) {
   };
 
   return (
-    <form className="mt-4" onSubmit={handleSubmit}>
-      <PaymentElement id="payment-element" />
+    <form className="mt-4 flex flex-col items-center " onSubmit={handleSubmit}>
+      <PaymentElement id="payment-element" className="w-[15rem] lg:w-full"/>
       <button disabled={isProcessing || !stripe || !elements} className="mt-4 lg:mt-8 border-[4px] border-green-500  font-bold px-[2rem] py-[.5rem] rounded-[4px] transition ease-in-out duration-300 text-green-700 hover:bg-green-500 hover:text-white">
         <span id="button-text">
           {isProcessing ? "Procesare... " : "Plateste acum"}
