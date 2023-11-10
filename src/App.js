@@ -22,6 +22,7 @@ import PoliticaDeReturnare from "./Components/Footer/PoliticaDeReturnare";
 import TermeniSiConditii from "./Components/Footer/TermeniSiConditii";
 import { Navigate } from "react-router-dom";
 import Appointment from "./Components/Appointment/Appointment";
+import ScheduleAppointment from "./Components/Appointment/ScheduleAppointment";
 import SignIn from "./Components/Appointment/SignIn";
 import CheckoutForm from "./Components/Appointment/CheckoutForm";
 function App() {
@@ -48,6 +49,7 @@ function App() {
           path="/curs-de-perfectionare"
           element={<CursDePerfectionare />}
         />
+        <Route path="/admin" element={<ScheduleAppointment />} />
         <Route path="/curs-vip-de-baza" element={<CursVipDeBaza />} />
         <Route path="/curs-efecte-speciale" element={<CursEfecteSpeciale />} />
         <Route path="/salon" element={<Salon />} />

@@ -20,7 +20,7 @@ const PoliticaDeAvans = ()=>{
                 </h2>
                 <ul className='list-decimal'>
                 <li >Anularea sau amanarea programarii duce la pierderea avansului.</li>
-                <li>Mutarea programarii la un alt hairstilist / makeup din cadrul salonului duce la pierderea avansului</li>
+                <li>Mutarea programarii la un alt lash artist / brow artist din cadrul salonului duce la pierderea avansului</li>
                 <li>Avansul este individual si nu poate fi cumulat cu alte programari in cazul programarilor de grup.</li>
                 <li>Intarzierea sau neprezentarea la data si ora stabilita pentru programare duce la pierderea avansului</li>
                 </ul>

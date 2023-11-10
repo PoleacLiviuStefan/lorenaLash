@@ -129,7 +129,7 @@ const Buy = () => {
           setPretCursSelectat("price_1MsWv7CV1XqGrlRb4eSCbORv");
           break;
         case "Curs Efecte Speciale 1 Zi (Avans)":
-          setPretCursSelectat("price_1MsB6FCV1XqGrlRbuhnUfQtB");
+          setPretCursSelectat("price_1O8l4zCV1XqGrlRb5l5x0BNp");
           break;
         case "Curs Efecte Speciale 1 Zi (Integral)":
           setPretCursSelectat("price_1MsWwhCV1XqGrlRbdhr200nv");
@@ -468,7 +468,7 @@ const Buy = () => {
               } justify-between w-full font-bold mt-[.5rem]`}
             >
               <h4>Avans {curs}</h4>
-              <h4>300 lei</h4>
+              <h4>{curs==="Curs Efecte Speciale 1 Zi (Avans)" ? 200:300} lei</h4>
             </div>
             <div
               className={`flex ${

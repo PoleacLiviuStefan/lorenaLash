@@ -2,7 +2,7 @@ import React from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import {Navigate} from 'react-router-dom'
 const SignIn =  () => {
-    const SERVER_IP = "http://localhost:5005";
+  const SERVER_IP = "https://backend-production-b11c.up.railway.app"; //de live
   const navigate=(url)=>{
       window.location.href= url;
   }
