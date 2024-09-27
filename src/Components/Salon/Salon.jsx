@@ -9,15 +9,20 @@ import diana2 from './Images/Diana_2.jpeg'
 import diana3 from './Images/Diana_3.jpeg'
 import diana4 from './Images/Diana_4.jpeg'
 import diana5 from './Images/Diana_5.jpeg'
-import denisa1 from './Images/Denisa_1.jpeg'
-import denisa2 from './Images/Denisa_2.jpeg'
-import denisa3 from './Images/Denisa_3.jpeg'
-import denisa4 from './Images/Denisa_4.jpeg'
+import stefania1 from './Images/Stefania_1.jpeg'
+import stefania2 from './Images/Stefania_2.jpeg'
+import stefania3 from './Images/Stefania_3.jpeg'
+
 import catalina1 from './Images/Catalina_1.jpeg'
 import catalina2 from './Images/Catalina_2.jpeg'
 import catalina3 from './Images/Catalina_3.jpeg'
 import catalina4 from './Images/Catalina_4.jpeg'
 import catalina5 from './Images/Catalina_5.jpeg'
+import gabriela1 from './Images/Gabriela_1.jpeg'
+import gabriela2 from './Images/Gabriela_2.jpeg'
+import gabriela3 from './Images/Gabriela_3.jpeg'
+import gabriela4 from './Images/Gabriela_4.jpeg'
+
 import Member from './Member'
 import FullImg from './FullImg'
 import {Fade} from 'react-reveal'
@@ -42,10 +47,13 @@ const Salon = () => {
                 </div>
                 <div onClick={()=>setShowFullImg(1)}><Member poze={[diana1,diana2,diana3,diana4,diana5]} nume="Diana Elena Cotet" rol="Master" descriere="Buna! Ma numesc Diana Elena Cotet si activez de 1 an jumatate in salon, cariera mea a inceput chiar in academia Lorena Lash Studio, sub indrumarea Lorenei, care mi-a propus apoi sa activez in salon.Iti pot accesoriza privirea cu extensii de gene Foxy, Dark Illusion si efecte speciale! Abia astept sa ne vedem! "/>
                 </div>
-                <div onClick={()=>setShowFullImg(2)}><Member poze={[denisa1,denisa2,denisa3,denisa4]} nume="Damian Denisa" rol="Master" descriere="Buna! Eu sunt Denisa Damian si m-am alaturat Lorenei in urma cu 1 an imediat ce am terminat cursul de baza in academie, am decis sa fac parte din echipa ei!  Daca iti doresti un look natural, fresh, care sa te scoata din anonimat, atunci te astept cu drag la programare! "/>
+                <div onClick={()=>setShowFullImg(2)}><Member poze={[stefania1,stefania2,stefania3]} nume="Stefania Ursu" rol="Master" descriere="Hello, ma numesc Stefania și am 22 de ani. În lumea fascinantă a genelor, mă consider un artist pasionat și priceput. Cu penseta mea magică și abilitățile dobândite în numeroasele ore de muncă, transform fiecare privire într-un spectacol de frumusețe. Cu atenție la detalii și creativitate, conturez genele cu eleganță și ofer clientelor mele o experiență personalizată, aducând la viață priviri spectaculoase. Te aștept cu drag să descoperi magia genelor și să împărtășești această călătorie a frumuseții alături de mine."/>
                 </div>
                 <div onClick={()=>setShowFullImg(3)}>
                 <Member poze={[catalina1,catalina2,catalina3,catalina4,catalina5]} nume="Catalina Trica " rol="Brow Artist" descriere="Buna, sunt Catalina si iti pot spune ca eu iti pot creea sprancenele la care ai visat dintotdeauna! Fie ca vrei stilizare, vopsit sau laminare, eu te voi asculta si iti voi reda o privire armonioasa conform preferintelor tale! Haide si tu sa iti conturezi privirea!"/>
+                </div>
+                <div onClick={()=>setShowFullImg(4)}>
+                <Member poze={[gabriela1,gabriela2,gabriela3,gabriela4]} nume="Gabriela Andreea Geanta" rol="Brow + Lash Master" descriere="Hello, girls! Numele meu este Gabriela, iar pasiunea mea sunt efectele speciale. Ador sa modelez priviri și să fac femeile să se simtă mai atrăgătoare. Sunt o fire creativa, atenta la detalii și foarte perfecționistă."/>
                 </div>
             </div>
             <Fade>
@@ -54,52 +62,46 @@ const Salon = () => {
           </h2> 
           </Fade>
           <Fade>
-          <ul className='grid grid-cols-2 place-items-center w-[90%] lg:w-[60rem] mt-[3rem] mb-[10rem] text-[14px] lg:text-[15px]' >
-            <li className='font-bold text-[18px]'>Extensii Gene by Lorena</li>
-            <li className='text-[16px] ml-4 lg:ml-0 w-[9rem]'>Aplicare (Intretinere)</li>
-            <li className='w-[10rem]'>2D</li>
-            <li className='w-[7rem]'>230 lei (200 lei)</li>
-            <li className='w-[10rem]'>2D&3D</li>
-            <li className='w-[7rem]'>250 lei (220 lei)</li>
-            <li className='w-[10rem]'>3D</li>
-            <li className='w-[7rem]'>270 lei (240 lei)</li>
-            <li className='w-[10rem]'>Russian Volume</li>
-            <li className='w-[7rem]'>300 lei</li>
-            <li className='w-[10rem]'>Hollywood Volume</li>
-            <li className='w-[7rem]'>330 lei</li>
-            <li className='w-[10rem]'>Wet, Eyeliner, Raze</li>
-            <li className='w-[7rem]'>300 lei (270 lei)</li>
-            <li className='w-[10rem]'>Accesorii</li>
-            <li className='w-[7rem]'>30 lei</li>
-            <li className='w-[10rem]'>Demontare Extensii</li>
-            <li className='w-[7rem]'>30 lei</li>
-            <li className='font-bold text-[18px] mt-[1rem]'>Extensii Gene by Master</li>
+         
+          <ul className='grid grid-cols-2 place-items-start items-center w-[90%] lg:w-[45rem] mt-[3rem] mb-[10rem] text-[14px] lg:text-[15px] gap-[6px]' >
+            <li className='font-bold text-[16px] lg:text-[18px]  '>Trainer Lorena</li>
             <li></li>
-            <li className='w-[10rem]'>1D&2D</li>
-            <li className='w-[7rem]'>170 lei (140 lei)</li>
-            <li className='w-[10rem]'>2D</li>
-            <li className='w-[7rem]'>200 lei (170 lei)</li>
-            <li className='w-[10rem]'>2D&3D</li>
-            <li className='w-[7rem]'>220 lei (190 lei)</li>
-            <li className='w-[10rem]'>3D</li>
-            <li className='w-[7rem]'>240 lei (210 lei)</li>
-            <li className='w-[10rem]'>Wet,  Eyeliner, Raze</li>
-            <li className='w-[7rem]'>270 lei (240 lei)</li>
-            <li className='w-[10rem]'>Demontare</li>
-            <li className='w-[7rem]'>30 lei</li>
-            <li className='font-bold text-[18px] mt-[1rem]'>BROWS by Catalina</li>
+            <li className='w-[10rem] lg:w-[16rem]'>1D-3D CLASIC/FOXY</li>
+            <li className='w-full text-end font-bold underline'>300 RON</li>
+            <li className='w-[10rem] lg:w-[16rem] leading-4' >EFECT SPECIAL (FELINE, WET, EYELINER, HALF ETC)</li>
+            <li className='w-full text-end font-bold underline'>350 RON</li>
+            <li className='font-bold  text-[16px] lg:text-[18px] mt-[1rem] leading-5'>EXPERT <br /><span className='text-[13px] lg:text-[16px]'> DIANA/STEFANIA/GABRIELA</span></li>
+            <li className='text-[13px] lg:text-[16px] ml-4 lg:ml-0 w-full text-right'>APLICARE/INTRETINERE</li>
+            <li className='w-[10rem] lg:w-[16rem]'>2D</li>
+            <li className='w-full text-end font-bold underline'>230/210 RON</li>
+            <li className='w-[10rem] lg:w-[16rem] '>3D</li>
+            <li className='w-full text-end font-bold underline'>270/250 RON</li>
+            <li className='w-[10rem] lg:w-[16rem]'>EFECT SPECIAL(FELINE, WET, EYELINER, HALF ETC)</li>
+            <li className='w-full text-end font-bold underline'>300/280 RON</li>
+            <li className='w-[10rem] lg:w-[16rem]'>DEMONTARE</li>
+            <li className='w-full text-end font-bold underline'>30 RON</li>
+            <li className='w-[10rem] lg:w-[16rem]'>DEMONTARE FARA APLICARE(SPA)</li>
+            <li className='w-full text-end font-bold underline'>50 RON</li>
+            <li className='font-bold text-[16px] lg:text-[18px] mt-[1rem]'>LAMINARE</li>
+            <li />
+            <li className=' w-[10rem] lg:w-[16rem]'>LAMINARE GENE</li>
+            <li className='w-full text-end font-bold underline'>200 RON</li>
+            <li className=' w-[10rem] lg:w-[16rem]'>LAMINARE SPRANCENE</li>
+            <li className='w-full text-end font-bold underline'>120 RON</li>
+            <li className=' w-[10rem] lg:w-[16rem]'>COMBO LAMI (+STILIZARE)</li>
+            <li className='w-full text-end font-bold underline'>350 RON</li>
+            <li className='font-bold text-[16px] lg:text-[18px] mt-[1rem]'>BROWS</li>
             <li></li>
-            <li className=' w-[10rem]'>Stilizare Sprancene</li>
-            <li className='w-[7rem]'>60 lei</li>
-            <li className='w-[10rem]'> Laminare Sprancene</li>
-            <li className='w-[7rem]'>120 lei</li>
-            <li className='w-[10rem]'>Stilizare+Vopsire</li>
-            <li className='w-[7rem]'>100 lei</li>
-            <li className='w-[10rem]'>Stilizare+Laminare</li>
-            <li className='w-[7rem]'>150 lei</li>
-            <li className='w-[10rem]'>Stilizare+Lami+Vopsire</li>
-            <li className='w-[7rem]'>200 lei</li>
+            <li className=' w-[10rem] lg:w-[16rem]'>STILIZARE SPRANCENE</li>
+            <li className='w-full text-end font-bold underline'>80 RON</li>
+            <li className='w-[10rem] lg:w-[16rem]'> LAMINARE SPRANCENE</li>
+            <li className='w-full text-end font-bold underline'>120 RON</li>
+            <li className='w-[10rem] lg:w-[16rem]'>VOPSIT</li>
+            <li className='w-full text-end font-bold underline'>50 RON</li>
+            <li className='w-[10rem] lg:w-[16rem] leading-4'>COMPLETE BROWS (STILIZARE&LAMI&VOPSIT)</li>
+            <li className='w-full text-end font-bold underline'>220 RON</li>
           </ul>
+   
           </Fade>
         </div>
           
@@ -115,10 +117,13 @@ const Salon = () => {
           <FullImg imagini={[diana1,diana2,diana3,diana4,diana5]} />
           </div>
           <div className={`z-20 ${showFullImg!==2 && "hidden" } `}  >
-          <FullImg imagini={[denisa1,denisa2,denisa3,denisa4]} />
+          <FullImg imagini={[stefania1,stefania2,stefania3]} />
           </div>
           <div className={`z-20 ${showFullImg!==3 && "hidden" } `}  >
           <FullImg imagini={[catalina1,catalina2,catalina3,catalina4,catalina5]} />
+          </div>
+          <div className={`z-20 ${showFullImg!==4 && "hidden" } `}  >
+          <FullImg imagini={[gabriela1,gabriela2,gabriela3,gabriela4]} />
           </div>
           </div>
               </div>

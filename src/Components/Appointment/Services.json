@@ -57,6 +57,36 @@
                     "name": "Intretinere 1D&2D",
                     "duration": "1:30",
                     "price": "140"
+                },
+                {
+                    "name": "Laminare Gene",
+                    "duration": "2:00",
+                    "price": "200"
+                },
+                {
+                    "name": "Stilizare Sprancene",
+                    "duration": "0:30",
+                    "price": "60"
+                },
+                {
+                    "name": "Stilizare Sprancene Si Vopsit",
+                    "duration": "1:30",
+                    "price": "100"
+                },
+                {
+                    "name": "Stilizare Sprance Si Laminare",
+                    "duration": "1:30",
+                    "price": "150"
+                },
+                {
+                    "name": "Complete Brows(Stilizare+Lami+Vopsit)",
+                    "duration": "1:30",
+                    "price": "200"
+                },
+                {
+                    "name": "Laminare Sprancene",
+                    "duration": "0:30",
+                    "price": "120"
                 }
             ]
         },

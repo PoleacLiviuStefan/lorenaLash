@@ -1,6 +1,4 @@
 import React from "react";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import {Navigate} from 'react-router-dom'
 const SignIn =  () => {
   const SERVER_IP = "https://backend-production-b11c.up.railway.app"; //de live
   const navigate=(url)=>{

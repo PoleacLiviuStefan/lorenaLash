@@ -56,6 +56,7 @@ const Footer = () => {
           CONTACT
           </Link>
           </li>
+          <li className='cursor-pointer' onClick={()=>{navigate("/admin"); window.scrollTo({top:0,left:0})}}>ADMIN</li>
         </ul>
         <ul className='w-[10rem] mt-[1rem] lg:mt-0'>
           <li className='font-bold '>Conditii</li>

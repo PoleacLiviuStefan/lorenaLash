@@ -1,8 +1,8 @@
 import React from 'react'
-import cursDePerfectionare from './Imagini/curs_preview.jpg'
+import cursDePerfectionare from './Imagini/cursEfecteSpeciale.jpeg'
 import cursDePerfectionareVideo from './Imagini/cursDePerfectionareVideo.mp4'
 import { useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const CursDePerfectionare = () => {
     const videoEl = useRef(null);
     const attemptPlay = () => {
@@ -15,24 +15,25 @@ const CursDePerfectionare = () => {
       useEffect(() => {
         attemptPlay();
       }, []);
-      const navigate= useNavigate();
+   
   return (
     <div className='flex flex-col justify-center items-center w-full h-full py-[5rem] lg:py-[10rem]'>
         <div className='flex lg:flex-row flex-col items-center lg:items-start'>
         <div className=' lg:ml-[2rem] flex flex-col items-center w-[90%] lg:w-[25rem]'>           
             <img alt="Curs de Perfectionare" src={cursDePerfectionare} className=" w-[21rem] lg:w-[25rem] " />
-            <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs De Perfectionare 1 Zi (Avans)");navigate("/checkout");window.scrollTo({top:0,left:0})}} className='mt-[2rem] border-[2px] border-black w-full text-[18px]  h-[3rem] rounded-[8px] tracking-[6px] font-bold animate-[buyBtnReverse_.3s_ease-in-out_forwards] hover:animate-[buyBtn_.3s_ease-in-out_forwards]'>CUMPARA ACUM</button>
+            <Link to="/checkout" className='w-full'>
+            <button onClick={()=>{localStorage.setItem("cumparaCurs","Curs De Efecte Speciale 1 Zi (Avans)");window.scrollTo({top:0,left:0})}} className='mt-[2rem] border-[2px] border-black w-full text-[18px]  h-[3rem] rounded-[8px] tracking-[6px] font-bold animate-[buyBtnReverse_.3s_ease-in-out_forwards] hover:animate-[buyBtn_.3s_ease-in-out_forwards]'>CUMPARA ACUM</button>
+            </Link>
             <div className='relative flex flex-col items-left w-full mt-[2rem]'>
-                <h3 className='mb-[1rem] lg:text-[18px] text-justify'>Achiti   <span className='font-bold'>AVANSUL</span> de <span className='font-bold'>300 de lei </span> aici sau la locatie pentru a-ti rezerva locul, restul sumei se achita in prima zi de curs</h3>
-                <h3 className='text-[24px] font-thin'>2 ZILE <span className='absolute right-2 font-extrabold text-[#DAA520]'> 2500 lei </span></h3>
-                <h3 className='text-[24px] font-thin mt-[1rem]'>1 ZI<span className='absolute right-2 font-extrabold text-[#DAA520]'>1500  lei </span>  </h3>
+                <h3 className='mb-[1rem] lg:text-[18px] text-justify'>Achiti   <span className='font-bold'>AVANSUL</span> de <span className='font-bold'>500 de lei </span> aici sau la locatie pentru a-ti rezerva locul, restul sumei se achita in prima zi de curs</h3>
+                <h3 className='text-[24px] font-thin mt-[1rem]'>1 ZI<span className='absolute right-2 font-extrabold text-[#DAA520]'>1800  lei </span>  </h3>
              
             </div>
       
             </div>
             <div className='relative lg:ml-[4rem] mt-[2rem] lg:mt-0 flex flex-col items-center w-[90%] lg:w-[40rem]'>
-                    <h4 className='text-[28px] font-norican'>Curs de perfectionare</h4>
-                    <h2 className='text-[42px] font-oswald font-bold text-center'>Curs de perfectionare 2D&3D</h2>
+      
+                    <h1 className='text-[42px] font-oswald font-bold text-center'>Curs De Efecte Speciale</h1>
                     <div className='w-[90%]  text-justify mt-[2rem] font-montSerrat'>
                         <h4 className='font-bold text-center text-[20px] py-[1rem]'>Cui i se adreseaza?</h4> 
                      <p>
@@ -48,14 +49,12 @@ const CursDePerfectionare = () => {
                         <li className='mt-[.5rem]'><span className='font-bold'>14.30 </span>- Partea Practica la alegere(Orice efect special/curbura/ etc)</li> 
                         <li className='mt-[.5rem]'><span className='font-bold'>18.00 </span>- Inmanarea Diplomelor, Poze </li>
                     </ol>
-                    <h4 className='font-bold mt-[1rem] text-[20px] text-center '>2 ZILE</h4>
-                    <p className='mt-[.5rem]'>A doua zi este optionala/la alegere, daca va doriti sa executati doua modele diferite/doua efecte sau sa va perfectionati pe acel efect.</p>
-                    <ol>    
-                        <li className='mt-[1rem]'><span className='font-bold'>10.00 </span>-  Intrebari si Raspunsuri din Parter Teoretica</li>
-                        <li className='mt-[.5rem]'><span className='font-bold'>11.00 </span>- Partea Practica pe model(Orice Efect/Curbura)</li>
-                        <li className='mt-[.5rem]'><span className='font-bold'>16.00 </span>- Poze, Diploma, Q&A</li>
-                    
-                    </ol>
+                    <div className='flex flex-col items-center'>
+                    <p className='mt-[1rem] font-bold text-[18px] leading-[17px] lg:leading-[23px]  lg:text-[24px]'> Nu te simti inca pregatita pentru acest curs? Il poti urma mai intai pe cel de baza. </p>
+                    <Link to={`/curs-de-baza`}>
+                    <button onClick={()=>{window.scrollTo({top:0,left:0})}} className='border-[1px] border-yellow-400 font-bold px-[4rem] py-[.5rem] mt-[1rem] transition ease-in-out duration-300 hover:bg-yellow-400 hover:text-white'>Afla mai multe </button>
+                    </Link>
+                    </div>
                     </div>
                     
             </div>

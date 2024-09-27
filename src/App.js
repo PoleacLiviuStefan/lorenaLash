@@ -21,10 +21,11 @@ import PoliticaDePlata from "./Components/Footer/PoliticaDePlata";
 import PoliticaDeReturnare from "./Components/Footer/PoliticaDeReturnare";
 import TermeniSiConditii from "./Components/Footer/TermeniSiConditii";
 import { Navigate } from "react-router-dom";
-import Appointment from "./Components/Appointment/Appointment";
+//import Appointment from "./Components/Appointment/Appointment";
 import ScheduleAppointment from "./Components/Appointment/ScheduleAppointment";
 import SignIn from "./Components/Appointment/SignIn";
 import CheckoutForm from "./Components/Appointment/CheckoutForm";
+import Cursuri from "./Components/Courses/Cursuri";
 function App() {
   
 
@@ -44,6 +45,7 @@ function App() {
             </main>
           }
         />
+        <Route path="/cursuri" element={<Cursuri />} />
         <Route path="/curs-de-baza" element={<CursDeBaza />} />
         <Route
           path="/curs-de-perfectionare"
@@ -56,7 +58,6 @@ function App() {
         <Route path="/checkout" element={<Buy />} />
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<Cancel />} />
-        <Route path="/programare" element={<Appointment />} />
         <Route
           path="/termeni-si-conditii-avans"
           element={<PoliticaDeAvans />}

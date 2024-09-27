@@ -8,27 +8,28 @@ import Service from "./Service";
 import data from "./Services.json";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm";
-import emailjs from "@emailjs/browser";
+import Cookies from "js-cookie";
+import emailjs, { send } from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 import Catalina from "./Images/Catalina.jpeg";
 import Diana from "./Images/Diana.jpeg";
 import Gabriela from "./Images/Gabriela.jpeg";
 import Stefania from "./Images/Stefania.jpeg";
 
+//TODO trebuie sa adaug numarul de telefon la req la sendmessagecomfirmation
+
 const Appointment = () => {
-  const SERVER_IP = "https://localhost:5005"; //de test
+  const SERVER_IP = "https://backend-production-b11c.up.railway.app"; //de live
   const navigate = useNavigate();
   const [stage, setStage] = useState(0);
+  const [action, setAction] = useState(-1);
   const [professional, setProfessional] = useState("");
   const [serviceDuration, setServiceDuration] = useState("");
   const [servicePrice, setServicePrice] = useState(0);
   const [service, setService] = useState([]);
   const [clientName, setClientName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("+40");
-  const [codeSent, setCodeSent] = useState(false);
+
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [selectedData, selectData] = useState(new Date());
   const [selectedHour, setSelectedHour] = useState("");
@@ -36,24 +37,98 @@ const Appointment = () => {
   const [checkTerms, setCheckTerms] = useState(false);
   const [appointmentsData, setAppointmentsData] = useState([]);
   const [serviceButton, setServiceButton] = useState(false);
-  const [stripePromise, setStripePromise] = useState(null);
-  const [clientSecret, setClientSecret] = useState("");
   const [appearPayment, setPaymentAppear] = useState(false);
-  const [detailsButton,setDetailsButton]=useState(false);
-  const [user,setUser]=useState("");
+
+  const [user, setUser] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [allCustomers, setAllCustomers] = useState([1]);
+  const [loadingCustomers, setLoadingCustomers] = useState(false);
+  const [searchName,setSearchName]=useState("");
+  const [comfirmationMessage,setComfirmationMessage]=useState([]);
+  const [selectedPhoneNumber,setSelectedPhoneNumber]=useState("");
+  const [sendButton,setSendButton]=useState([]);
+  const [artistIndex,setArtistIndex]=useState(-1);
   const form = useRef();
-  const inputRefs = [
-    useRef(),
-    useRef(),
-    useRef(),
-    useRef(),
-    useRef(),
-    useRef(),
-  ];
+  const showAllCustomers = async () => {
+    try {
+        const res = await fetch(SERVER_IP + "/api/allCustomers", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({}),
+        });
+        
+        setLoadingCustomers(false);
+        const data = await res.json();
+        let eachFalse=[]
+        data.forEach((customer, customerIndex) => {
+          eachFalse[customerIndex]=false;
+        })
+        setSendButton(eachFalse)
+        console.log("data: ", data[0]);
+        setAllCustomers(data);  
+
+        const closestEvent = new Array(data.length);
+
+        data.forEach((customer, customerIndex) => {
+            if (customer[1].length === 0) {
+                closestEvent[customerIndex] = "nu exista programare";
+                return;
+            }
+
+            // Initialize with the first event date
+            let localClosestEvent = new Date(customer[1][0].substring(0, 10));
+            let minDiff = Math.abs(new Date() - localClosestEvent);
+
+            customer[1].forEach((event) => {
+                const eventDate = new Date(event.substring(0, 10));
+                const diff = Math.abs(new Date() - eventDate);
+                console.log("new Date()> eventDate",new Date()> eventDate);
+                if (diff < minDiff &&  eventDate > new Date()) {
+                    minDiff = diff;
+                    localClosestEvent = eventDate;
+                }
+            });
+
+            closestEvent[customerIndex] = localClosestEvent.toISOString().substring(0, 10);
+        });
+
+        const messages = data.map((customer, customerIndex) => `Buna, ${customer[0]} ! Voiam sa-ti reamintesc ca te astept cu drag maine ${closestEvent[customerIndex]} la ora: ${customer[1][0].substring(customer[1][0].indexOf("ora:")+5, customer[1][0].indexOf("ora:")+10)} , la Lorena Lash Studio`);
+        setComfirmationMessage(messages);
+        console.log(messages);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+  const sendManualComfirmation=async(nameCustomer,contactPhoneNumber,custIndex)=>{
+    console.log(contactPhoneNumber);
+    let updatedSendButton = [...sendButton];
+    updatedSendButton[custIndex] = true;
+    setSendButton(updatedSendButton)
+    try {
+      const res= await fetch(SERVER_IP + "/api/sendManualConfirmation", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: nameCustomer,phoneNumber: "+40753616640"}),
+      })
+    }catch (error) {
+      // Handle fetch error
+      console.error("Fetch error:", error);
+    }
+   
+  }
+
 
   const handleForm = async (e) => {
     e.preventDefault();
-    setDetailsButton(true)
+
     console.log("Client Name:", clientName);
     try {
       const response = await fetch(SERVER_IP + "/api/create-customer", {
@@ -64,20 +139,6 @@ const Appointment = () => {
         },
         body: JSON.stringify({ customerName: clientName }),
       });
-      if (response.ok) {
-        setPaymentAppear(true);
-
-        fetch(SERVER_IP + "/api/create-payment-intent", {
-          method: "POST",
-          body: JSON.stringify({}),
-        }).then(async (r) => {
-          var { clientSecret } = await r.json();
-          setClientSecret(clientSecret);
-        });
-      } else {
-        // Handle the error if needed
-        console.error("Error:", response.status, response.statusText);
-      }
     } catch (error) {
       // Handle fetch error
       console.error("Fetch error:", error);
@@ -90,7 +151,12 @@ const Appointment = () => {
         "H4P13RXVt3XQCUqR1"
       )
       .then(
-        (result) => {},
+        (result) => {
+          scheduleEvent();
+          sendConfirmationDetails();
+
+          setStage(5);
+        },
         (error) => {
           console.log(error.text);
         }
@@ -128,7 +194,7 @@ const Appointment = () => {
 
   const durationsAddition = (totalDuration, toAddDuration, shouldSubtract) => {
     // Check if totalDuration is an empty string
-    if (totalDuration ==="") {
+    if (totalDuration === "") {
       return toAddDuration;
     }
 
@@ -208,65 +274,6 @@ const Appointment = () => {
     console.log(stage);
   }, [professional]);
 
-  useEffect(() => {
-    console.log("paymentStatus:", paymentStatus);
-    console.log("conditia de verificare",  service.every((element) =>
-    ["Demontare", "Stilizare Sprancene"].includes(element)
-  ))
-    if (
-      selectedHour !== "" &&
-      (paymentStatus ||
-          service.every((element) =>
-            ["Demontare", "Stilizare Sprancene"].includes(element)
-          )
-        ) &&
-      checkTerms && clientName
-    ) {
-      //aici
-      scheduleEvent();
-      sendConfirmationDetails();
-
-      setStage(5);
-
-      window.scrollTo({ top: 0, left: 0 });
-    }
-
-    console.log(stage);
-  }, [selectedHour, paymentStatus,detailsButton]);
-
-  useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const sessionId = urlParams.get("session_id");
-    fetch(SERVER_IP + "/api/config").then(async (r) => {
-      const { publishableKey } = await r.json();
-
-      setStripePromise(loadStripe(publishableKey));
-    });
-    fetch(`/session-status?session_id=${sessionId}`)
-      .then((res) => res.json())
-      .then((data) => {});
-  }, []);
-
-  const handleChange = (e, index) => {
-    if (e.target.value.length < 2) {
-      otp[index] = e.target.value;
-      setOtp([...otp]);
-    } else if (
-      (e.target.value !== "" && index < 5) ||
-      e.target.value.length > 1
-    ) {
-      otp[index + 1] = e.target.value[e.target.value.length - 1];
-      setOtp([...otp]);
-      inputRefs[index + 1].current.focus();
-    }
-  };
-  const handleKeyUp = (e, index) => {
-    if (e.key === "Backspace" && index > 0 && otp[index] === "") {
-      inputRefs[index - 1].current.focus();
-    }
-  };
-
   function formatDateFromDateString(dateString) {
     const date = new Date(dateString);
     date.setDate(date.getDate() + 1);
@@ -305,13 +312,13 @@ const Appointment = () => {
 
       let currentHour = startHour;
       let currentMinute = startMinute;
-      let efficient=0;
+      let efficient = 0;
       while (
         (currentHour === 18 && currentMinute === 0) ||
         currentHour === 17 ||
         currentHour +
           serviceDurationHour +
-          Math.floor((currentMinute + serviceDurationMinute) / 60)  <=
+          Math.floor((currentMinute + serviceDurationMinute) / 60) <=
           finishHour ||
         (currentHour + serviceDurationHour === finishHour &&
           currentMinute + serviceDurationMinute <= finishMinute)
@@ -330,8 +337,13 @@ const Appointment = () => {
           let appointmentEndMinute = parseInt(
             appointmentsData[j].end.dateTime.slice(14, 16)
           );
-   
-            console.log("currentHour: ",currentHour, " currentMinute: ", currentMinute);
+
+          console.log(
+            "currentHour: ",
+            currentHour,
+            " currentMinute: ",
+            currentMinute
+          );
 
           if (
             (currentHour === appointmentStartHour &&
@@ -344,7 +356,7 @@ const Appointment = () => {
               appointmentStartHour &&
               currentHour +
                 serviceDurationHour +
-                Math.floor((currentMinute + serviceDurationMinute) / 60)  <=
+                Math.floor((currentMinute + serviceDurationMinute) / 60) <=
                 appointmentEndHour)
           ) {
             isAvailable = false;
@@ -355,7 +367,7 @@ const Appointment = () => {
               currentHour += Math.floor(currentMinute / 60);
               currentMinute = currentMinute % 60;
             }
-           efficient+=1;
+            efficient += 1;
             break;
           }
         }
@@ -392,7 +404,6 @@ const Appointment = () => {
     }).then((response) => {
       console.log(response);
       if (response.ok === true) {
-        setCodeSent(true);
         setTimer(60);
       } else console.log("Oh no we have an error");
     });
@@ -419,7 +430,35 @@ const Appointment = () => {
       } else console.log("Oh no we have an error");
     });
   }
-
+  const setUserToken = (token) => {
+    // Set the token in cookies with js-cookie
+    Cookies.set("token", token, { expires: 999 }); // expires in 7 days (adjust as needed)
+  };
+  const login = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(SERVER_IP + "/api/login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: loginEmail,
+          password: loginPassword,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data);
+        setUserToken(data.token);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
   const scheduleEvent = async () => {
     try {
       const response = await fetch(SERVER_IP + "/api/schedule_event", {
@@ -437,6 +476,7 @@ const Appointment = () => {
           appointmentTime: selectedHour,
           appointmentDate: selectedData,
           serviceDuration: serviceDuration,
+          keyForSet: artistIndex
         }),
       });
       if (response.ok) {
@@ -486,13 +526,13 @@ const Appointment = () => {
         },
         body: JSON.stringify({
           minDate: formatDateFromDateString(selectedData),
+          keyForSet: artistIndex
         }),
       });
       if (response.ok) {
         const data = await response.json();
         setAppointmentsData(data);
-        console.log("toate programarile", data)
-
+        console.log("toate programarile", data);
       } else {
         console.error("Failed to fetch data");
       }
@@ -501,31 +541,8 @@ const Appointment = () => {
     }
   }
 
-  const setIndex = async (keyIndex) => {
-    try {
-      const response = await fetch(SERVER_IP + "/api/setIndex", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ keyForSet: keyIndex }),
-      });
-      if (response.ok) {
-        allAppointments();
-        console.log(keyIndex);
-      } else {
-        console.error("Failed to fetch data");
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
-  };
 
-  const handlePaymentStatus = (settedValue) => {
-    setPaymentStatus(settedValue);
-    console.log(settedValue);
-  };
+
 
   useEffect(() => {
     checkAvailableHours("10:00", "18:00");
@@ -562,13 +579,122 @@ const Appointment = () => {
     allAppointments();
     console.log(appointmentsData);
   }, [selectedData]);
-
+  useEffect(() => {
+    console.log("allCustomers: ", allCustomers);
+  }, [loadingCustomers, allCustomers]);
   return (
     <div className=" flex flex-col items-center justify-center w-screen h-full py-[5rem] lg:py-[10rem]">
-            <div>
+      <div className={`flex flex-col items-center ${!Cookies.get("token") && "hidden"}`}>
+        <div className={`flex flex-col lg:flex-row gap-4`}>
+          <button
+            className="font-bold bg-green-500 px-8 py-2 text-white text-[18px] transition ease-in-out duration-[.3s] rounded-[8px] hover:bg-[#0B2A24] "
+            onClick={() => setAction(0)}
+          >
+            Creeaza o programare
+          </button>
+          <button
+            className="font-bold bg-green-500 px-8 py-2 text-white text-[18px] transition ease-in-out duration-[.3s] rounded-[8px] hover:bg-[#0B2A24]  "
+            onClick={() => {
+              console.log("da");
+              setLoadingCustomers(true);
+              showAllCustomers();
+            }}
+          >
+            Arata toti clientii
+          </button>
+        </div>
+        <div className={`flex-col flex-wrap list-none items-center  w-full h-full`}>
+        {loadingCustomers ? (
+  <li>Loading</li>
+) : (
+  allCustomers[0]!=1 && 
+  <>
+    <input
+      className="mt-[.5rem] lg:mt-[1rem] w-full h-[2rem] border-[1px] border-black"
+      value={searchName}
+      onChange={(e) => setSearchName(e.target.value)}
+    />
+    <ul className="items-start lg:grid lg:grid-cols-2 gap-10">
+      {allCustomers.map((customer, index) =>
+        (searchName === "" || (searchName !== "" && customer[0].toLowerCase().includes(searchName.toLowerCase()))) && (
+          <li
+            className="text-[16px] lg:text-[20px] my-4 lg:my-2 flex flex-col items-center"
+            key={index}
+          >
+            <strong>{customer[0]}</strong> 
+            <button disabled={sendButton[index]} onClick={()=>sendManualComfirmation(comfirmationMessage.find((str) => str.includes(customer[0])),customer[1][0].substring(customer[1][0].indexOf("+"),customer[1][0].indexOf("+")+13),index)} className={`${sendButton[index] ? "border-[1px] border-red-500 text-black":"bg-green-500 text-white"}  w-full py-2 font-bold rounded-[8px]`}> {sendButton[index] ? "Trimis": "Trimite comfirmare"}</button>
+            <textarea className="h-[5.3rem] w-full p-2 text-[16px]"
+  onChange={(e) => {
+    const updatedMessages = [...comfirmationMessage];
+    const index = comfirmationMessage.findIndex((str) => str.includes(customer[0]));
+    
+    if (index !== -1) {
+      updatedMessages[index] = e.target.value;
+      setComfirmationMessage(updatedMessages);
+    }
+  }}
+  value={comfirmationMessage.find((str) => str.includes(customer[0])) || ''}
+/>
             
-            </div>
-      <div className={` flex flex-col items-center   text-center w-[90%] h-full gap-[1rem] lg:gap-[2rem] ${user==="" && "hidden"}`}>
+            - Programari:{" "}
+            {customer[1].map((date, dateIndex) => (
+              <span className="font-semibold px-2" key={dateIndex}>
+                {date}
+              </span>
+            ))}
+   
+            <span className="mt-[1rem] w-full bg-gray-500 h-[1px] lg:hidden"/>
+          </li>
+        ) 
+      )}
+    </ul>
+  </>
+)}
+
+        </div>
+      </div>
+      <div
+        className={`flex justify-center items-center w-full h-screen ${
+          Cookies.get("token") && "hidden"
+        }`}
+      >
+        <form
+          onSubmit={(e) => login(e)}
+          className="flex flex-col gap-4 shadow-xl p-8 w-[20rem] lg:w-[25rem]"
+        >
+          <div className="flex flex-col gap-1">
+            <label>Email:</label>
+            <input
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
+              type="email"
+              className=" px-2 py-1 border-[1px] border-gray-500 rounded-[5px]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label>Parola:</label>
+            <input
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
+              type="password"
+              className=" px-2 py-1 border-[1px] border-gray-500 rounded-[5px]"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-green-500 text-white w-full py-2 font-bold"
+          >
+            LOGIN
+          </button>
+        </form>
+      </div>
+      <div
+        className={` flex flex-col items-center   text-center w-[90%] h-full gap-[1rem] lg:gap-[2rem] ${
+          (!Cookies.get("token") || action !== 0) && "hidden"
+        }`}
+      >
         <ul className="flex w-full lg:w-[40rem] justify-between  ">
           <button
             onClick={() => setStage(0)}
@@ -627,28 +753,21 @@ const Appointment = () => {
             <span className=" text-[14px] lg:text-[18px]">Finalizare</span>
           </button>
         </ul>
-        <h2 className="font-roboto font-[300] text-[22px] lg:text-[36px] ">
-          <span className="text-[30px] lg:text-[54px] font-extrabold text-gray-300 ">
-            {stage === 0 ? "1" : stage === 1 ? "2" : stage === 2 ? "3" : "4"}{" "}
-          </span>{" "}
-          {stage === 0
-            ? "Alege unul dintre stilisti"
-            : stage === 1
-            ? "Alege Serviciul"
-            : stage === 2
-            ? "Alege data si ora"
-            : "Finalizarea programarii"}
-        </h2>
+
         {stage === 0 ? (
           <div className=" grid grid-cols-2 lg:flex gap-8 ">
             <Profesionist
               namePro="Gabriela"
               onClick={() => {
+                setPaymentAppear(false);
+                setClientName("");
+                setPhoneNumber("");
                 setProfessional("Gabriela");
                 setService([]);
                 setSelectedHour("");
                 setServiceDuration("");
-                setIndex(3);
+                //setIndex(3);
+                setArtistIndex(3);
               }}
               artistPhoto={Gabriela}
               selected={professional === "Gabriela"}
@@ -656,11 +775,15 @@ const Appointment = () => {
             <Profesionist
               namePro="Stefania"
               onClick={() => {
+                setPaymentAppear(false);
+                setClientName("");
+                setPhoneNumber("");
                 setProfessional("Stefania");
                 setService([]);
                 setSelectedHour("");
                 setServiceDuration("");
-                setIndex(0);
+                //setIndex(0);
+                setArtistIndex(0);
               }}
               artistPhoto={Stefania}
               selected={professional === "Stefania"}
@@ -668,11 +791,15 @@ const Appointment = () => {
             <Profesionist
               namePro="Diana"
               onClick={() => {
+                setPaymentAppear(false);
+                setClientName("");
+                setPhoneNumber("");
                 setProfessional("Diana");
                 setService([]);
                 setSelectedHour("");
                 setServiceDuration("");
-                setIndex(1);
+                //setIndex(1);
+                setArtistIndex(1);
               }}
               artistPhoto={Diana}
               selected={professional === "Diana"}
@@ -680,11 +807,15 @@ const Appointment = () => {
             <Profesionist
               namePro="Catalina"
               onClick={() => {
+                setPaymentAppear(false);
+                setClientName("");
+                setPhoneNumber("");
                 setProfessional("Catalina");
                 setService([]);
                 setSelectedHour("");
                 setServiceDuration("");
-                setIndex(2);
+                //setIndex(2);
+                setArtistIndex(2);
               }}
               artistPhoto={Catalina}
               selected={professional === "Catalina"}
@@ -702,6 +833,9 @@ const Appointment = () => {
                     duration={serviciu.duration}
                     selected={service?.includes(serviciu.name)}
                     onClick={() => {
+                      setClientName("");
+                      setPhoneNumber("");
+                      setPaymentAppear(false);
                       if (service?.includes(serviciu.name))
                         setService(
                           service.filter(
@@ -735,10 +869,14 @@ const Appointment = () => {
                 }
               }}
               className={`mt-2 lg:mt-4 w-full lg:w-[40rem] font-bold text-white py-2 lg:py-4 px-8   rounded-[5px] transition  text-[13px] lg:text-[18px] ${
-                serviceDuration!=="" ? " bg-green-500 transition transition-[.3s] ease-in-out  hover:bg-green-600" : " bg-red-500"
+                serviceDuration !== ""
+                  ? " bg-green-500 transition transition-[.3s] ease-in-out  hover:bg-green-600"
+                  : " bg-red-500"
               }`}
             >
-              {serviceDuration!=="" ? "CONTINUARE" : "SELECTEAZA CEL PUTIN UN SERVICIU"}
+              {serviceDuration !== ""
+                ? "CONTINUARE"
+                : "SELECTEAZA CEL PUTIN UN SERVICIU"}
             </button>
           </div>
         ) : stage === 2 ? (
@@ -790,6 +928,9 @@ const Appointment = () => {
                     return (
                       <div
                         onClick={() => {
+                          if (appearPayment) {
+                            setPaymentAppear(false);
+                          }
                           setSelectedHour(hour);
                         }}
                         className={`cursor-pointer p-2 font-bold text-[14px] lg:text-[18px] bg-green-500 text-white hover:bg-green-600 transition ease-in-out ${
@@ -803,7 +944,134 @@ const Appointment = () => {
                 }
               </div>
             </div>
+            <div className="flex flex-col">
+              <div className={`text-[13px] lg:text-[18px] `}>
+                {selectedData && selectedHour && (
+                  <>
+                    <div className="flex flex-col items-center  w-full">
+                      <div className="flex flex-col w-[17rem] lg:w-[23rem]">
+                        <p className="w-full text-left leading-5">
+                          Introduceti mai jos numarul de telefon si numele
+                          complet, apoi apasati pe confirm
+                        </p>
+                        <div className="flex flex-col gap-2">
+                          <form
+                            ref={form}
+                            onSubmit={(e) => handleForm(e)}
+                            className="mt-[.8rem] lg:mt-[1.3rem] flex flex-col gap-2 lg:gap-4 w-full "
+                          >
+                            <input
+                              type="text"
+                              name="phoneNumber"
+                              value={phoneNumber}
+                              className="hidden "
+                            />
+                            <input
+                              type="text"
+                              name="service"
+                              value={service}
+                              className="hidden "
+                            />
+                            <input
+                              type="text"
+                              name="profesionist"
+                              value={professional}
+                              className="hidden "
+                            />
+                            <input
+                              type="text"
+                              name="date"
+                              value={selectedData}
+                              className="hidden "
+                            />
+                            <input
+                              type="text"
+                              name="hour"
+                              value={selectedHour}
+                              className="hidden "
+                            />
 
+                            <div className="flex flex-col items-start">
+                              <input
+                                type="text"
+                                minLength={8}
+                                maxLength={15}
+                                placeholder="Numar de telefon ex: +40712345689"
+                                value={phoneNumber}
+                                onChange={(e) => {
+                                  if (
+                                    isDigitOrBackspace(
+                                      e.target.value[e.target.value.length - 1]
+                                    ) ||
+                                    e.target.value === ""
+                                  )
+                                    setPhoneNumber(e.target.value);
+                                }}
+                                className="mt-2 p-2 rounded-[8px] outline-green-500 border-[1px] border-gray-500 w-full"
+                                required
+                              />
+                              <p className="mt-2 text-left">
+                                Exemplu: +40712345678 (prefixul trebuie inclus
+                                obligatoriu)
+                              </p>
+                            </div>
+                            <input
+                              type="text"
+                              name="clientName"
+                              placeholder="Nume si prenume"
+                              className="p-2 rounded-[8px] outline-green-500 border-[1px] border-gray-500 w-full"
+                              value={clientName}
+                              onChange={(e) => {
+                                setClientName(e.target.value);
+                              }}
+                              required
+                            />
+                            <div className="flex justify-center my-[.5rem] flex w-full lg:w-[20rem]">
+                              <span
+                                onClick={() => {
+                                  if (!checkTerms) setCheckTerms(true);
+                                  else setCheckTerms(false);
+                                }}
+                                className={`flex justify-center items-center text-[15px] lg:text-[22px] mr-2 cursor-pointer min-w-[20px] lg:min-w-[30px]  h-[22px] lg:h-[30px] border-[2px] border-green-600 text-white  ${
+                                  checkTerms && "bg-green-500"
+                                }`}
+                              >
+                                {checkTerms && <AiOutlineCheck />}
+                              </span>
+                              <p className="text-left text-[13px] lg:text-[16px]">
+                                Bifand aceasta casuta confirmi ca esti de acord
+                                cu{" "}
+                                <a
+                                  className="cursor-pointer font-bold"
+                                  onClick={() => {
+                                    navigate("/termeni-si-conditii-avans");
+                                    window.scrollTo({ top: 0, left: 0 });
+                                  }}
+                                >
+                                  Termenii si conditiile, GDPR si Politica de
+                                  confidentialitate.
+                                </a>
+                              </p>
+                            </div>
+                            <button
+                              type="submit"
+                              className={`  font-montSerrat   text-[14px] lg:text-[18px] w-full h-[2.2rem] lg:h-[3rem] rounded-[8px] font-bold  ${
+                                appearPayment
+                                  ? "bg-transparent text-green-500"
+                                  : "bg-green-500 hover:bg-green-600 transition ease-in-out duration-300 text-white"
+                              }`}
+                              disabled={appearPayment}
+                            >
+                              {appearPayment ? "Confirmat" : "Confirm"}
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         ) : stage === 3 ? (
           <div className=" flex flex-col items-start px-2 gap-1 text-[12px] lg:text-[20px] w-[90%] lg:w-[40rem]">

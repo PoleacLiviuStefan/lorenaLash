@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { AiOutlineCheck } from "react-icons/ai";
 import { SlUserFemale } from "react-icons/sl";
 import { GoTasklist } from "react-icons/go";
 import { BsCalendar3, BsCalendarCheck } from "react-icons/bs";
@@ -33,14 +32,15 @@ const Appointment = () => {
   const [selectedData, selectData] = useState(new Date());
   const [selectedHour, setSelectedHour] = useState("");
   const [timer, setTimer] = useState(60);
-  const [checkTerms, setCheckTerms] = useState(false);
+
   const [appointmentsData, setAppointmentsData] = useState([]);
   const [serviceButton, setServiceButton] = useState(false);
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
   const [successfull, setSuccessfull] = useState(false);
   const [appearPayment, setPaymentAppear] = useState(false);
-  const [detailsButton,setDetailsButton]=useState(false);
+  const [detailsButton, setDetailsButton] = useState(false);
+  const [artistIndex,setArtistIndex]=useState(-1);
   const form = useRef();
   const inputRefs = [
     useRef(),
@@ -53,7 +53,7 @@ const Appointment = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
-    setDetailsButton(true)
+    setDetailsButton(true);
     console.log("Client Name:", clientName);
     try {
       const response = await fetch(SERVER_IP + "/api/create-customer", {
@@ -84,10 +84,10 @@ const Appointment = () => {
     }
     emailjs
       .sendForm(
-        "service_jpyyu6x",
-        "template_86rd8il",
+        "service_d9r6rus",
+        "template_lb9xvln",
         form.current,
-        "H4P13RXVt3XQCUqR1"
+        "RUXGR3wPf5KOMGSuu"
       )
       .then(
         (result) => {},
@@ -108,14 +108,13 @@ const Appointment = () => {
 
   // Calculate the date 3 months from now
   const threeMonthsLater = new Date();
-  threeMonthsLater.setMonth(threeMonthsLater.getMonth() + 3);
 
   // Custom function to disable dates beyond 3 months from now
   const isDateDisabled = (date) => {
     const currentDate = new Date(); // Get the current date
     const twentyNovemberThisMonth = new Date(currentDate.getFullYear(), 10, 20); // November is month 10
     const threeMonthsLater = new Date();
-    threeMonthsLater.setMonth(threeMonthsLater.getMonth() + 3);
+    threeMonthsLater.setMonth(threeMonthsLater.getMonth() + 1);
 
     return (
       (professional === "Gabriela" && date < twentyNovemberThisMonth) ||
@@ -123,13 +122,13 @@ const Appointment = () => {
         date.getMonth() === 10 &&
         date.getDay() === 1) || // Monday in November for Diana
       date > threeMonthsLater ||
-      isWeekend(date)
+      isWeekend(date) || date.getMonth()===0
     );
   };
 
   const durationsAddition = (totalDuration, toAddDuration, shouldSubtract) => {
     // Check if totalDuration is an empty string
-    if (totalDuration ==="") {
+    if (totalDuration === "") {
       return toAddDuration;
     }
 
@@ -211,17 +210,19 @@ const Appointment = () => {
 
   useEffect(() => {
     console.log("paymentStatus:", paymentStatus);
-    console.log("conditia de verificare",  service.every((element) =>
-    ["Demontare", "Stilizare Sprancene"].includes(element)
-  ))
+    console.log(
+      "conditia de verificare",
+      service.every((element) =>
+        ["Demontare", "Stilizare Sprancene"].includes(element)
+      )
+    );
     if (
       selectedHour !== "" &&
       (paymentStatus ||
-          service.every((element) =>
-            ["Demontare", "Stilizare Sprancene"].includes(element)
-          )
-        ) &&
-      checkTerms && clientName
+        service.every((element) =>
+          ["Demontare", "Stilizare Sprancene"].includes(element)
+        )) &&
+      clientName
     ) {
       //aici
       scheduleEvent();
@@ -233,7 +234,7 @@ const Appointment = () => {
     }
 
     console.log(stage);
-  }, [selectedHour, paymentStatus,detailsButton]);
+  }, [selectedHour, paymentStatus, detailsButton]);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -275,6 +276,7 @@ const Appointment = () => {
   }
   const checkAvailableHours = (startTime, finishTime) => {
     console.log("selectedData", selectedData, "newDate", selectedData.getDay());
+  
     if (
       selectedData.getTime() >= new Date().getTime() &&
       selectedData.getDay() !== 0 &&
@@ -298,7 +300,7 @@ const Appointment = () => {
       const serviceDurationHour = parseInt(serviceDuration[0]);
       const serviceDurationMinute =
         parseInt(serviceDuration[2]) * 10 + parseInt(serviceDuration[3]);
-
+        let pause=serviceDurationHour>=2 ? 30 : 0;
       const appointmentHours = [];
       setAvailableHours([]);
       console.log(serviceDurationHour);
@@ -306,13 +308,13 @@ const Appointment = () => {
 
       let currentHour = startHour;
       let currentMinute = startMinute;
-      let efficient=0;
+      let efficient = 0;
       while (
         (currentHour === 18 && currentMinute === 0) ||
         currentHour === 17 ||
         currentHour +
           serviceDurationHour +
-          Math.floor((currentMinute + serviceDurationMinute) / 60)  <=
+          Math.floor((currentMinute + serviceDurationMinute) / 60) <=
           finishHour ||
         (currentHour + serviceDurationHour === finishHour &&
           currentMinute + serviceDurationMinute <= finishMinute)
@@ -331,8 +333,9 @@ const Appointment = () => {
           let appointmentEndMinute = parseInt(
             appointmentsData[j].end.dateTime.slice(14, 16)
           );
-   
-            console.log("currentHour: ",currentHour, " currentMinute: ", currentMinute);
+
+
+          console.log(  currentHour," ",appointmentStartHour);
 
           if (
             (currentHour === appointmentStartHour &&
@@ -341,12 +344,20 @@ const Appointment = () => {
               currentMinute < appointmentEndMinute) ||
             (currentHour +
               serviceDurationHour +
-              Math.floor((currentMinute + serviceDurationMinute) / 60) >=
+              Math.floor((currentMinute + serviceDurationMinute+pause) / 60) >
               appointmentStartHour &&
               currentHour +
                 serviceDurationHour +
-                Math.floor((currentMinute + serviceDurationMinute) / 60)  <=
-                appointmentEndHour)
+                Math.floor((currentMinute + serviceDurationMinute+pause) / 60) <=
+                appointmentEndHour) ||
+            (currentHour < appointmentEndHour &&
+              currentHour + serviceDurationHour +
+                Math.floor((currentMinute + serviceDurationMinute+pause) / 60) >=
+                appointmentEndHour)||
+                (currentHour +
+                  serviceDurationHour +
+                  Math.floor((currentMinute + serviceDurationMinute+pause) / 60) >
+                  appointmentStartHour && (currentMinute + serviceDurationMinute+pause) %60 >=appointmentStartMinute)
           ) {
             isAvailable = false;
             currentHour = appointmentEndHour;
@@ -356,7 +367,7 @@ const Appointment = () => {
               currentHour += Math.floor(currentMinute / 60);
               currentMinute = currentMinute % 60;
             }
-           efficient+=1;
+            efficient += 1;
             break;
           }
         }
@@ -438,6 +449,7 @@ const Appointment = () => {
           appointmentTime: selectedHour,
           appointmentDate: selectedData,
           serviceDuration: serviceDuration,
+          keyForSet: artistIndex
         }),
       });
       if (response.ok) {
@@ -487,13 +499,13 @@ const Appointment = () => {
         },
         body: JSON.stringify({
           minDate: formatDateFromDateString(selectedData),
+          keyForSet: artistIndex
         }),
       });
       if (response.ok) {
         const data = await response.json();
         setAppointmentsData(data);
-        console.log("toate programarile", data)
-
+        console.log("toate programarile", data);
       } else {
         console.error("Failed to fetch data");
       }
@@ -502,26 +514,6 @@ const Appointment = () => {
     }
   }
 
-  const setIndex = async (keyIndex) => {
-    try {
-      const response = await fetch(SERVER_IP + "/api/setIndex", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ keyForSet: keyIndex }),
-      });
-      if (response.ok) {
-        allAppointments();
-        console.log(keyIndex);
-      } else {
-        console.error("Failed to fetch data");
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
-  };
 
   const handlePaymentStatus = (settedValue) => {
     setPaymentStatus(settedValue);
@@ -635,18 +627,23 @@ const Appointment = () => {
             ? "Alege Serviciul"
             : stage === 2
             ? "Alege data si ora"
-            : "Finalizarea programarii"}
+          : "Finalizarea programarii"}
         </h2>
         {stage === 0 ? (
           <div className=" grid grid-cols-2 lg:flex gap-8 ">
             <Profesionist
               namePro="Gabriela"
               onClick={() => {
+                setClientName("");
+                setPhoneNumber("+40");
+                setPaymentStatus(false);
                 setProfessional("Gabriela");
                 setService([]);
                 setSelectedHour("");
                 setServiceDuration("");
-                setIndex(3);
+                //setIndex(3);
+                setArtistIndex(3);
+                setAvailableHours([]);
               }}
               artistPhoto={Gabriela}
               selected={professional === "Gabriela"}
@@ -654,11 +651,16 @@ const Appointment = () => {
             <Profesionist
               namePro="Stefania"
               onClick={() => {
+                setClientName("");
+                setPhoneNumber("+40");
+                setPaymentStatus(false);
                 setProfessional("Stefania");
                 setService([]);
                 setSelectedHour("");
                 setServiceDuration("");
-                setIndex(0);
+                //setIndex(0);
+                setArtistIndex(0);
+                setAvailableHours([]);
               }}
               artistPhoto={Stefania}
               selected={professional === "Stefania"}
@@ -666,11 +668,16 @@ const Appointment = () => {
             <Profesionist
               namePro="Diana"
               onClick={() => {
+                setClientName("");
+                setPhoneNumber("+40");
+                setPaymentStatus(false);
                 setProfessional("Diana");
                 setService([]);
                 setSelectedHour("");
                 setServiceDuration("");
-                setIndex(1);
+                //setIndex(1);
+                setArtistIndex(1);
+                setAvailableHours([]);
               }}
               artistPhoto={Diana}
               selected={professional === "Diana"}
@@ -678,11 +685,16 @@ const Appointment = () => {
             <Profesionist
               namePro="Catalina"
               onClick={() => {
+                setClientName("");
+                setPhoneNumber("+40");
+                setPaymentStatus(false);
                 setProfessional("Catalina");
                 setService([]);
                 setSelectedHour("");
                 setServiceDuration("");
-                setIndex(2);
+                //setIndex(2);
+                setArtistIndex(2);
+                setAvailableHours([]);
               }}
               artistPhoto={Catalina}
               selected={professional === "Catalina"}
@@ -700,10 +712,13 @@ const Appointment = () => {
                     duration={serviciu.duration}
                     selected={service?.includes(serviciu.name)}
                     onClick={() => {
+                      setClientName("");
+                      setPhoneNumber("+40");
+                      setPaymentAppear(false);
                       if (service?.includes(serviciu.name))
                         setService(
                           service.filter(
-                            (eachService) => eachService != serviciu.name
+                            (eachService) => eachService !== serviciu.name
                           )
                         );
                       else setService([...service, serviciu.name]);
@@ -733,10 +748,14 @@ const Appointment = () => {
                 }
               }}
               className={`mt-2 lg:mt-4 w-full lg:w-[40rem] font-bold text-white py-2 lg:py-4 px-8   rounded-[5px] transition  text-[13px] lg:text-[18px] ${
-                serviceDuration!=="" ? " bg-green-500 transition transition-[.3s] ease-in-out  hover:bg-green-600" : " bg-red-500"
+                serviceDuration !== ""
+                  ? " bg-green-500 transition transition-[.3s] ease-in-out  hover:bg-green-600"
+                  : " bg-red-500"
               }`}
             >
-              {serviceDuration!=="" ? "CONTINUARE" : "SELECTEAZA CEL PUTIN UN SERVICIU"}
+              {serviceDuration !== ""
+                ? "CONTINUARE"
+                : "SELECTEAZA CEL PUTIN UN SERVICIU"}
             </button>
           </div>
         ) : stage === 2 ? (
@@ -788,6 +807,10 @@ const Appointment = () => {
                     return (
                       <div
                         onClick={() => {
+                          if(appearPayment)
+                          {
+                          setPaymentAppear(false);
+                        }
                           setSelectedHour(hour);
                         }}
                         className={`cursor-pointer p-2 font-bold text-[14px] lg:text-[18px] bg-green-500 text-white hover:bg-green-600 transition ease-in-out ${
@@ -802,10 +825,7 @@ const Appointment = () => {
               </div>
             </div>
             <div className="flex flex-col">
-
-              <div
-                className={`text-[13px] lg:text-[18px] `}
-              >
+              <div className={`text-[13px] lg:text-[18px] `}>
                 {selectedData && selectedHour && (
                   <>
                     <div className="flex flex-col items-center  w-full">
@@ -857,7 +877,6 @@ const Appointment = () => {
                                 minLength={8}
                                 maxLength={15}
                                 placeholder="Numar de telefon ex: +40712345689"
-                                className="w-[18rem]"
                                 value={phoneNumber}
                                 onChange={(e) => {
                                   if (
@@ -976,7 +995,7 @@ const Appointment = () => {
                             </div>
                             <input
                               type="text"
-                              name="cardholder-name"
+                              name="clientName"
                               placeholder="Nume si prenume"
                               className="p-2 rounded-[8px] outline-green-500 border-[1px] border-gray-500 w-full"
                               value={clientName}
@@ -985,32 +1004,23 @@ const Appointment = () => {
                               }}
                               required
                             />
-                                          <div className="flex justify-center my-[.5rem] flex w-full lg:w-[20rem]">
-                <span
-                  onClick={() => {
-                    if (!checkTerms) setCheckTerms(true);
-                    else setCheckTerms(false);
-                  }}
-                  className={`flex justify-center items-center text-[15px] lg:text-[22px] mr-2 cursor-pointer min-w-[20px] lg:min-w-[30px]  h-[22px] lg:h-[30px] border-[2px] border-green-600 text-white  ${
-                    checkTerms && "bg-green-500"
-                  }`}
-                >
-                  {checkTerms && <AiOutlineCheck />}
-                </span>
-                <p className="text-left text-[13px] lg:text-[16px]">
-                  Bifand aceasta casuta confirmi ca esti de acord cu{" "}
-                  <a
-                    className="cursor-pointer font-bold"
-                    onClick={() => {
-                      navigate("/termeni-si-conditii-avans");
-                      window.scrollTo({ top: 0, left: 0 });
-                    }}
-                  >
-                    Termenii si conditiile, GDPR si Politica de
-                    confidentialitate.
-                  </a>
-                </p>
-              </div>
+                            <div className="flex justify-center my-[.5rem] flex w-full lg:w-[20rem]">
+
+                              <p className="text-left text-[13px] lg:text-[16px]">
+                                Apasand pe butonul de mai jos, confirmi ca esti de acord
+                                cu{" "}
+                                <a
+                                  className="cursor-pointer font-bold"
+                                  onClick={() => {
+                                    navigate("/termeni-si-conditii-avans");
+                                    window.scrollTo({ top: 0, left: 0 });
+                                  }}
+                                >
+                                  Termenii si conditiile, GDPR si Politica de
+                                  confidentialitate.
+                                </a>
+                              </p>
+                            </div>
                             <button
                               type="submit"
                               className={`  font-montSerrat   text-[14px] lg:text-[18px] w-full h-[2.2rem] lg:h-[3rem] rounded-[8px] font-bold  ${
@@ -1026,29 +1036,30 @@ const Appointment = () => {
                         </div>
                       </div>
                     </div>
-                    <div className={`flex flex-col items-center `}>
-                    {successfull ? (
-                      <p className="font-bold">
-                        Plata a fost realizata cu success
-                      </p>
-                    ) : (
-                      <>
-                        <h1 className="mt-4 w-[20rem] leading-5 ">
-                          Plateste avansul de 100 lei acum si ne vedem la
-                          programare la ora selectata
-                        </h1>
+                    <div className={`flex flex-col items-center ${!appearPayment && "hidden"}`}>
+                      {successfull ? (
+                        <p className="font-bold">
+                          Plata a fost realizata cu success
+                        </p>
+                      ) : (
+                        <>
+                          <h1 className="mt-4 w-[20rem] leading-5 ">
+                            Plateste avansul de 100 lei acum si ne vedem la
+                            programare la ora selectata
+                          </h1>
 
-                        {(clientSecret && stripePromise 
-                 )&& (
-                          <Elements
-                            stripe={stripePromise}
-                            options={{ clientSecret }}
-                          >
-                            <CheckoutForm setPaymentStatus={setPaymentStatus} />
-                          </Elements>
-                        )}
-                      </>
-                    )}
+                          {clientSecret && stripePromise && (
+                            <Elements
+                              stripe={stripePromise}
+                              options={{ clientSecret }}
+                            >
+                              <CheckoutForm
+                                setPaymentStatus={setPaymentStatus}
+                              />
+                            </Elements>
+                          )}
+                        </>
+                      )}
                     </div>
                   </>
                 )}
